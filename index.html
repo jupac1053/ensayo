@@ -12,15 +12,15 @@
   *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;}
   body{background:var(--crema);color:var(--texto);line-height:1.6;}
   
-  /* ENCABEZADO OPTIMIZADO PARA MÓVIL Y PC */
+  /* ENCABEZADO RESPONSIVO Y CENTRADO */
   header{
     background:linear-gradient(135deg,#9bc24c,#5c7a1e);
     color:#fff;
-    padding:15px 20px;
+    padding:20px 15px;
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:15px;
+    gap:20px;
     flex-wrap:wrap;
     text-align:center;
   }
@@ -31,14 +31,14 @@
     box-shadow:0 4px 10px rgba(0,0,0,.25);
     flex-shrink:0;
   }
-  header .escudo img{display:block;border-radius:8px;max-width:70px;height:auto;}
+  header .escudo img{display:block;border-radius:8px;max-width:85px;height:auto;}
   header .titulo{flex:1;min-width:250px;}
-  header h1{font-size: clamp(1.1em, 4vw, 1.6em); margin-bottom:4px;}
-  header p{font-size: clamp(0.85em, 2.5vw, 1em); margin:2px 0;}
+  header h1{font-size: clamp(1.2em, 3.5vw, 1.6em); margin-bottom:6px;}
+  header p{font-size: clamp(0.85em, 2vw, 1em); margin:2px 0;}
 
   /* PESTAÑAS */
   .tabs{display:flex;flex-wrap:wrap;background:var(--verde-osc);justify-content:center;position:sticky;top:0;z-index:20;box-shadow:0 3px 8px rgba(0,0,0,.2);}
-  .tab-btn{background:transparent;border:none;color:#dfe9c8;font-weight:bold;padding:12px 14px;cursor:pointer;font-size:.9em;border-bottom:4px solid transparent;}
+  .tab-btn{background:transparent;border:none;color:#dfe9c8;font-weight:bold;padding:13px 16px;cursor:pointer;font-size:.93em;border-bottom:4px solid transparent;}
   .tab-btn:hover{color:#fff;}
   .tab-btn.activo{color:#fff;border-bottom:4px solid var(--naranja);background:rgba(0,0,0,.15);}
   .subtabs{display:none;background:#6b8e23;width:100%;justify-content:center;flex-wrap:wrap;}
@@ -46,104 +46,270 @@
   .subtab-btn{background:transparent;border:none;color:#e8f0d8;padding:9px 18px;cursor:pointer;font-size:.88em;font-weight:bold;}
   .subtab-btn.activo{color:#fff;background:rgba(0,0,0,.2);border-radius:8px 8px 0 0;}
   
-  section.panel{display:none;max-width:950px;margin:20px auto;background:#fff;border-radius:12px;padding:20px 25px;box-shadow:0 3px 10px rgba(0,0,0,.08);}
+  section.panel{display:none;max-width:950px;margin:30px auto;background:#fff;border-radius:12px;padding:30px 35px;box-shadow:0 3px 10px rgba(0,0,0,.08);}
   section.panel.activo{display:block;}
+  .subpanel{display:none;}
+  .subpanel.activo{display:block;}
+  
   h2{color:var(--verde-osc);border-bottom:4px solid var(--verde);padding-bottom:8px;margin-bottom:18px;}
   h3{color:var(--verde-osc);margin:20px 0 10px;}
   
-  .tabla{width:100%;border-collapse:collapse;margin:15px 0;overflow-x:auto;display:block;}
+  .tabla-container{width:100%;overflow-x:auto;}
+  .tabla{width:100%;border-collapse:collapse;margin:15px 0;}
   .tabla th{background:var(--verde);color:#fff;padding:10px;text-align:left;}
   .tabla td{border:1px solid #ddd;padding:10px;vertical-align:top;}
   .tabla tr:nth-child(even){background:#f4f7ec;}
   
   .caja{background:#eef5dd;border-left:6px solid var(--verde);padding:15px 20px;border-radius:6px;margin:15px 0;}
+  .caja-morada{background:#ece7f7;border-left:6px solid var(--morado);padding:15px 20px;border-radius:6px;margin:15px 0;}
+  .caja-azul{background:#e8f3fb;border-left:6px solid var(--azul);padding:15px 20px;border-radius:6px;margin:15px 0;}
   .juego-desc{background:#fff8ec;border:2px dashed var(--naranja);border-radius:10px;padding:18px;margin:18px 0;}
   .juego-desc h4{color:#c77f1f;margin-bottom:8px;}
+  .modulo{background:#f9fbf3;border-radius:10px;padding:15px 20px;margin:12px 0;border-left:5px solid var(--azul);}
+  .badge{display:inline-block;background:var(--naranja);color:#fff;border-radius:20px;padding:3px 14px;font-size:.85em;margin-bottom:8px;}
   footer{background:var(--verde-osc);color:#fff;text-align:center;padding:20px;margin-top:40px;}
+  footer .creditos{font-size:.95em;margin-top:6px;}
+  ul,ol{margin-left:25px;}
 
-  /* SOPA DE LETRAS OPTIMIZADA CON SELECCIÓN TOUCH / MOUSE */
+  /* ===== SOPA DE LETRAS ===== */
   #sopa-wrap{text-align:center;user-select:none;-webkit-user-select:none;}
-  #sopa-grid{
-    display:inline-grid;
-    grid-template-columns:repeat(14, clamp(22px, 6vw, 34px));
-    gap:3px;
-    margin:15px auto;
-    touch-action:none;
-  }
-  #sopa-grid div{
-    width: clamp(22px, 6vw, 34px);
-    height: clamp(22px, 6vw, 34px);
-    background:#eef5dd;
-    border-radius:6px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-    cursor:pointer;
-    font-size: clamp(0.75em, 2.5vw, 0.95em);
-  }
+  #sopa-grid{display:inline-grid;grid-template-columns:repeat(14, clamp(20px, 5vw, 34px));gap:3px;margin:15px auto;touch-action:none;}
+  #sopa-grid div{width:clamp(20px, 5vw, 34px);height:clamp(20px, 5vw, 34px);background:#eef5dd;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:bold;cursor:pointer;font-size:clamp(0.75em, 2vw, 0.95em);}
+  #sopa-grid div:hover{background:#dcebc0;}
   #sopa-grid div.sel{background:var(--naranja);color:#fff;}
   #sopa-grid div.found{background:var(--verde);color:#fff;}
   .palabras-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0;}
-  .chip{background:#e8f0d8;border-radius:16px;padding:4px 14px;font-weight:bold;font-size:0.9em;}
+  .chip{background:#e8f0d8;border-radius:16px;padding:4px 14px;font-weight:bold;}
   .chip.ok{background:var(--verde);color:#fff;text-decoration:line-through;}
   .btn-juego{background:var(--verde-osc);color:#fff;border:none;border-radius:8px;padding:10px 22px;font-weight:bold;cursor:pointer;font-size:1em;margin:8px 4px;}
+  .btn-juego:hover{background:#4a6118;}
 
-  /* SENDERO OPTIMIZADO CON SVG (COMPATIBLE CON MÓVIL Y PC) */
+  /* ===== CRUCIGRAMA ===== */
+  #cruci-wrap{text-align:center;}
+  #cruci-grid{display:inline-grid;gap:2px;margin:15px auto;}
+  #cruci-grid input{width:clamp(22px, 5vw, 34px);height:clamp(22px, 5vw, 34px);text-align:center;font-weight:bold;text-transform:uppercase;font-size:1em;border:2px solid #b9cf8a;border-radius:6px;background:#fff;}
+  #cruci-grid input:focus{outline:none;border-color:var(--naranja);background:#fff8ec;}
+  #cruci-grid span{width:clamp(22px, 5vw, 34px);height:clamp(22px, 5vw, 34px);display:inline-block;}
+  #cruci-grid input.bien{background:var(--verde);color:#fff;border-color:var(--verde);}
+  #cruci-grid input.mal{background:#f5b7b1;border-color:#c0392b;}
+  .pista{text-align:left;background:#f9fbf3;border-radius:8px;padding:10px 16px;margin:6px auto;max-width:560px;}
+
+  /* ===== SENDERO CON SVG ===== */
   #sendero-wrap{text-align:center;}
-  #sendero-board{
-    display:grid;
-    grid-template-columns:repeat(12, clamp(24px, 7vw, 44px));
-    gap:4px;
-    justify-content:center;
-    margin:15px auto;
-  }
-  #sendero-board div{
-    width: clamp(24px, 7vw, 44px);
-    height: clamp(24px, 7vw, 44px);
-    border-radius:8px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
+  #sendero-board{display:grid;grid-template-columns:repeat(12, clamp(22px, 6vw, 44px));gap:4px;justify-content:center;margin:15px auto;}
+  #sendero-board div{width:clamp(22px, 6vw, 44px);height:clamp(22px, 6vw, 44px);border-radius:8px;display:flex;align-items:center;justify-content:center;}
   .celda-camino{background:#e3d5a8;box-shadow:inset 0 0 0 2px #cbb37a;}
   .celda-vacia{background:transparent;}
-  
-  /* Íconos vectoriales SVG limpios */
-  .icon-svg { width: 70%; height: 70%; fill: currentColor; }
-  .icon-jugador { color: #d35400; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3)); }
-  .icon-meta { color: #27ae60; }
-  .icon-obstaculo { color: #c0392b; }
-
+  .icon-svg{width:70%;height:70%;fill:currentColor;}
+  .icon-jugador{color:#d35400;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.3));}
+  .icon-meta{color:#27ae60;}
+  .icon-obstaculo{color:#c0392b;}
   .joystick{display:flex;flex-direction:column;align-items:center;gap:6px;margin:12px auto;}
   .joy-row{display:flex;gap:6px;}
   .joy-btn{width:48px;height:48px;font-size:1.2em;border:none;border-radius:10px;background:var(--verde-osc);color:#fff;cursor:pointer;}
-  .joy-btn:active{background:var(--naranja);}
-  #sendero-info{max-width:620px;margin:12px auto;background:#e8f3fb;border-left:6px solid var(--azul);border-radius:8px;padding:14px 18px;text-align:left;}
+  .joy-btn:hover{background:var(--naranja);}
+  #sendero-info{max-width:620px;margin:12px auto;background:#e8f3fb;border-left:6px solid var(--azul);border-radius:8px;padding:14px 18px;text-align:left;min-height:60px;}
+
+  /* ===== JUEGO 4: TRIVIA CON TIEMPO ===== */
+  #trivia-wrap{max-width:600px;margin:15px auto;background:#f9fbf3;border:2px solid var(--verde);border-radius:12px;padding:20px;text-align:center;}
+  .trivia-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;font-weight:bold;font-size:1.1em;}
+  .timer-badge{background:var(--naranja);color:#fff;padding:4px 12px;border-radius:20px;}
+  .pregunta-box{font-size:1.15em;font-weight:bold;color:var(--verde-osc);margin-bottom:20px;}
+  .opciones-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:15px;}
+  .btn-opcion{background:#fff;border:2px solid var(--verde);border-radius:8px;padding:12px;font-size:0.95em;font-weight:bold;cursor:pointer;text-align:left;transition:all 0.2s;}
+  .btn-opcion:hover{background:#eef5dd;}
+  .btn-opcion.correcta{background:var(--verde);color:#fff;border-color:var(--verde);}
+  .btn-opcion.incorrecta{background:#f5b7b1;color:#721c24;border-color:#c0392b;}
+  #trivia-msg{font-weight:bold;margin-top:10px;min-height:24px;}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="escudo"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAAEECAYAAACm3p8bAACNfklEQVR4nOz9V7BlaXbfif0+s83x555rM2/etJXlXXuP7h6gAXAEEiRIBilEMGI4w1CEpCdpQk8KKUYP0tsoFCEp5k3DoIjRcGhGFDgkCJDDbkw30N2FruouX5mVPvNmXne82eYzevjOuekrq6qr0K5Wxc3Ke/Kcs7+999rrW+a//kt84R/+x54HiEA86OVfevH+7svheeDluU/uu17iIa9/zPKo9YvbC7v7958TkT/rBXwin8idou99ohZPzKMsgxAfz5N173o+crnPkN39woc9r58XS/Oo9f+8rPNhoh/1hoVi/qxO5Kc//kLBf75vxMctP++KuBB9r0V8mGW8VzH+shX1/fpy7/UNAMLf7UM9Sn5RbuTD5KHr94v/vbeP+dPKB/XBH2khP5FfTvnpH/CPR/R9PsdDnpxP5Bdb7r2fHzp78H6P8yH16JMo+xP5uZルドCardona" alt="Escudo"></div>
+  <div class="escudo"><img src="data:image/png;base64,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" alt="Escudo"></div>
   <div class="titulo">
     <h1>Propuesta Pedagógica Alternativa</h1>
-    <p>I.E. Aureliano Flórez Cardona</p>
+    <p>Inclusiva 2026</p>
+    <p><strong>Diplomado Alternativas Pedagógicas en y para la Atención a la Diversidad — Cohorte II</strong></p>
+    <p>Institución Educativa <strong>Aureliano Flórez Cardona</strong> · Anserma, Caldas</p>
+    <p>Propuesta pedagógica alternativa para grados 6° a 11°</p>
   </div>
+  <div class="escudo"><img src="data:image/png;base64,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" alt="Escudo"></div>
 </header>
 
+<!-- ===== PESTAÑAS PRINCIPALES ===== -->
 <div class="tabs">
-  <button class="tab-btn activo" onclick="verTab('tab-juegos')">Juegos Virtuales</button>
+  <button class="tab-btn activo" onclick="mostrarTab('inicio',this)">🏠 Inicio</button>
+  <button class="tab-btn" onclick="mostrarTab('plan',this)">📋 Plan de Trabajo</button>
+  <button class="tab-btn" onclick="mostrarTab('tematicas',this)">📚 Temáticas</button>
+  <button class="tab-btn" onclick="mostrarTab('actividades',this)">🎯 Actividades</button>
+  <button class="tab-btn" onclick="mostrarTab('juegos',this)">🎮 Juegos Virtuales</button>
+  <button class="tab-btn" onclick="mostrarTab('desarrollo',this)">🚀 Desarrollo</button>
+  <button class="tab-btn" onclick="mostrarTab('evaluacion',this)">✅ Evaluación</button>
+  <button class="tab-btn" onclick="mostrarTab('conclusiones',this)">💡 Conclusiones</button>
+  <button class="tab-btn" onclick="mostrarTab('creditos',this)">⭐ Créditos</button>
 </div>
 
-<main>
-  <section id="tab-juegos" class="panel activo">
-    <h2>Juegos Pedagógicos Virtuales</h2>
-    
-    <!-- SOPA DE LETRAS -->
+<!-- SUBMENÚ DE JUEGOS -->
+<div class="subtabs" id="subtabs-juegos">
+  <button class="subtab-btn activo" onclick="mostrarSub('j-sopa',this)">🔤 Sopa de Letras</button>
+  <button class="subtab-btn" onclick="mostrarSub('j-cruci',this)">🧩 Crucigrama</button>
+  <button class="subtab-btn" onclick="mostrarSub('j-sendero',this)">🥾 Sendero de la Inclusión</button>
+  <button class="subtab-btn" onclick="mostrarSub('j-trivia',this)">⏱️ Trivia con Tiempo</button>
+</div>
+
+<!-- ============ INICIO ============ -->
+<section class="panel activo" id="inicio">
+  <h2>🏠 Bienvenidos a «Nuestra Escuela Diversa»</h2>
+  <p>Esta propuesta pedagógica alternativa fue diseñada por docentes de la <strong>Institución Educativa Aureliano Flórez Cardona</strong> de <strong>Anserma, Caldas</strong>, como producto final del <strong>Diplomado Alternativas Pedagógicas en y para la Atención a la Diversidad — Cohorte II</strong>, de la Secretaría de Educación del Departamento de Caldas y la Universidad de Manizales.</p>
+  <div class="caja">
+    <h3>🎯 ¿Qué encontrarán aquí los estudiantes de 6° a 11°?</h3>
+    <ul>
+      <li>📚 Explicaciones sencillas de las temáticas del diplomado (diversidad, interseccionalidad, evaluación justa, era digital y más).</li>
+      <li>🎯 Actividades pedagógicas alternativas para vivir en la escuela.</li>
+      <li>🎮 <strong>Juegos virtuales</strong>: sopa de letras, crucigrama, sendero interactivo y trivia con tiempo.</li>
+      <li>🚀 El cronograma de desarrollo y las conclusiones del proceso.</li>
+    </ul>
+  </div>
+  <div class="caja-azul">
+    <p><strong>¿Cómo navegar?</strong> Usa las pestañas del menú superior. En <strong>🎮 Juegos Virtuales</strong> encontrarás un submenú con cuatro juegos interactivos. ¡Explora y aprende jugando!</p>
+  </div>
+</section>
+
+<!-- ============ PLAN ============ -->
+<section class="panel" id="plan">
+  <h2>📋 Plan de Trabajo de la Propuesta Pedagógica Alternativa</h2>
+  <div class="tabla-container">
+    <table class="tabla">
+      <tr><th style="width:30%">Campo</th><th>Descripción</th></tr>
+      <tr><td><strong>Nombre del Docente:</strong></td><td>Juan Pablo Correa · Jorge Loaiza · Juan Carlos Fajardo</td></tr>
+      <tr><td><strong>Institución Educativa:</strong></td><td>Institución Educativa Aureliano Flórez Cardona</td></tr>
+      <tr><td><strong>Municipio:</strong></td><td>Anserma, Caldas</td></tr>
+      <tr><td><strong>Nombre de la propuesta:</strong></td><td><strong>«Nuestra Escuela Diversa: aprendemos, jugamos e incluimos»</strong></td></tr>
+      <tr><td><strong>Objetivos:</strong></td><td>
+        <ul>
+          <li>Fortalecer en los estudiantes de 6° a 11° el respeto por la diversidad (cultural, de género, discapacidad, social y digital) mediante experiencias pedagógicas alternativas.</li>
+          <li>Desarrollar competencias de convivencia, empatía y participación a partir de los seis módulos del diplomado.</li>
+          <li>Integrar tecnología, juegos y evaluación formativa como herramientas de inclusión.</li>
+          <li>Permear prácticas, políticas y cultura escolar hacia escenarios más inclusivos.</li>
+        </ul>
+      </td></tr>
+      <tr><td><strong>Contenido (ejes):</strong></td><td>
+        <ul>
+          <li><strong>Módulo 1:</strong> Pedagogía queer / la interseccionalidad en la escuela.</li>
+          <li><strong>Módulo 2:</strong> ¿Qué implica ser maestro hoy? (rol docente como mediador).</li>
+          <li><strong>Módulo 3:</strong> La evaluación en el contexto de la diversidad.</li>
+          <li><strong>Módulo 4:</strong> Alternativas pedagógicas.</li>
+          <li><strong>Módulo 5:</strong> Didácticas y alternativas didácticas.</li>
+          <li><strong>Módulo 6:</strong> Enseñar y aprender en la era digital.</li>
+        </ul>
+      </td></tr>
+      <tr><td><strong>Metodología:</strong></td><td>Espacios formativos alternativos: talleres vivenciales, círculos de diálogo, juegos de roles, gamificación (juegos virtuales y de mesa), actividades digitales colaborativas, aprendizaje basado en proyectos y trabajo por estaciones. Se sugiere un encuentro semanal de 2 horas durante 8 semanas.</td></tr>
+      <tr><td><strong>Recursos de Apoyo:</strong></td><td>
+        <ul>
+          <li><strong>Físicos:</strong> papelógrafos, tarjetas, cinta de masking, bolígrafos de colores, dados, juegos de mesa adaptados.</li>
+          <li><strong>Digitales:</strong> tablets o celulares, conexión a internet, este sitio web interactivo, plataformas (Kahoot, Mentimeter, Genially), pizarras digitales.</li>
+          <li><strong>Humanos:</strong> docentes participantes del diplomado, docentes de cada grado, representantes estudiantiles, familias y comunidad.</li>
+        </ul>
+      </td></tr>
+      <tr><td><strong>Evaluación:</strong></td><td>Evaluación formativa e inclusiva: rúbricas co-construidas con los estudiantes, autoevaluación, coevaluación, portafolio de evidencias (fotos, videos, reflexiones escritas), y valoración del proceso y no solo del producto.</td></tr>
+      <tr><td><strong>Evidencias (fotográficas y escritas):</strong></td><td>Fotografías de las actividades, registros escritos de reflexión, testimonios en audio o video, productos digitales (murales virtuales, podcasts, presentaciones), listas de asistencia y compromisos firmados.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ============ TEMÁTICAS ============ -->
+<section class="panel" id="tematicas">
+  <h2>📚 Las Temáticas del Diplomado Explicadas para Estudiantes</h2>
+
+  <div class="modulo">
+    <span class="badge">Módulo 1</span>
+    <h3>1. Pedagogía Queer y la Interseccionalidad en la Escuela</h3>
+    <p><strong>¿Qué significa?</strong> Que cada estudiante es único y vive diferentes situaciones al mismo tiempo (su origen, su género, sus capacidades, sus gustos, su cultura). La interseccionalidad nos enseña que no hay un solo tipo de estudiante "normal", sino que todos somos un cruce de identidades. La pedagogía queer cuestiona los estereotipos y nos invita a romper etiquetas para que nadie sea rechazado o invisibilizado en la escuela.</p>
+  </div>
+
+  <div class="modulo">
+    <span class="badge">Módulo 2</span>
+    <h3>2. ¿Qué Implica Ser Maestro Hoy?</h3>
+    <p><strong>¿Qué significa?</strong> El docente ya no es quien solo dicta clase y pone notas, sino un mediador, un compañero de viaje, un escucha y un constructor de ambientes seguros. Ser maestro hoy exige empatía, reflexionar sobre la propia práctica, desaprender prejuicios y adaptar las clases a los ritmos y necesidades de cada estudiante.</p>
+  </div>
+
+  <div class="modulo">
+    <span class="badge">Módulo 3</span>
+    <h3>3. La Evaluación en el Contexto de la Diversidad</h3>
+    <p><strong>¿Qué significa?</strong> Evaluar no es castigar ni poner un número para clasificar a los estudiantes en "buenos" y "malos". Evaluar es valorar el esfuerzo, la progresión y la forma en que cada persona aprende. En una escuela diversa, la evaluación usa múltiples formas: exposiciones, dibujos, obras de teatro, proyectos, juegos, autoevaluación y coevaluación.</p>
+  </div>
+
+  <div class="modulo">
+    <span class="badge">Módulo 4</span>
+    <h3>4. Alternativas Pedagógicas</h3>
+    <p><strong>¿Qué significa?</strong> Buscar caminos diferentes a la clase magistral tradicional. Significa abrir la puerta al aprendizaje fuera del aula, a las preguntas de los estudiantes, a la resolución de problemas reales de la comunidad y al arte, al cuerpo y a la expresión como vehículos para aprender.</p>
+  </div>
+
+  <div class="modulo">
+    <span class="badge">Módulo 5</span>
+    <h3>5. Didácticas y Alternativas Didácticas</h3>
+    <p><strong>¿Qué significa?</strong> Las estrategias concretas que usamos para enseñar. El Diseño Universal para el Aprendizaje (DUA) propone que todas las actividades tengan múltiples formas de presentación (ver, escuchar, tocar), múltiples formas de expresión (escribir, hablar, construir) y múltiples formas de motivación (juegos, retos, trabajo colaborativo).</p>
+  </div>
+
+  <div class="modulo">
+    <span class="badge">Módulo 6</span>
+    <h3>6. Enseñar y Aprender en la Era Digital</h3>
+    <p><strong>¿Qué significa?</strong> La tecnología no es solo para entretenerse, sino una herramienta poderosa de inclusión. Nos permite crear juegos interactivos, podcasts, murales digitales, traducir contenidos, usar lectores de pantalla y conectar la escuela con el mundo de manera crítica, ética y creativa.</p>
+  </div>
+</section>
+
+<!-- ============ ACTIVIDADES ============ -->
+<section class="panel" id="actividades">
+  <h2>🎯 Actividades Pedagógicas Alternativas para el Aula</h2>
+  
+  <div class="caja-morada">
+    <h3>Taller 1: «La telaraña de nuestras identidades» (Módulo 1)</h3>
+    <p><strong>Propósito:</strong> Comprender la interseccionalidad.</p>
+    <p><strong>Desarrollo:</strong> En círculo, cada estudiante sostiene una bola de lana y dice tres aspectos de su identidad (ej. "soy deportista, me gusta la música andina y vivo en el campo"). Lanza la lana a un compañero buscando coincidencias o diferencias. Al final se crea una red que muestra cómo todos estamos conectados en la diversidad.</p>
+  </div>
+
+  <div class="caja">
+    <h3>Taller 2: «El maestro que imagino, el estudiante que sueño» (Módulo 2)</h3>
+    <p><strong>Propósito:</strong> Reflexionar sobre los roles en la escuela diversa.</p>
+    <p><strong>Desarrollo:</strong> Mediante un juego de roles (dramatizado), los estudiantes hacen de maestros y los maestros de estudiantes, representando situaciones cotidianas de aula y proponiendo soluciones dialogadas.</p>
+  </div>
+
+  <div class="caja-azul">
+    <h3>Taller 3: «Mi semáforo de aprendizaje» (Módulo 3)</h3>
+    <p><strong>Propósito:</strong> Promover la autoevaluación formativa.</p>
+    <p><strong>Desarrollo:</strong> Al finalizar una temática, cada estudiante ubica en un mural su tarjeta: Verde (comprendí y puedo explicarlo), Amarillo (tengo algunas dudas) o Rojo (necesito ayuda). Luego se arman parejas de apoyo entre verdes y amarillos/rojos.</p>
+  </div>
+
+  <div class="caja-morada">
+    <h3>Taller 4: «Cartografía de nuestra escuela» (Módulo 4)</h3>
+    <p><strong>Propósito:</strong> Identificar barreras e inclusión en la I.E. Aureliano Flórez Cardona.</p>
+    <p><strong>Desarrollo:</strong> Los estudiantes recorren la institución dibujando un mapa gigante donde ubican "zonas de encuentro y alegría" (inclusivas) y "zonas con barreras físicas o de convivencia", proponiendo mejoras reales.</p>
+  </div>
+
+  <div class="caja">
+    <h3>Taller 5: «Estaciones de aprendizaje DUA» (Módulo 5)</h3>
+    <p><strong>Propósito:</strong> Aplicar didácticas diversas.</p>
+    <p><strong>Desarrollo:</strong> El aula se organiza en 4 estaciones sobre un mismo tema: Estación 1 (Lectura y mapa conceptual), Estación 2 (Video/Audio podcast), Estación 3 (Modelado con plastilina/dibujo) y Estación 4 (Juego de preguntas). Cada grupo rota por la estación de su preferencia.</p>
+  </div>
+
+  <div class="caja-azul">
+    <h3>Taller 6: «Creadores digitales por la inclusión» (Módulo 6)</h3>
+    <p><strong>Propósito:</strong> Uso pedagógico de las TIC.</p>
+    <p><strong>Desarrollo:</strong> Diseñar en grupos un meme positivo, un video corto (TikTok/Reel pedagógico) o una infografía digital sobre el respeto a las diferencias en la I.E. Aureliano Flórez Cardona.</p>
+  </div>
+</section>
+
+<!-- ============ JUEGOS VIRTUALES ============ -->
+<section class="panel" id="juegos">
+  <h2>🎮 Juegos Pedagógicos Virtuales</h2>
+  <p>Elige un juego en el submenú de arriba para comenzar a jugar.</p>
+
+  <!-- JUEGO 1: SOPA DE LETRAS -->
+  <div class="subpanel activo" id="j-sopa">
     <div class="juego-desc">
-      <h4>1. Sopa de Letras Interactiva</h4>
-      <p>Haz clic o pasa el dedo sobre las letras seguidas para marcar las palabras.</p>
+      <h4>🔤 1. Sopa de Letras de la Diversidad</h4>
+      <p>Pasa el dedo o haz clic y arrastra sobre las letras consecutivas para encontrar las 4 palabras.</p>
       <div class="palabras-chips">
         <span class="chip" id="chip-AURELIANO">AURELIANO</span>
         <span class="chip" id="chip-FLOREZ">FLOREZ</span>
@@ -153,12 +319,34 @@
       <div id="sopa-wrap">
         <div id="sopa-grid"></div>
       </div>
+      <button class="btn-juego" onclick="renderSopa()">🔄 Reiniciar Sopa</button>
     </div>
+  </div>
 
-    <!-- SENDERO VIRTUAL -->
+  <!-- JUEGO 2: CRUCIGRAMA -->
+  <div class="subpanel" id="j-cruci">
     <div class="juego-desc">
-      <h4>2. Sendero Interactivo</h4>
-      <p>Usa los botones para llevar al estudiante hasta la meta evitando los obstáculos.</p>
+      <h4>🧩 2. Crucigrama de la Inclusión</h4>
+      <p>Escribe en mayúsculas la palabra correcta según cada pista y luego presiona «Verificar».</p>
+      <div id="cruci-wrap">
+        <div id="cruci-grid"></div>
+      </div>
+      <div class="pistas">
+        <div class="pista"><strong>Horizontal 1:</strong> Nombre de nuestra Institución Educativa (primera palabra). (9 letras)</div>
+        <div class="pista"><strong>Vertical 2:</strong> Principio que reconoce que todos somos diferentes y valiosos. (10 letras)</div>
+        <div class="pista"><strong>Horizontal 3:</strong> Garantía de que todos participan sin ser excluidos. (9 letras)</div>
+      </div>
+      <button class="btn-juego" onclick="verificarCrucigrama()">✅ Verificar Crucigrama</button>
+      <button class="btn-juego" onclick="renderCrucigrama()">🔄 Reiniciar</button>
+      <p id="cruci-msg" style="font-weight:bold;margin-top:10px;"></p>
+    </div>
+  </div>
+
+  <!-- JUEGO 3: SENDERO INTERACTIVO -->
+  <div class="subpanel" id="j-sendero">
+    <div class="juego-desc">
+      <h4>🥾 3. Sendero Interactivo de la Inclusión</h4>
+      <p>Mueve al estudiante usando los botones para llevarlo a la meta (bandera verde) esquivando los obstáculos (triángulos rojos).</p>
       <div id="sendero-wrap">
         <div id="sendero-board"></div>
         <div class="joystick">
@@ -169,18 +357,141 @@
             <button class="joy-btn" onclick="moverJugador(1,0)">►</button>
           </div>
         </div>
-        <div id="sendero-info">¡Llega al final del camino!</div>
+        <div id="sendero-info">¡Usa las flechas para moverte hacia la meta!</div>
       </div>
+      <button class="btn-juego" onclick="reiniciarSendero()">🔄 Reiniciar Sendero</button>
     </div>
-  </section>
-</main>
+  </div>
+
+  <!-- JUEGO 4: TRIVIA CON TIEMPO -->
+  <div class="subpanel" id="j-trivia">
+    <div class="juego-desc">
+      <h4>⏱️ 4. Trivia con Tiempo de la Diversidad</h4>
+      <p>Responde las preguntas antes de que el tiempo de 15 segundos se agote por pregunta.</p>
+      <div id="trivia-wrap">
+        <div class="trivia-header">
+          <span>Pregunta <span id="t-num">1</span> de 4</span>
+          <span class="timer-badge">⏱️ <span id="t-time">15</span>s</span>
+        </div>
+        <div class="pregunta-box" id="t-pregunta">Cargando pregunta...</div>
+        <div class="opciones-grid" id="t-opciones"></div>
+        <div id="trivia-msg"></div>
+        <button class="btn-juego" id="btn-next-trivia" style="display:none;" onclick="siguientePreguntaTrivia()">Siguiente Pregunta ➡️</button>
+      </div>
+      <button class="btn-juego" onclick="iniciarTrivia()">🔄 Reiniciar Trivia</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DESARROLLO ============ -->
+<section class="panel" id="desarrollo">
+  <h2>🚀 Cronograma de Desarrollo e Implementación</h2>
+  <div class="tabla-container">
+    <table class="tabla">
+      <tr><th>Fase / Semana</th><th>Módulo / Eje</th><th>Actividad Principal</th><th>Entregable / Evidencia</th></tr>
+      <tr><td>Semana 1</td><td>Módulo 1: Pedagogía Queer e Interseccionalidad</td><td>Taller «La telaraña de nuestras identidades»</td><td>Fotografías y mapa de diversidad grupal</td></tr>
+      <tr><td>Semana 2</td><td>Módulo 2: ¿Qué implica ser maestro hoy?</td><td>Dramatizado de roles docente-estudiante</td><td>Registro en video y reflexiones escritas</td></tr>
+      <tr><td>Semana 3</td><td>Módulo 3: Evaluación diversa</td><td>Implementación del «Semáforo de aprendizaje»</td><td>Mural de tarjetas y acuerdos de tutoría entre pares</td></tr>
+      <tr><td>Semana 4</td><td>Módulo 4: Alternativas pedagógicas</td><td>Cartografía social del colegio</td><td>Mapa gigante con propuesta de accesibilidad</td></tr>
+      <tr><td>Semana 5</td><td>Módulo 5: Didácticas e inclusión (DUA)</td><td>Estaciones de aprendizaje DUA</td><td>Productos por estación (escritos, dibujos, audios)</td></tr>
+      <tr><td>Semana 6</td><td>Módulo 6: Era digital</td><td>Creación de contenidos digitales por la inclusión</td><td>Mural digital (Padlet) con memes/videos/infografías</td></tr>
+      <tr><td>Semana 7</td><td>Integración</td><td>Jornada de Juegos Virtuales y de Mesa en la I.E.</td><td>Capturas, registros del crucigrama y trivia</td></tr>
+      <tr><td>Semana 8</td><td>Cierre y Evaluación</td><td>Sancochada/Compartir inclusivo y Portafolio Final</td><td>Portafolio digital/físico institucional compilado</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ============ EVALUACIÓN ============ -->
+<section class="panel" id="evaluacion">
+  <h2>✅ Sistema de Evaluación Formativa e Inclusiva</h2>
+  <p>En el marco del <strong>Módulo 3: La evaluación en el contexto de la diversidad</strong>, la evaluación de esta propuesta no utiliza exámenes memorísticos tradicionales ni notas punitivas. Se organiza en tres dimensiones:</p>
+  
+  <div class="caja">
+    <h3>1. Autoevaluación (¿Cómo aprendo yo?)</h3>
+    <p>Cada estudiante reflexiona sobre su propio proceso mediante el «Diario de campo inclusivo» o la herramienta del «Semáforo».</p>
+  </div>
+
+  <div class="caja-azul">
+    <h3>2. Coevaluación (¿Cómo aprendemos juntos?)</h3>
+    <p>Valoración entre pares basada en el respeto, la empatía y la retroalimentación constructiva durante los talleres y juegos interactivos.</p>
+  </div>
+
+  <div class="caja-morada">
+    <h3>3. Heteroevaluación Formativa (Acompañamiento docente)</h3>
+    <p>El docente hace seguimiento mediante rúbricas cualitativas que valoran la participación, el trabajo en equipo, la creatividad, la empatía y los productos alternativos elaborados en cada módulo.</p>
+  </div>
+</section>
+
+<!-- ============ CONCLUSIONES ============ -->
+<section class="panel" id="conclusiones">
+  <h2>💡 Conclusiones y Proyección</h2>
+  <div class="caja">
+    <ul>
+      <li>La atención a la diversidad en la <strong>I.E. Aureliano Flórez Cardona</strong> no es una tarea adicional, sino el corazón mismo de la práctica pedagógica.</li>
+      <li>Integrar alternativas como el juego virtual, la cartografía social y las didácticas DUA transforma el clima escolar y fomenta el sentido de pertenencia en los estudiantes de 6° a 11°.</li>
+      <li>El diplomado brindó marcos conceptuales y herramientas aplicables para pasar del discurso de la inclusión a prácticas cotidianas en el aula de clases.</li>
+      <li>Esta propuesta web queda disponible como un recurso pedagógico abierto y dinámico para la comunidad educativa de Anserma y el departamento de Caldas.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ CRÉDITOS ============ -->
+<section class="panel" id="creditos">
+  <h2>⭐ Créditos e Información Institucional</h2>
+  <div class="caja-azul">
+    <p><strong>Propuesta Pedagógica Alternativa: «Nuestra Escuela Diversa»</strong></p>
+    <p><strong>Docentes Autores:</strong> Juan Pablo Correa · Jorge Loaiza · Juan Carlos Fajardo</p>
+    <p><strong>Institución Educativa:</strong> Aureliano Flórez Cardona (Anserma, Caldas)</p>
+    <p><strong>Cohorte:</strong> COHORTE II — 2026</p>
+    <p><strong>Programa:</strong> Diplomado Alternativas Pedagógicas en y para la Atención a la Diversidad</p>
+    <p><strong>Organiza:</strong> Secretaría de Educación Departamental de Caldas — Gobernación de Caldas & Universidad de Manizales</p>
+    <p><strong>Proyecto:</strong> Caldas Camina Hacia la Inclusión</p>
+    <p><strong>Módulos y Docentes del Diplomado:</strong></p>
+    <ul>
+      <li>Módulo 1: Pedagogía queer la interseccionalidad en la escuela — Docente: Jaime Alberto Restrepo Soto</li>
+      <li>Módulo 2: Qué implica ser maestro hoy — Docente: Claudia Patricia Jiménez Guzmán</li>
+      <li>Módulo 3: La Evaluación en el Contexto de La Diversidad — Docente: Yenny Andrea Gutiérrez Toro</li>
+      <li>Módulo 4: Alternativas pedagógicas — Docente: Claudia Patricia Jiménez Guzmán</li>
+      <li>Módulo 5: Didácticas y alternativas didácticas — Docente: Valentina Cadavid Alzate</li>
+      <li>Módulo 6: Enseñar y aprender en la era digital — Docente: Alejandro Cardona Valencia</li>
+    </ul>
+  </div>
+</section>
 
 <footer>
-  <p>© 2026 I.E. Aureliano Flórez Cardona</p>
+  <p><strong>I.E. Aureliano Flórez Cardona · Anserma, Caldas</strong></p>
+  <p class="creditos">Diplomado Alternativas Pedagógicas en y para la Atención a la Diversidad — Universidad de Manizales / Gobernación de Caldas</p>
+  <p class="creditos">© 2026 — Propuesta Pedagógica Alternativa Grados 6° a 11°</p>
 </footer>
 
 <script>
-/* ===== LÓGICA DE LA SOPA DE LETRAS ===== */
+/* ===== NAVEGACIÓN ENTRE PESTAÑAS Y SUBPESTAÑAS ===== */
+function mostrarTab(idTab, btn) {
+  document.querySelectorAll('section.panel').forEach(p => p.classList.remove('activo'));
+  document.querySelectorAll('.tabs .tab-btn').forEach(b => b.classList.remove('activo'));
+  document.getElementById(idTab).classList.add('activo');
+  btn.classList.add('activo');
+
+  const subtabs = document.getElementById('subtabs-juegos');
+  if (idTab === 'juegos') {
+    subtabs.classList.add('activo');
+  } else {
+    subtabs.classList.remove('activo');
+  }
+}
+
+function mostrarSub(idSub, btn) {
+  document.querySelectorAll('#juegos .subpanel').forEach(sp => sp.classList.remove('activo'));
+  document.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('activo'));
+  document.getElementById(idSub).classList.add('activo');
+  btn.classList.add('activo');
+
+  if(idSub === 'j-trivia') {
+    iniciarTrivia();
+  }
+}
+
+/* ===== 1. SOPA DE LETRAS ===== */
 const gridSopa = [
   ['A','U','R','E','L','I','A','N','O','X','Y','Z','W','K'],
   ['B','C','D','E','F','G','H','I','J','K','L','M','N','O'],
@@ -198,6 +509,8 @@ let esArrastrando = false;
 function renderSopa() {
   const container = document.getElementById('sopa-grid');
   container.innerHTML = '';
+  document.querySelectorAll('.palabras-chips .chip').forEach(c => c.classList.remove('ok'));
+  
   gridSopa.forEach((row, r) => {
     row.forEach((letra, c) => {
       const cell = document.createElement('div');
@@ -205,7 +518,6 @@ function renderSopa() {
       cell.dataset.r = r;
       cell.dataset.c = c;
       
-      // Eventos Mouse y Touch
       cell.addEventListener('mousedown', () => iniciarSeleccion(cell));
       cell.addEventListener('mouseenter', () => continuarSeleccion(cell));
       
@@ -259,7 +571,69 @@ function finalizarSeleccion() {
   }
 }
 
-/* ===== LÓGICA DEL SENDERO (CON ÍCONOS SVG LIMPIOS) ===== */
+/* ===== 2. CRUCIGRAMA ===== */
+const mapaCruci = [
+  ['A','U','R','E','L','I','A','N','O'],
+  ['','','','D','','','','',''],
+  ['','','','I','','','','',''],
+  ['','','','V','','','','',''],
+  ['','','','E','','','','',''],
+  ['I','N','C','L','U','S','I','O','N'],
+  ['','','','S','','','','',''],
+  ['','','','I','','','','',''],
+  ['','','','D','','','','',''],
+  ['','','','A','','','','',''],
+  ['','','','D','','','','','']
+];
+
+function renderCrucigrama() {
+  const container = document.getElementById('cruci-grid');
+  container.innerHTML = '';
+  container.style.gridTemplateColumns = `repeat(${mapaCruci[0].length}, clamp(22px, 5vw, 34px))`;
+  document.getElementById('cruci-msg').innerText = '';
+
+  mapaCruci.forEach((row, r) => {
+    row.forEach((char, c) => {
+      if (char !== '') {
+        const input = document.createElement('input');
+        input.maxLength = 1;
+        input.dataset.ans = char;
+        input.dataset.r = r;
+        input.dataset.c = c;
+        container.appendChild(input);
+      } else {
+        const span = document.createElement('span');
+        container.appendChild(span);
+      }
+    });
+  });
+}
+
+function verificarCrucigrama() {
+  const inputs = document.querySelectorAll('#cruci-grid input');
+  let bien = true;
+  inputs.forEach(inp => {
+    if (inp.value.toUpperCase() === inp.dataset.ans) {
+      inp.classList.remove('mal');
+      inp.classList.add('bien');
+    } else {
+      inp.classList.remove('bien');
+      inp.classList.add('mal');
+      bien = false;
+    }
+  });
+
+  const msg = document.getElementById('cruci-msg');
+  if (bien) {
+    msg.style.color = 'var(--verde-osc)';
+    msg.innerText = '🎉 ¡Excelente! Has completado el crucigrama correctamente.';
+  } else {
+    msg.style.color = '#c0392b';
+    msg.innerText = '❌ Algunas letras son incorrectas. ¡Sigue intentándolo!';
+  }
+}
+
+/* ===== 3. SENDERO INTERACTIVO CON SVG ===== */
 const mapaSendero = [
   [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 1, 1, 1, 2, 1, 1, 0, 0, 0, 0],
@@ -304,21 +678,149 @@ function moverJugador(dx, dy) {
       renderSendero();
       
       if (mapaSendero[ny][nx] === 2) {
-        document.getElementById('sendero-info').innerText = '¡Cuidado! Caíste en un obstáculo. Vuelve a empezar.';
+        document.getElementById('sendero-info').innerText = '⚠️ ¡Encontraste una barrera! Vuelve a intentar desde el inicio.';
         posJugador = { x: 0, y: 0 };
         setTimeout(renderSendero, 800);
       } else if (mapaSendero[ny][nx] === 3) {
-        document.getElementById('sendero-info').innerText = '🎉 ¡Felicidades! Has completado el sendero.';
+        document.getElementById('sendero-info').innerText = '🎉 ¡Felicidades! Has superado todas las barreras del sendero inclusivo.';
       } else {
-        document.getElementById('sendero-info').innerText = 'Avanza hacia la bandera verde.';
+        document.getElementById('sendero-info').innerText = 'Sigue avanzando hacia la meta inclusiva.';
       }
     }
   }
 }
 
-// Inicialización de los juegos al cargar
+function reiniciarSendero() {
+  posJugador = { x: 0, y: 0 };
+  document.getElementById('sendero-info').innerText = '¡Usa las flechas para moverte hacia la meta!';
+  renderSendero();
+}
+
+/* ===== 4. JUEGO DE TRIVIA CON TIEMPO ===== */
+const preguntasTrivia = [
+  {
+    pregunta: "¿Qué reconoce la interseccionalidad en la escuela?",
+    opciones: [
+      "A) Que todos los estudiantes son idénticos.",
+      "B) Que cada persona cruza distintas identidades (origen, género, capacidades).",
+      "C) Que solo se evalúa con exámenes escritos.",
+      "D) Que la tecnología sustituye al maestro."
+    ],
+    correcta: 1
+  },
+  {
+    pregunta: "¿Cuál es el rol del maestro hoy en una escuela diversa?",
+    opciones: [
+      "A) Dictar clase y poner calificaciones sin dialogar.",
+      "B) Un mediador, escucha y creador de ambientes seguros e inclusivos.",
+      "C) Aplicar la misma tarea a todos sin adaptaciones.",
+      "D) Sancionar inmediatamente sin escuchar al estudiante."
+    ],
+    correcta: 1
+  },
+  {
+    pregunta: "¿Cómo se concibe la evaluación en el contexto de la diversidad?",
+    opciones: [
+      "A) Como una forma de castigo o clasificación.",
+      "B) Como un proceso formativo, flexible y que valora los avances individuales.",
+      "C) Como una prueba única de selección múltiple.",
+      "D) Como una nota que determina quién es 'bueno' y quién 'malo'."
+    ],
+    correcta: 1
+  },
+  {
+    pregunta: "En el DUA (Diseño Universal para el Aprendizaje), se busca:",
+    opciones: [
+      "A) Ofrecer una sola forma de aprender.",
+      "B) Eliminar los juegos y la tecnología del aula.",
+      "C) Múltiples formas de presentación, expresión y motivación.",
+      "D) Que los estudiantes aprendan solos en casa."
+    ],
+    correcta: 2
+  }
+];
+
+let indexTrivia = 0;
+let timerTrivia = null;
+let tiempoRestante = 15;
+
+function iniciarTrivia() {
+  indexTrivia = 0;
+  cargarPreguntaTrivia();
+}
+
+function cargarPreguntaTrivia() {
+  clearInterval(timerTrivia);
+  tiempoRestante = 15;
+  
+  const q = preguntasTrivia[indexTrivia];
+  document.getElementById('t-num').innerText = indexTrivia + 1;
+  document.getElementById('t-pregunta').innerText = q.pregunta;
+  document.getElementById('t-time').innerText = tiempoRestante;
+  document.getElementById('trivia-msg').innerText = '';
+  document.getElementById('btn-next-trivia').style.display = 'none';
+
+  const grid = document.getElementById('t-opciones');
+  grid.innerHTML = '';
+
+  q.opciones.forEach((op, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'btn-opcion';
+    btn.innerText = op;
+    btn.onclick = () => responderTrivia(i);
+    grid.appendChild(btn);
+  });
+
+  timerTrivia = setInterval(() => {
+    tiempoRestante--;
+    document.getElementById('t-time').innerText = tiempoRestante;
+    if (tiempoRestante <= 0) {
+      clearInterval(timerTrivia);
+      responderTrivia(-1);
+    }
+  }, 1000);
+}
+
+function responderTrivia(opcionSel) {
+  clearInterval(timerTrivia);
+  const q = preguntasTrivia[indexTrivia];
+  const btns = document.querySelectorAll('.btn-opcion');
+  
+  btns.forEach(b => b.disabled = true);
+
+  const msg = document.getElementById('trivia-msg');
+
+  if (opcionSel === q.correcta) {
+    if (btns[opcionSel]) btns[opcionSel].classList.add('correcta');
+    msg.style.color = 'var(--verde-osc)';
+    msg.innerText = '✨ ¡Correcto! Excelente respuesta.';
+  } else {
+    if (opcionSel >= 0 && btns[opcionSel]) btns[opcionSel].classList.add('incorrecta');
+    if (btns[q.correcta]) btns[q.correcta].classList.add('correcta');
+    msg.style.color = '#c0392b';
+    msg.innerText = opcionSel === -1 ? '⏱️ ¡Tiempo agotado!' : '❌ Respuesta incorrecta.';
+  }
+
+  document.getElementById('btn-next-trivia').style.display = 'inline-block';
+}
+
+function siguientePreguntaTrivia() {
+  indexTrivia++;
+  if (indexTrivia < preguntasTrivia.length) {
+    cargarPreguntaTrivia();
+  } else {
+    document.getElementById('t-pregunta').innerText = '🎉 ¡Has completado la Trivia de la Diversidad!';
+    document.getElementById('t-opciones').innerHTML = '';
+    document.getElementById('trivia-msg').style.color = 'var(--verde-osc)';
+    document.getElementById('trivia-msg').innerText = '¡Felicidades por poner a prueba tus conocimientos sobre inclusión!';
+    document.getElementById('btn-next-trivia').style.display = 'none';
+  }
+}
+
+/* INICIALIZACIÓN GLOBAL */
 window.onload = () => {
   renderSopa();
+  renderCrucigrama();
   renderSendero();
 };
 </script>
