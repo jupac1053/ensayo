@@ -10,127 +10,111 @@
     --crema:#f4f7ec; --texto:#2d3436; --morado:#8e7cc3;
   }
   *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;}
+  html{scroll-behavior:smooth;}
   body{background:var(--crema);color:var(--texto);line-height:1.6;}
-  
-  /* ENCABEZADO RESPONSIVO Y CENTRADO */
-  header{
-    background:linear-gradient(135deg,#9bc24c,#5c7a1e);
-    color:#fff;
-    padding:20px 15px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-    text-align:center;
-  }
-  header .escudo{
-    background:#fff;
-    border-radius:12px;
-    padding:6px;
-    box-shadow:0 4px 10px rgba(0,0,0,.25);
-    flex-shrink:0;
-  }
-  header .escudo img{display:block;border-radius:8px;max-width:85px;height:auto;}
-  header .titulo{flex:1;min-width:250px;}
-  header h1{font-size: clamp(1.2em, 3.5vw, 1.6em); margin-bottom:6px;}
-  header p{font-size: clamp(0.85em, 2vw, 1em); margin:2px 0;}
 
-  /* PESTAÑAS */
-  .tabs{display:flex;flex-wrap:wrap;background:var(--verde-osc);justify-content:center;position:sticky;top:0;z-index:20;box-shadow:0 3px 8px rgba(0,0,0,.2);}
-  .tab-btn{background:transparent;border:none;color:#dfe9c8;font-weight:bold;padding:13px 16px;cursor:pointer;font-size:.93em;border-bottom:4px solid transparent;}
+  /* ===== ENCABEZADO CON ESCUDO ORGANIZADO ===== */
+  header{background:linear-gradient(135deg,#9bc24c 0%,#6b8e23 60%,#5c7a1e 100%);color:#fff;padding:22px 15px;text-align:center;}
+  .escudo-circulo{width:130px;height:130px;margin:0 auto 14px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,.3);border:5px solid #f0e6c8;}
+  .escudo-circulo img{width:100px;height:auto;display:block;}
+  header h1{font-size:clamp(1.2em,4.5vw,1.7em);margin-bottom:6px;}
+  header p{font-size:clamp(.85em,3vw,1em);margin:2px 0;}
+  .bandera{display:inline-block;background:rgba(0,0,0,.18);border-radius:20px;padding:4px 18px;margin-top:8px;font-weight:bold;font-size:.9em;}
+
+  /* ===== PESTAÑAS (desplazables en celular) ===== */
+  .tabs{display:flex;background:var(--verde-osc);position:sticky;top:0;z-index:20;box-shadow:0 3px 8px rgba(0,0,0,.2);overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;}
+  .tabs::-webkit-scrollbar{height:0;}
+  .tab-btn{flex:0 0 auto;background:transparent;border:none;color:#dfe9c8;font-weight:bold;padding:13px 14px;cursor:pointer;font-size:.9em;border-bottom:4px solid transparent;white-space:nowrap;}
   .tab-btn:hover{color:#fff;}
   .tab-btn.activo{color:#fff;border-bottom:4px solid var(--naranja);background:rgba(0,0,0,.15);}
-  .subtabs{display:none;background:#6b8e23;width:100%;justify-content:center;flex-wrap:wrap;}
+  .subtabs{display:none;background:#6b8e23;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;}
   .subtabs.activo{display:flex;}
-  .subtab-btn{background:transparent;border:none;color:#e8f0d8;padding:9px 18px;cursor:pointer;font-size:.88em;font-weight:bold;}
-  .subtab-btn.activo{color:#fff;background:rgba(0,0,0,.2);border-radius:8px 8px 0 0;}
-  
-  section.panel{display:none;max-width:950px;margin:30px auto;background:#fff;border-radius:12px;padding:30px 35px;box-shadow:0 3px 10px rgba(0,0,0,.08);}
-  section.panel.activo{display:block;}
-  .subpanel{display:none;}
-  .subpanel.activo{display:block;}
-  
-  h2{color:var(--verde-osc);border-bottom:4px solid var(--verde);padding-bottom:8px;margin-bottom:18px;}
-  h3{color:var(--verde-osc);margin:20px 0 10px;}
-  
-  .tabla-container{width:100%;overflow-x:auto;}
-  .tabla{width:100%;border-collapse:collapse;margin:15px 0;}
-  .tabla th{background:var(--verde);color:#fff;padding:10px;text-align:left;}
-  .tabla td{border:1px solid #ddd;padding:10px;vertical-align:top;}
-  .tabla tr:nth-child(even){background:#f4f7ec;}
-  
-  .caja{background:#eef5dd;border-left:6px solid var(--verde);padding:15px 20px;border-radius:6px;margin:15px 0;}
-  .caja-morada{background:#ece7f7;border-left:6px solid var(--morado);padding:15px 20px;border-radius:6px;margin:15px 0;}
-  .caja-azul{background:#e8f3fb;border-left:6px solid var(--azul);padding:15px 20px;border-radius:6px;margin:15px 0;}
-  .juego-desc{background:#fff8ec;border:2px dashed var(--naranja);border-radius:10px;padding:18px;margin:18px 0;}
-  .juego-desc h4{color:#c77f1f;margin-bottom:8px;}
-  .modulo{background:#f9fbf3;border-radius:10px;padding:15px 20px;margin:12px 0;border-left:5px solid var(--azul);}
-  .badge{display:inline-block;background:var(--naranja);color:#fff;border-radius:20px;padding:3px 14px;font-size:.85em;margin-bottom:8px;}
-  footer{background:var(--verde-osc);color:#fff;text-align:center;padding:20px;margin-top:40px;}
-  footer .creditos{font-size:.95em;margin-top:6px;}
-  ul,ol{margin-left:25px;}
+  .subtab-btn{flex:0 0 auto;background:transparent;border:none;color:#e8f0d8;padding:10px 16px;cursor:pointer;font-size:.88em;font-weight:bold;white-space:nowrap;}
+  .subtab-btn.activo{color:#fff;background:rgba(0,0,0,.25);}
 
-  /* ===== SOPA DE LETRAS ===== */
-  #sopa-wrap{text-align:center;user-select:none;-webkit-user-select:none;}
-  #sopa-grid{display:inline-grid;grid-template-columns:repeat(14, clamp(20px, 5vw, 34px));gap:3px;margin:15px auto;touch-action:none;}
-  #sopa-grid div{width:clamp(20px, 5vw, 34px);height:clamp(20px, 5vw, 34px);background:#eef5dd;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:bold;cursor:pointer;font-size:clamp(0.75em, 2vw, 0.95em);}
-  #sopa-grid div:hover{background:#dcebc0;}
-  #sopa-grid div.sel{background:var(--naranja);color:#fff;}
-  #sopa-grid div.found{background:var(--verde);color:#fff;}
-  .palabras-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0;}
-  .chip{background:#e8f0d8;border-radius:16px;padding:4px 14px;font-weight:bold;}
+  section.panel{display:none;max-width:950px;margin:22px auto;background:#fff;border-radius:12px;padding:26px 22px;box-shadow:0 3px 10px rgba(0,0,0,.08);}
+  section.panel.activo{display:block;}
+  @media(max-width:600px){section.panel{margin:14px 8px;padding:18px 12px;border-radius:10px;}}
+  h2{color:var(--verde-osc);border-bottom:4px solid var(--verde);padding-bottom:8px;margin-bottom:16px;font-size:clamp(1.1em,4vw,1.5em);}
+  h3{color:var(--verde-osc);margin:18px 0 8px;}
+  .tabla{width:100%;border-collapse:collapse;margin:14px 0;font-size:.92em;}
+  .tabla th{background:var(--verde);color:#fff;padding:9px;text-align:left;}
+  .tabla td{border:1px solid #ddd;padding:9px;vertical-align:top;}
+  .tabla tr:nth-child(even){background:#f4f7ec;}
+  .tabla-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .caja{background:#eef5dd;border-left:6px solid var(--verde);padding:14px 18px;border-radius:6px;margin:14px 0;}
+  .caja-morada{background:#ece7f7;border-left:6px solid var(--morado);padding:14px 18px;border-radius:6px;margin:14px 0;}
+  .caja-azul{background:#e8f3fb;border-left:6px solid var(--azul);padding:14px 18px;border-radius:6px;margin:14px 0;}
+  .juego-desc{background:#fff8ec;border:2px dashed var(--naranja);border-radius:10px;padding:16px;margin:16px 0;}
+  .juego-desc h4{color:#c77f1f;margin-bottom:8px;}
+  .modulo{background:#f9fbf3;border-radius:10px;padding:14px 18px;margin:12px 0;border-left:5px solid var(--azul);}
+  .badge{display:inline-block;background:var(--naranja);color:#fff;border-radius:20px;padding:3px 14px;font-size:.85em;margin-bottom:8px;}
+  footer{background:var(--verde-osc);color:#fff;text-align:center;padding:22px 14px;margin-top:36px;}
+  footer .creditos{font-size:.95em;margin-top:6px;}
+  ul,ol{margin-left:22px;}
+  @media(max-width:600px){ul,ol{margin-left:16px;} .tabla{font-size:.8em;} h3{font-size:1em;}}
+
+  /* ===== SOPA DE LETRAS (táctil con arrastre y surtido) ===== */
+  #sopa-wrap{text-align:center;}
+  #sopa-grid{display:grid;grid-template-columns:repeat(14,1fr);gap:3px;width:min(94vw,540px);margin:14px auto;touch-action:none;user-select:none;-webkit-user-select:none;}
+  #sopa-grid div{aspect-ratio:1/1;background:#eef5dd;border-radius:5px;display:flex;align-items:center;justify-content:center;font-weight:bold;cursor:pointer;font-size:clamp(.6em,2.5vw,.95em);box-shadow:inset 0 0 0 1px #d3e3ad;}
+  #sopa-grid div.sel{background:var(--naranja)!important;color:#fff;box-shadow:inset 0 0 0 2px #c77f1f;}
+  #sopa-grid div.found{background:var(--verde);color:#fff;box-shadow:inset 0 0 0 2px var(--verde-osc);}
+  .palabras-chips{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:10px 0;}
+  .chip{background:#e8f0d8;border-radius:16px;padding:4px 12px;font-weight:bold;font-size:.85em;}
   .chip.ok{background:var(--verde);color:#fff;text-decoration:line-through;}
-  .btn-juego{background:var(--verde-osc);color:#fff;border:none;border-radius:8px;padding:10px 22px;font-weight:bold;cursor:pointer;font-size:1em;margin:8px 4px;}
-  .btn-juego:hover{background:#4a6118;}
+  .btn-juego{background:var(--verde-osc);color:#fff;border:none;border-radius:8px;padding:12px 20px;font-weight:bold;cursor:pointer;font-size:1em;margin:8px 4px;min-height:46px;touch-action:manipulation;}
+  .btn-juego:active{background:#4a6118;}
 
   /* ===== CRUCIGRAMA ===== */
   #cruci-wrap{text-align:center;}
-  #cruci-grid{display:inline-grid;gap:2px;margin:15px auto;}
-  #cruci-grid input{width:clamp(22px, 5vw, 34px);height:clamp(22px, 5vw, 34px);text-align:center;font-weight:bold;text-transform:uppercase;font-size:1em;border:2px solid #b9cf8a;border-radius:6px;background:#fff;}
+  #cruci-grid{display:inline-grid;gap:2px;margin:14px auto;}
+  #cruci-grid input{width:min(32px,6.5vw);height:min(32px,6.5vw);text-align:center;font-weight:bold;text-transform:uppercase;font-size:.95em;border:2px solid #b9cf8a;border-radius:5px;background:#fff;padding:0;}
   #cruci-grid input:focus{outline:none;border-color:var(--naranja);background:#fff8ec;}
-  #cruci-grid span{width:clamp(22px, 5vw, 34px);height:clamp(22px, 5vw, 34px);display:inline-block;}
+  #cruci-grid span{width:min(32px,6.5vw);height:min(32px,6.5vw);display:inline-block;}
   #cruci-grid input.bien{background:var(--verde);color:#fff;border-color:var(--verde);}
   #cruci-grid input.mal{background:#f5b7b1;border-color:#c0392b;}
-  .pista{text-align:left;background:#f9fbf3;border-radius:8px;padding:10px 16px;margin:6px auto;max-width:560px;}
+  .pista{text-align:left;background:#f9fbf3;border-radius:8px;padding:9px 14px;margin:6px auto;max-width:560px;font-size:.92em;}
 
-  /* ===== SENDERO INICIAL (INICIAL / EMOJIS) ===== */
+  /* ===== SENDERO ===== */
   #sendero-wrap{text-align:center;}
-  #sendero-board{display:grid;grid-template-columns:repeat(12, clamp(22px, 6vw, 44px));gap:4px;justify-content:center;margin:15px auto;}
-  #sendero-board div{width:clamp(22px, 6vw, 44px);height:clamp(22px, 6vw, 44px);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2em;}
+  #sendero-board{display:grid;grid-template-columns:repeat(12,min(40px,7vw));gap:3px;justify-content:center;margin:14px auto;}
+  #sendero-board div{width:min(40px,7vw);height:min(40px,7vw);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:clamp(.9em,3.5vw,1.3em);}
   .celda-camino{background:#e3d5a8;box-shadow:inset 0 0 0 2px #cbb37a;}
   .celda-vacia{background:transparent;}
+  #jugador{filter:drop-shadow(0 0 4px #2d3436);}
   .joystick{display:flex;flex-direction:column;align-items:center;gap:6px;margin:12px auto;}
-  .joy-row{display:flex;gap:6px;}
-  .joy-btn{width:48px;height:48px;font-size:1.2em;border:none;border-radius:10px;background:var(--verde-osc);color:#fff;cursor:pointer;}
-  .joy-btn:hover{background:var(--naranja);}
-  #sendero-info{max-width:620px;margin:12px auto;background:#e8f3fb;border-left:6px solid var(--azul);border-radius:8px;padding:14px 18px;text-align:left;min-height:60px;}
+  .joy-row{display:flex;gap:8px;}
+  .joy-btn{width:62px;height:62px;font-size:1.5em;border:none;border-radius:14px;background:var(--verde-osc);color:#fff;cursor:pointer;touch-action:manipulation;}
+  .joy-btn:active{background:var(--naranja);}
+  #sendero-info{max-width:620px;margin:12px auto;background:#e8f3fb;border-left:6px solid var(--azul);border-radius:8px;padding:13px 16px;text-align:left;min-height:56px;font-size:.95em;}
+  #sendero-victoria{display:none;max-width:620px;margin:12px auto;background:#eef5dd;border:3px solid var(--verde);border-radius:10px;padding:15px;text-align:center;font-weight:bold;color:var(--verde-osc);}
 
-  /* ===== JUEGO 4: TRIVIA CON TIEMPO ===== */
-  #trivia-wrap{max-width:600px;margin:15px auto;background:#f9fbf3;border:2px solid var(--verde);border-radius:12px;padding:20px;text-align:center;}
-  .trivia-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;font-weight:bold;font-size:1.1em;}
-  .timer-badge{background:var(--naranja);color:#fff;padding:4px 12px;border-radius:20px;}
-  .pregunta-box{font-size:1.15em;font-weight:bold;color:var(--verde-osc);margin-bottom:20px;}
-  .opciones-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:15px;}
-  .btn-opcion{background:#fff;border:2px solid var(--verde);border-radius:8px;padding:12px;font-size:0.95em;font-weight:bold;cursor:pointer;text-align:left;transition:all 0.2s;}
-  .btn-opcion:hover{background:#eef5dd;}
-  .btn-opcion.correcta{background:var(--verde);color:#fff;border-color:var(--verde);}
-  .btn-opcion.incorrecta{background:#f5b7b1;color:#721c24;border-color:#c0392b;}
-  #trivia-msg{font-weight:bold;margin-top:10px;min-height:24px;}
+  /* ===== TRIVIA ===== */
+  #trivia-wrap{max-width:640px;margin:0 auto;text-align:center;}
+  #trivia-timerbarra{height:16px;background:#e0e0d8;border-radius:10px;overflow:hidden;margin:10px 0;}
+  #trivia-timerfill{height:100%;width:100%;background:var(--verde);border-radius:10px;}
+  #trivia-timerfill.prisa{background:var(--naranja);}
+  #trivia-timerfill.urgente{background:#e74c3c;}
+  #trivia-pregunta{font-size:1.05em;font-weight:bold;background:#f9fbf3;border-radius:10px;padding:16px;margin:12px 0;min-height:70px;display:flex;align-items:center;justify-content:center;}
+  .trivia-opcion{display:block;width:100%;text-align:left;background:#eef5dd;border:2px solid #d3e3ad;border-radius:10px;padding:14px 16px;margin:8px 0;font-size:.98em;cursor:pointer;font-weight:bold;color:var(--texto);}
+  .trivia-opcion:active{background:#dcebc0;}
+  .trivia-opcion.correcta{background:var(--verde);color:#fff;border-color:var(--verde-osc);}
+  .trivia-opcion.incorrecta{background:#f5b7b1;border-color:#c0392b;color:#7b241c;}
+  .trivia-opcion:disabled{cursor:default;opacity:.95;}
+  #trivia-progreso{font-weight:bold;color:var(--verde-osc);margin:6px 0;}
+  #trivia-resultado{display:none;background:#eef5dd;border:3px solid var(--verde);border-radius:12px;padding:18px;margin-top:14px;}
 </style>
+<base target="_blank">
 </head>
 <body>
 
 <header>
-  <div class="escudo"><img src="data:image/png;base64,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" alt="Escudo"></div>
-  <div class="titulo">
-    <h1>Propuesta Pedagógica Alternativa</h1>
-    <p>Inclusiva 2026</p>
-    <p><strong>Diplomado Alternativas Pedagógicas en y para la Atención a la Diversidad — Cohorte II</strong></p>
-    <p>Institución Educativa <strong>Aureliano Flórez Cardona</strong> · Anserma, Caldas</p>
-    <p>Propuesta pedagógica alternativa para grados 6° a 11°</p>
-  </div>
-  <div class="escudo"><img src="data:image/png;base64,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" alt="Escudo"></div>
+  <div class="escudo-circulo"><img src="data:image/png;base64,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" alt="Escudo I.E. Aureliano Flórez Cardona"></div>
+  <h1>🌄 Caldas Camina hacia la Inclusión 2026</h1>
+  <p><strong>Diplomado Alternativas Pedagógicas en y para la Atención a la Diversidad — Cohorte II</strong></p>
+  <p>Institución Educativa <strong>Aureliano Flórez Cardona</strong></p>
+  <span class="bandera">📍 Anserma, Caldas · Grados 6° a 11°</span>
 </header>
 
 <!-- ===== PESTAÑAS PRINCIPALES ===== -->
@@ -145,13 +129,11 @@
   <button class="tab-btn" onclick="mostrarTab('conclusiones',this)">💡 Conclusiones</button>
   <button class="tab-btn" onclick="mostrarTab('creditos',this)">⭐ Créditos</button>
 </div>
-
-<!-- SUBMENÚ DE JUEGOS -->
+<!-- submenú de juegos -->
 <div class="subtabs" id="subtabs-juegos">
   <button class="subtab-btn activo" onclick="mostrarSub('j-sopa',this)">🔤 Sopa de Letras</button>
   <button class="subtab-btn" onclick="mostrarSub('j-cruci',this)">🧩 Crucigrama</button>
   <button class="subtab-btn" onclick="mostrarSub('j-sendero',this)">🥾 Sendero de la Inclusión</button>
-  <button class="subtab-btn" onclick="mostrarSub('j-trivia',this)">⏱️ Trivia con Tiempo</button>
 </div>
 
 <!-- ============ INICIO ============ -->
@@ -163,658 +145,626 @@
     <ul>
       <li>📚 Explicaciones sencillas de las temáticas del diplomado (diversidad, interseccionalidad, evaluación justa, era digital y más).</li>
       <li>🎯 Actividades pedagógicas alternativas para vivir en la escuela.</li>
-      <li>🎮 <strong>Juegos virtuales</strong>: sopa de letras, crucigrama, sendero interactivo y trivia con tiempo.</li>
+      <li>🎮 <strong>Juegos virtuales</strong>: sopa de letras, crucigrama y el sendero interactivo con personaje que se mueve con las flechas.</li>
       <li>🚀 El cronograma de desarrollo y las conclusiones del proceso.</li>
     </ul>
   </div>
   <div class="caja-azul">
-    <p><strong>¿Cómo navegar?</strong> Usa las pestañas del menú superior. En <strong>🎮 Juegos Virtuales</strong> encontrarás un submenú con cuatro juegos interactivos. ¡Explora y aprende jugando!</p>
+    <p><strong>¿Cómo navegar?</strong> Usa las pestañas del menú superior. En <strong>🎮 Juegos Virtuales</strong> encontrarás un submenú con tres juegos. ¡Explora y aprende jugando!</p>
   </div>
 </section>
 
 <!-- ============ PLAN ============ -->
 <section class="panel" id="plan">
   <h2>📋 Plan de Trabajo de la Propuesta Pedagógica Alternativa</h2>
-  <div class="tabla-container">
-    <table class="tabla">
-      <tr><th style="width:30%">Campo</th><th>Descripción</th></tr>
-      <tr><td><strong>Nombre del Docente:</strong></td><td>Juan Pablo Correa · Jorge Loaiza · Juan Carlos Fajardo</td></tr>
-      <tr><td><strong>Institución Educativa:</strong></td><td>Institución Educativa Aureliano Flórez Cardona</td></tr>
-      <tr><td><strong>Municipio:</strong></td><td>Anserma, Caldas</td></tr>
-      <tr><td><strong>Nombre de la propuesta:</strong></td><td><strong>«Nuestra Escuela Diversa: aprendemos, jugamos e incluimos»</strong></td></tr>
-      <tr><td><strong>Objetivos:</strong></td><td>
-        <ul>
-          <li>Fortalecer en los estudiantes de 6° a 11° el respeto por la diversidad (cultural, de género, discapacidad, social y digital) mediante experiencias pedagógicas alternativas.</li>
-          <li>Desarrollar competencias de convivencia, empatía y participación a partir de los seis módulos del diplomado.</li>
-          <li>Integrar tecnología, juegos y evaluación formativa como herramientas de inclusión.</li>
-          <li>Permear prácticas, políticas y cultura escolar hacia escenarios más inclusivos.</li>
-        </ul>
-      </td></tr>
-      <tr><td><strong>Contenido (ejes):</strong></td><td>
-        <ul>
-          <li><strong>Módulo 1:</strong> Pedagogía queer / la interseccionalidad en la escuela.</li>
-          <li><strong>Módulo 2:</strong> ¿Qué implica ser maestro hoy? (rol docente como mediador).</li>
-          <li><strong>Módulo 3:</strong> La evaluación en el contexto de la diversidad.</li>
-          <li><strong>Módulo 4:</strong> Alternativas pedagógicas.</li>
-          <li><strong>Módulo 5:</strong> Didácticas y alternativas didácticas.</li>
-          <li><strong>Módulo 6:</strong> Enseñar y aprender en la era digital.</li>
-        </ul>
-      </td></tr>
-      <tr><td><strong>Metodología:</strong></td><td>Espacios formativos alternativos: talleres vivenciales, círculos de diálogo, juegos de roles, gamificación (juegos virtuales y de mesa), actividades digitales colaborativas, aprendizaje basado en proyectos y trabajo por estaciones. Se sugiere un encuentro semanal de 2 horas durante 8 semanas.</td></tr>
-      <tr><td><strong>Recursos de Apoyo:</strong></td><td>
-        <ul>
-          <li><strong>Físicos:</strong> papelógrafos, tarjetas, cinta de masking, bolígrafos de colores, dados, juegos de mesa adaptados.</li>
-          <li><strong>Digitales:</strong> tablets o celulares, conexión a internet, este sitio web interactivo, plataformas (Kahoot, Mentimeter, Genially), pizarras digitales.</li>
-          <li><strong>Humanos:</strong> docentes participantes del diplomado, docentes de cada grado, representantes estudiantiles, familias y comunidad.</li>
-        </ul>
-      </td></tr>
-      <tr><td><strong>Evaluación:</strong></td><td>Evaluación formativa e inclusiva: rúbricas co-construidas con los estudiantes, autoevaluación, coevaluación, portafolio de evidencias (fotos, videos, reflexiones escritas), y valoración del proceso y no solo del producto.</td></tr>
-      <tr><td><strong>Evidencias (fotográficas y escritas):</strong></td><td>Fotografías de las actividades, registros escritos de reflexión, testimonios en audio o video, productos digitales (murales virtuales, podcasts, presentaciones), listas de asistencia y compromisos firmados.</td></tr>
-    </table>
-  </div>
+  <table class="tabla">
+    <tr><th style="width:30%">Campo</th><th>Descripción</th></tr>
+    <tr><td><strong>Nombre del Docente:</strong></td><td>Juan Pablo Correa · Jorge Loaiza · Juan Carlos Fajardo</td></tr>
+    <tr><td><strong>Institución Educativa:</strong></td><td>Institución Educativa Aureliano Flórez Cardona</td></tr>
+    <tr><td><strong>Municipio:</strong></td><td>Anserma, Caldas</td></tr>
+    <tr><td><strong>Nombre de la propuesta:</strong></td><td><strong>«Nuestra Escuela Diversa: aprendemos, jugamos e incluimos»</strong></td></tr>
+    <tr><td><strong>Objetivos:</strong></td><td>
+      <ul>
+        <li>Fortalecer en los estudiantes de 6° a 11° el respeto por la diversidad (cultural, de género, discapacidad, social y digital) mediante experiencias pedagógicas alternativas.</li>
+        <li>Desarrollar competencias de convivencia, empatía y participación a partir de los seis módulos del diplomado.</li>
+        <li>Integrar tecnología, juegos y evaluación formativa como herramientas de inclusión.</li>
+        <li>Permear prácticas, políticas y cultura escolar hacia escenarios más inclusivos.</li>
+      </ul>
+    </td></tr>
+    <tr><td><strong>Contenido (ejes):</strong></td><td>
+      <ul>
+        <li><strong>Módulo 1:</strong> Pedagogía queer / la interseccionalidad en la escuela.</li>
+        <li><strong>Módulo 2:</strong> ¿Qué implica ser maestro hoy? (rol docente como mediador).</li>
+        <li><strong>Módulo 3:</strong> La evaluación en el contexto de la diversidad.</li>
+        <li><strong>Módulo 4:</strong> Alternativas pedagógicas.</li>
+        <li><strong>Módulo 5:</strong> Didácticas y alternativas didácticas.</li>
+        <li><strong>Módulo 6:</strong> Enseñar y aprender en la era digital.</li>
+      </ul>
+    </td></tr>
+    <tr><td><strong>Metodología:</strong></td><td>Espacios formativos alternativos: talleres vivenciales, círculos de diálogo, juegos de roles, gamificación (juegos virtuales y de mesa), actividades digitales colaborativas, aprendizaje basado en proyectos y trabajo por estaciones. Se sugiere un encuentro semanal de 2 horas durante 8 semanas.</td></tr>
+    <tr><td><strong>Recursos de Apoyo:</strong></td><td>
+      <ul>
+        <li><strong>Físicos:</strong> papelógrafos, tarjetas, cinta de masking, bolígrafos de colores, dados, juegos de mesa adaptados.</li>
+        <li><strong>Digitales:</strong> tablets o celulares, conexión a internet, este sitio web interactivo, plataformas (Kahoot, Mentimeter, Genially), pizarras digitales.</li>
+        <li><strong>Humanos:</strong> docentes participantes del diplomado, docentes de cada grado, representantes estudiantiles, familias y comunidad.</li>
+      </ul>
+    </td></tr>
+    <tr><td><strong>Evaluación:</strong></td><td>Evaluación formativa e inclusiva: rúbricas co-construidas con los estudiantes, autoevaluación, coevaluación, portafolio de evidencias (fotos, videos, reflexiones escritas), y valoración del proceso y no solo del producto.</td></tr>
+    <tr><td><strong>Evidencias (fotográficas y escritas):</strong></td><td>Fotografías de las actividades, registros escritos de reflexión, testimonios en audio o video, productos digitales (murales virtuales, podcasts, presentaciones), listas de asistencia y compromisos firmados.</td></tr>
+  </table>
 </section>
 
 <!-- ============ TEMÁTICAS ============ -->
 <section class="panel" id="tematicas">
   <h2>📚 Las Temáticas del Diplomado Explicadas para Estudiantes</h2>
-
-  <div class="modulo">
-    <span class="badge">Módulo 1</span>
-    <h3>1. Pedagogía Queer y la Interseccionalidad en la Escuela</h3>
-    <p><strong>¿Qué significa?</strong> Que cada estudiante es único y vive diferentes situaciones al mismo tiempo (su origen, su género, sus capacidades, sus gustos, su cultura). La interseccionalidad nos enseña que no hay un solo tipo de estudiante "normal", sino que todos somos un cruce de identidades. La pedagogía queer cuestiona los estereotipos y nos invita a romper etiquetas para que nadie sea rechazado o invisibilizado en la escuela.</p>
-  </div>
-
-  <div class="modulo">
-    <span class="badge">Módulo 2</span>
-    <h3>2. ¿Qué Implica Ser Maestro Hoy?</h3>
-    <p><strong>¿Qué significa?</strong> El docente ya no es quien solo dicta clase y pone notas, sino un mediador, un compañero de viaje, un escucha y un constructor de ambientes seguros. Ser maestro hoy exige empatía, reflexionar sobre la propia práctica, desaprender prejuicios y adaptar las clases a los ritmos y necesidades de cada estudiante.</p>
-  </div>
-
-  <div class="modulo">
-    <span class="badge">Módulo 3</span>
-    <h3>3. La Evaluación en el Contexto de la Diversidad</h3>
-    <p><strong>¿Qué significa?</strong> Evaluar no es castigar ni poner un número para clasificar a los estudiantes en "buenos" y "malos". Evaluar es valorar el esfuerzo, la progresión y la forma en que cada persona aprende. En una escuela diversa, la evaluación usa múltiples formas: exposiciones, dibujos, obras de teatro, proyectos, juegos, autoevaluación y coevaluación.</p>
-  </div>
-
-  <div class="modulo">
-    <span class="badge">Módulo 4</span>
-    <h3>4. Alternativas Pedagógicas</h3>
-    <p><strong>¿Qué significa?</strong> Buscar caminos diferentes a la clase magistral tradicional. Significa abrir la puerta al aprendizaje fuera del aula, a las preguntas de los estudiantes, a la resolución de problemas reales de la comunidad y al arte, al cuerpo y a la expresión como vehículos para aprender.</p>
-  </div>
-
-  <div class="modulo">
-    <span class="badge">Módulo 5</span>
-    <h3>5. Didácticas y Alternativas Didácticas</h3>
-    <p><strong>¿Qué significa?</strong> Las estrategias concretas que usamos para enseñar. El Diseño Universal para el Aprendizaje (DUA) propone que todas las actividades tengan múltiples formas de presentación (ver, escuchar, tocar), múltiples formas de expresión (escribir, hablar, construir) y múltiples formas de motivación (juegos, retos, trabajo colaborativo).</p>
-  </div>
-
-  <div class="modulo">
-    <span class="badge">Módulo 6</span>
-    <h3>6. Enseñar y Aprender en la Era Digital</h3>
-    <p><strong>¿Qué significa?</strong> La tecnología no es solo para entretenerse, sino una herramienta poderosa de inclusión. Nos permite crear juegos interactivos, podcasts, murales digitales, traducir contenidos, usar lectores de pantalla y conectar la escuela con el mundo de manera crítica, ética y creativa.</p>
-  </div>
+  <div class="modulo"><h3>Módulo 1 · Pedagogía queer y la interseccionalidad en la escuela</h3>
+    <p>Todos somos diferentes de muchas maneras a la vez: por nuestra cultura, nuestra forma de expresarnos, nuestra familia, nuestra condición física o social. La <em>interseccionalidad</em> nos enseña que nadie es una sola cosa. La <em>pedagogía queer</em> invita a cuestionar ideas fijas tipo «los niños deben…» o «las niñas deben…», para que cada quien pueda ser y aprender siendo quien realmente es, sin miedo ni burlas.</p></div>
+  <div class="modulo"><h3>Módulo 2 · ¿Qué implica ser maestro hoy?</h3>
+    <p>El maestro ya no es solo quien da información: es un <em>mediador</em> que acompaña, escucha, crea espacios seguros y potencia el talento de cada estudiante, promoviendo escenarios donde todos tengan voz.</p></div>
+  <div class="modulo"><h3>Módulo 3 · La evaluación en el contexto de la diversidad</h3>
+    <p>Evaluar no es solo poner notas: es entender cómo aprende cada persona y ayudarla a mejorar. Una <em>evaluación formativa e inclusiva</em> valora el esfuerzo y permite demostrar lo aprendido de muchas formas (oral, escrita, artística, digital).</p></div>
+  <div class="modulo"><h3>Módulo 4 · Alternativas pedagógicas</h3>
+    <p>Existen muchas formas de aprender más allá de la clase tradicional: aprender jugando, en la naturaleza, con la comunidad, mediante proyectos, el arte o la tecnología. El conocimiento nace de la vida real de los estudiantes y de su territorio.</p></div>
+  <div class="modulo"><h3>Módulo 5 · Didácticas y alternativas didácticas</h3>
+    <p>La didáctica es el arte de enseñar. Las <em>estrategias didácticas inclusivas</em> son formas creativas y flexibles de enseñar que se adaptan a las distintas realidades y necesidades, usando el arte, el juego y la cultura local.</p></div>
+  <div class="modulo"><h3>Módulo 6 · Enseñar y aprender en la era digital</h3>
+    <p>Las tecnologías abren nuevas puertas para aprender e incluir: aplicaciones accesibles, aulas virtuales, creación de contenido digital. Pero exige usar la tecnología con responsabilidad y equidad, para que nadie quede excluido por no tener acceso.</p></div>
 </section>
 
 <!-- ============ ACTIVIDADES ============ -->
 <section class="panel" id="actividades">
-  <h2>🎯 Actividades Pedagógicas Alternativas para el Aula</h2>
-  
-  <div class="caja-morada">
-    <h3>Taller 1: «La telaraña de nuestras identidades» (Módulo 1)</h3>
-    <p><strong>Propósito:</strong> Comprender la interseccionalidad.</p>
-    <p><strong>Desarrollo:</strong> En círculo, cada estudiante sostiene una bola de lana y dice tres aspectos de su identidad (ej. "soy deportista, me gusta la música andina y vivo en el campo"). Lanza la lana a un compañero buscando coincidencias o diferencias. Al final se crea una red que muestra cómo todos estamos conectados en la diversidad.</p>
+  <h2>🎯 Actividades Pedagógicas Alternativas</h2>
+
+  <div class="juego-desc"><span class="badge">Actividad 1</span>
+    <h4>🎭 «Caminando mi identidad» — Circuito de estaciones vivenciales</h4>
+    <p><strong>Módulos:</strong> 1, 2 y 5. · <strong>Propósito:</strong> reconocer y valorar la diversidad de identidades del aula.</p>
+    <ol>
+      <li><strong>Apertura:</strong> círculo de diálogo — «¿Qué nos hace únicos y qué tenemos en común?».</li>
+      <li><strong>Estación 1:</strong> cada estudiante dibuja su «mapa de identidad» (familia, gustos, cultura, sueños) y lo comparte.</li>
+      <li><strong>Estación 2 — Rompe estereotipos:</strong> frases estereotipadas que los estudiantes reescriben de forma inclusiva.</li>
+      <li><strong>Estación 3 — Teatro de sombras:</strong> juego de roles representando la experiencia escolar de un compañero con diferente contexto.</li>
+      <li><strong>Cierre:</strong> compromiso colectivo de respeto.</li>
+    </ol>
+    <p><strong>Evidencias:</strong> mapas de identidad, pizarra de estereotipos reescritos, reflexiones.</p>
   </div>
 
-  <div class="caja">
-    <h3>Taller 2: «El maestro que imagino, el estudiante que sueño» (Módulo 2)</h3>
-    <p><strong>Propósito:</strong> Reflexionar sobre los roles en la escuela diversa.</p>
-    <p><strong>Desarrollo:</strong> Mediante un juego de roles (dramatizado), los estudiantes hacen de maestros y los maestros de estudiantes, representando situaciones cotidianas de aula y proponiendo soluciones dialogadas.</p>
+  <div class="juego-desc"><span class="badge">Actividad 2</span>
+    <h4>🎲 «La Oca de la Inclusión» — Juego de mesa cooperativo</h4>
+    <p><strong>Módulos:</strong> 3, 4 y 5. · <strong>Propósito:</strong> aprender sobre diversidad, equidad e inclusión jugando en equipo, donde todos ganan juntos.</p>
+    <ol>
+      <li>Equipos de 4-5 avanzan por un tablero tipo «oca» que ellos mismos construyen.</li>
+      <li>Cada casilla tiene un reto: preguntas sobre diversidad, casos de convivencia o acciones inclusivas.</li>
+      <li>Nadie queda eliminado: la meta es que todos lleguen a la casilla final («Escuela Inclusiva»).</li>
+      <li>Los equipos se autoevalúan con una rúbrica acordada antes de jugar.</li>
+    </ol>
+    <p><strong>Variante digital:</strong> recrear el juego en Genially o Kahoot. · <strong>Evidencias:</strong> tableros, fotos, rúbricas.</p>
   </div>
 
-  <div class="caja-azul">
-    <h3>Taller 3: «Mi semáforo de aprendizaje» (Módulo 3)</h3>
-    <p><strong>Propósito:</strong> Promover la autoevaluación formativa.</p>
-    <p><strong>Desarrollo:</strong> Al finalizar una temática, cada estudiante ubica en un mural su tarjeta: Verde (comprendí y puedo explicarlo), Amarillo (tengo algunas dudas) o Rojo (necesito ayuda). Luego se arman parejas de apoyo entre verdes y amarillos/rojos.</p>
+  <div class="juego-desc"><span class="badge">Actividad 3</span>
+    <h4>📱 «Historias que incluyen» — Proyecto digital colaborativo</h4>
+    <p><strong>Módulos:</strong> 6, 4, 3 y 1. · <strong>Propósito:</strong> crear productos digitales (podcast, cómic digital, video corto, mural virtual) que narren historias de diversidad e inclusión de la comunidad de Anserma.</p>
+    <ol>
+      <li><strong>Sesión 1:</strong> identificar historias de inclusión del barrio y la institución.</li>
+      <li><strong>Sesión 2:</strong> guion con roles rotativos (guionista, narrador, editor, diseñador).</li>
+      <li><strong>Sesión 3:</strong> producción con herramientas accesibles (subtítulos, audios, lectura fácil).</li>
+      <li><strong>Sesión 4:</strong> feria digital con las familias y coevaluación con rúbrica inclusiva.</li>
+    </ol>
+    <p><strong>Evidencias:</strong> productos digitales publicados, rúbricas de coevaluación, testimonios.</p>
   </div>
 
-  <div class="caja-morada">
-    <h3>Taller 4: «Cartografía de nuestra escuela» (Módulo 4)</h3>
-    <p><strong>Propósito:</strong> Identificar barreras e inclusión en la I.E. Aureliano Flórez Cardona.</p>
-    <p><strong>Desarrollo:</strong> Los estudiantes recorren la institución dibujando un mapa gigante donde ubican "zonas de encuentro y alegría" (inclusivas) y "zonas con barreras físicas o de convivencia", proponiendo mejoras reales.</p>
-  </div>
-
-  <div class="caja">
-    <h3>Taller 5: «Estaciones de aprendizaje DUA» (Módulo 5)</h3>
-    <p><strong>Propósito:</strong> Aplicar didácticas diversas.</p>
-    <p><strong>Desarrollo:</strong> El aula se organiza en 4 estaciones sobre un mismo tema: Estación 1 (Lectura y mapa conceptual), Estación 2 (Video/Audio podcast), Estación 3 (Modelado con plastilina/dibujo) y Estación 4 (Juego de preguntas). Cada grupo rota por la estación de su preferencia.</p>
-  </div>
-
-  <div class="caja-azul">
-    <h3>Taller 6: «Creadores digitales por la inclusión» (Módulo 6)</h3>
-    <p><strong>Propósito:</strong> Uso pedagógico de las TIC.</p>
-    <p><strong>Desarrollo:</strong> Diseñar en grupos un meme positivo, un video corto (TikTok/Reel pedagógico) o una infografía digital sobre el respeto a las diferencias en la I.E. Aureliano Flórez Cardona.</p>
+  <div class="juego-desc"><span class="badge">Actividad 4 (complementaria)</span>
+    <h4>🌱 «Aula sin barreras» — Auditoría inclusiva de la escuela</h4>
+    <p><strong>Módulos:</strong> 2, 5 y 4. · <strong>Propósito:</strong> evaluar la accesibilidad física, comunicativa y cultural de la institución y proponer mejoras a la directiva.</p>
+    <p><strong>Evidencias:</strong> listas de chequeo, fotos del recorrido, informe final presentado.</p>
   </div>
 </section>
 
-<!-- ============ JUEGOS VIRTUALES ============ -->
+<!-- ============ JUEGOS ============ -->
 <section class="panel" id="juegos">
-  <h2>🎮 Juegos Pedagógicos Virtuales</h2>
-  <p>Elige un juego en el submenú de arriba para comenzar a jugar.</p>
 
-  <!-- JUEGO 1: SOPA DE LETRAS -->
+  <!-- SOPA DE LETRAS -->
   <div class="subpanel activo" id="j-sopa">
-    <div class="juego-desc">
-      <h4>🔤 1. Sopa de Letras de la Diversidad</h4>
-      <p>Pasa el dedo o haz clic y arrastra sobre las letras consecutivas para encontrar las 4 palabras.</p>
-      <div class="palabras-chips">
-        <span class="chip" id="chip-AURELIANO">AURELIANO</span>
-        <span class="chip" id="chip-FLOREZ">FLOREZ</span>
-        <span class="chip" id="chip-CARDONA">CARDONA</span>
-        <span class="chip" id="chip-VALORES">VALORES</span>
-      </div>
-      <div id="sopa-wrap">
-        <div id="sopa-grid"></div>
-      </div>
-      <button class="btn-juego" onclick="renderSopa()">🔄 Reiniciar Sopa</button>
+    <h2>🔤 Juego 1: Sopa de Letras «Palabras de la Inclusión»</h2>
+    <p>Encuentra las palabras escondidas. Haz clic en la <strong>primera letra</strong> y luego en la <strong>última letra</strong> de la palabra (horizontal, vertical o diagonal). ¡Toca «Nueva sopa» para reordenarlas!</p>
+    <div id="sopa-wrap">
+      <div class="palabras-chips" id="sopa-chips"></div>
+      <div id="sopa-grid"></div>
+      <p id="sopa-msg" style="font-weight:bold;color:var(--verde-osc);margin-top:8px;">&nbsp;</p>
+      <button class="btn-juego" onclick="nuevaSopa()">🔄 Nueva sopa</button>
     </div>
   </div>
 
-  <!-- JUEGO 2: CRUCIGRAMA -->
-  <div class="subpanel" id="j-cruci">
-    <div class="juego-desc">
-      <h4>🧩 2. Crucigrama de la Inclusión</h4>
-      <p>Escribe en mayúsculas la palabra correcta según cada pista y luego presiona «Verificar».</p>
-      <div id="cruci-wrap">
-        <div id="cruci-grid"></div>
+  <!-- CRUCIGRAMA -->
+  <div class="subpanel" id="j-cruci" style="display:none;">
+    <h2>🧩 Juego 2: Crucigrama «Diversidad en la Escuela»</h2>
+    <p>Lee las pistas, escribe las palabras en el crucigrama y presiona <strong>«Comprobar»</strong>.</p>
+    <div id="cruci-wrap">
+      <div id="cruci-grid"></div>
+      <div style="text-align:left;max-width:600px;margin:10px auto;">
+        <div class="pista"><strong>Horizontal 1:</strong> Variedad de personas, culturas y formas de ser en la escuela. (10 letras)</div>
+        <div class="pista"><strong>Vertical 2:</strong> Capacidad de ponerse en el lugar del otro. (7 letras)</div>
+        <div class="pista"><strong>Horizontal 3:</strong> Tratar a los demás con dignidad y consideración. (7 letras)</div>
+        <div class="pista"><strong>Vertical 4:</strong> Construcción social de lo que se espera de hombres y mujeres. (6 letras)</div>
+        <div class="pista"><strong>Vertical 5:</strong> Valor inherente que tiene toda persona. (8 letras)</div>
+        <div class="pista"><strong>Horizontal 6:</strong> Dar a cada uno lo que necesita para aprender y participar. (7 letras)</div>
       </div>
-      <div class="pistas">
-        <div class="pista"><strong>Horizontal 1:</strong> Nombre de nuestra Institución Educativa (primera palabra). (9 letras)</div>
-        <div class="pista"><strong>Vertical 2:</strong> Principio que reconoce que todos somos diferentes y valiosos. (10 letras)</div>
-        <div class="pista"><strong>Horizontal 3:</strong> Garantía de que todos participan sin ser excluidos. (9 letras)</div>
-      </div>
-      <button class="btn-juego" onclick="verificarCrucigrama()">✅ Verificar Crucigrama</button>
-      <button class="btn-juego" onclick="renderCrucigrama()">🔄 Reiniciar</button>
-      <p id="cruci-msg" style="font-weight:bold;margin-top:10px;"></p>
+      <button class="btn-juego" onclick="comprobarCruci()">✔ Comprobar</button>
+      <button class="btn-juego" onclick="limpiarCruci()">🧹 Limpiar</button>
+      <p id="cruci-msg" style="font-weight:bold;color:var(--verde-osc);margin-top:8px;">&nbsp;</p>
     </div>
   </div>
 
-  <!-- JUEGO 3: SENDERO INTERACTIVO (INICIAL RESTAURADO) -->
-  <div class="subpanel" id="j-sendero">
-    <div class="juego-desc">
-      <h4>🥾 3. Sendero Interactivo de la Inclusión</h4>
-      <p>Mueve al estudiante usando los botones para llevarlo a la meta (🏁) esquivando los obstáculos (🚧).</p>
-      <div id="sendero-wrap">
-        <div id="sendero-board"></div>
-        <div class="joystick">
-          <button class="joy-btn" onclick="moverJugador(0,-1)">▲</button>
-          <div class="joy-row">
-            <button class="joy-btn" onclick="moverJugador(-1,0)">◄</button>
-            <button class="joy-btn" onclick="moverJugador(0,1)">▼</button>
-            <button class="joy-btn" onclick="moverJugador(1,0)">►</button>
-          </div>
+  <!-- SENDERO -->
+  <div class="subpanel" id="j-sendero" style="display:none;">
+    <h2>🥾 Juego 3: Sendero de la Inclusión</h2>
+    <p>Guía al estudiante 🧑‍🎓 por el sendero usando las <strong>flechas del teclado</strong> o el <strong>joystick</strong>. Detente en cada estación 🚩 para conocer las actividades de la propuesta, ¡y llega a la Meta!</p>
+    <div id="sendero-wrap">
+      <div id="sendero-board"></div>
+      <div class="joystick">
+        <div class="joy-row"><button class="joy-btn" onclick="moverJugador(-1,0)">⬆️</button></div>
+        <div class="joy-row">
+          <button class="joy-btn" onclick="moverJugador(0,-1)">⬅️</button>
+          <button class="joy-btn" onclick="moverJugador(1,0)">⬇️</button>
+          <button class="joy-btn" onclick="moverJugador(0,1)">➡️</button>
         </div>
-        <div id="sendero-info">¡Usa las flechas para moverte hacia la meta!</div>
       </div>
-      <button class="btn-juego" onclick="reiniciarSendero()">🔄 Reiniciar Sendero</button>
+      <div id="sendero-info">🚩 Camina por el sendero y visita las estaciones para descubrir cada actividad.</div>
+      <div id="sendero-victoria">🏆 ¡Felicitaciones! Completaste el Sendero de la Inclusión. Ya conoces las 4 actividades de nuestra propuesta. ¡Ahora vamos a vivirlas en la escuela! 💚</div>
     </div>
-  </div>
-
-  <!-- JUEGO 4: TRIVIA CON TIEMPO -->
-  <div class="subpanel" id="j-trivia">
-    <div class="juego-desc">
-      <h4>⏱️ 4. Trivia con Tiempo de la Diversidad</h4>
-      <p>Responde las preguntas antes de que el tiempo de 15 segundos se agote por pregunta.</p>
-      <div id="trivia-wrap">
-        <div class="trivia-header">
-          <span>Pregunta <span id="t-num">1</span> de 4</span>
-          <span class="timer-badge">⏱️ <span id="t-time">15</span>s</span>
-        </div>
-        <div class="pregunta-box" id="t-pregunta">Cargando pregunta...</div>
-        <div class="opciones-grid" id="t-opciones"></div>
-        <div id="trivia-msg"></div>
-        <button class="btn-juego" id="btn-next-trivia" style="display:none;" onclick="siguientePreguntaTrivia()">Siguiente Pregunta ➡️</button>
+  
+  <!-- TRIVIA -->
+  <div class="subpanel" id="j-trivia" style="display:none;">
+    <h2>⏱️ Juego 4: Trivia «Reto de la Inclusión»</h2>
+    <p>Responde antes de que se acabe el tiempo: tienes <strong>20 segundos</strong> por pregunta. ¡Más rápido = más puntos!</p>
+    <div id="trivia-wrap">
+      <div id="trivia-inicio">
+        <p>10 preguntas sobre las temáticas del diplomado: diversidad, interseccionalidad, evaluación inclusiva y era digital.</p>
+        <button class="btn-juego" onclick="iniciarTrivia()">▶️ ¡Empezar!</button>
       </div>
-      <button class="btn-juego" onclick="iniciarTrivia()">🔄 Reiniciar Trivia</button>
+      <div id="trivia-juego" style="display:none;">
+        <div id="trivia-progreso">Pregunta 1 de 10</div>
+        <div id="trivia-timerbarra"><div id="trivia-timerfill"></div></div>
+        <div id="trivia-pregunta"></div>
+        <div id="trivia-opciones"></div>
+      </div>
+      <div id="trivia-resultado">
+        <h3 id="trivia-titulo"></h3>
+        <p id="trivia-puntaje" style="font-size:1.2em;"></p>
+        <p id="trivia-comentario"></p>
+        <button class="btn-juego" onclick="iniciarTrivia()">🔄 Jugar de nuevo</button>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============ DESARROLLO ============ -->
 <section class="panel" id="desarrollo">
-  <h2>🚀 Cronograma de Desarrollo e Implementación</h2>
-  <div class="tabla-container">
-    <table class="tabla">
-      <tr><th>Fase / Semana</th><th>Módulo / Eje</th><th>Actividad Principal</th><th>Entregable / Evidencia</th></tr>
-      <tr><td>Semana 1</td><td>Módulo 1: Pedagogía Queer e Interseccionalidad</td><td>Taller «La telaraña de nuestras identidades»</td><td>Fotografías y mapa de diversidad grupal</td></tr>
-      <tr><td>Semana 2</td><td>Módulo 2: ¿Qué implica ser maestro hoy?</td><td>Dramatizado de roles docente-estudiante</td><td>Registro en video y reflexiones escritas</td></tr>
-      <tr><td>Semana 3</td><td>Módulo 3: Evaluación diversa</td><td>Implementación del «Semáforo de aprendizaje»</td><td>Mural de tarjetas y acuerdos de tutoría entre pares</td></tr>
-      <tr><td>Semana 4</td><td>Módulo 4: Alternativas pedagógicas</td><td>Cartografía social del colegio</td><td>Mapa gigante con propuesta de accesibilidad</td></tr>
-      <tr><td>Semana 5</td><td>Módulo 5: Didácticas e inclusión (DUA)</td><td>Estaciones de aprendizaje DUA</td><td>Productos por estación (escritos, dibujos, audios)</td></tr>
-      <tr><td>Semana 6</td><td>Módulo 6: Era digital</td><td>Creación de contenidos digitales por la inclusión</td><td>Mural digital (Padlet) con memes/videos/infografías</td></tr>
-      <tr><td>Semana 7</td><td>Integración</td><td>Jornada de Juegos Virtuales y de Mesa en la I.E.</td><td>Capturas, registros del crucigrama y trivia</td></tr>
-      <tr><td>Semana 8</td><td>Cierre y Evaluación</td><td>Sancochada/Compartir inclusivo y Portafolio Final</td><td>Portafolio digital/físico institucional compilado</td></tr>
-    </table>
-  </div>
+  <h2>🚀 Desarrollo y Cronograma de la Propuesta</h2>
+  <table class="tabla">
+    <tr><th>Semana</th><th>Fase</th><th>Actividad</th><th>Módulos</th><th>Producto / Evidencia</th></tr>
+    <tr><td>1</td><td>Diagnóstico y sensibilización</td><td>Círculo de diálogo inicial + encuesta de percepción sobre diversidad</td><td>1, 2</td><td>Línea base, registro de asistencia</td></tr>
+    <tr><td>2</td><td>Vivencia</td><td>Actividad 1: «Caminando mi identidad»</td><td>1, 2, 5</td><td>Mapas de identidad, compromiso colectivo</td></tr>
+    <tr><td>3</td><td>Juego</td><td>Actividad 2: «La Oca de la Inclusión»</td><td>3, 4, 5</td><td>Tableros, fotos, rúbricas</td></tr>
+    <tr><td>4-5</td><td>Producción digital</td><td>Actividad 3: «Historias que incluyen»</td><td>6, 4, 3</td><td>Productos digitales, guiones</td></tr>
+    <tr><td>6</td><td>Participación</td><td>Actividad 4: «Aula sin barreras»</td><td>2, 5, 4</td><td>Informe de auditoría inclusiva</td></tr>
+    <tr><td>7</td><td>Socialización</td><td>Feria digital y muestra a la comunidad educativa</td><td>6, 3</td><td>Testimonios, evidencias fotográficas</td></tr>
+    <tr><td>8</td><td>Valoración</td><td>Encuesta final, reflexión individual y coevaluación</td><td>3</td><td>Informe final de la propuesta</td></tr>
+  </table>
+  <h3>Compromisos asumidos</h3>
+  <ul>
+    <li>📌 Garantizar adaptaciones para estudiantes con discapacidad y acceso a recursos digitales para quienes no tienen conectividad.</li>
+    <li>📌 Documentar semanalmente evidencias (fotos, registros, testimonios) en un portafolio digital del docente.</li>
+    <li>📌 Socializar los resultados con el consejo directivo y el consejo estudiantil.</li>
+  </ul>
 </section>
 
 <!-- ============ EVALUACIÓN ============ -->
 <section class="panel" id="evaluacion">
-  <h2>✅ Sistema de Evaluación Formativa e Inclusiva</h2>
-  <p>En el marco del <strong>Módulo 3: La evaluación en el contexto de la diversidad</strong>, la evaluación de esta propuesta no utiliza exámenes memorísticos tradicionales ni notas punitivas. Se organiza en tres dimensiones:</p>
-  
-  <div class="caja">
-    <h3>1. Autoevaluación (¿Cómo aprendo yo?)</h3>
-    <p>Cada estudiante reflexiona sobre su propio proceso mediante el «Diario de campo inclusivo» o la herramienta del «Semáforo».</p>
-  </div>
-
+  <h2>✅ Evaluación Inclusiva de la Propuesta</h2>
   <div class="caja-azul">
-    <h3>2. Coevaluación (¿Cómo aprendemos juntos?)</h3>
-    <p>Valoración entre pares basada en el respeto, la empatía y la retroalimentación constructiva durante los talleres y juegos interactivos.</p>
-  </div>
-
-  <div class="caja-morada">
-    <h3>3. Heteroevaluación Formativa (Acompañamiento docente)</h3>
-    <p>El docente hace seguimiento mediante rúbricas cualitativas que valoran la participación, el trabajo en equipo, la creatividad, la empatía y los productos alternativos elaborados en cada módulo.</p>
+    <p><strong>Rúbrica co-construida (criterios sugeridos):</strong></p>
+    <ul>
+      <li><strong>Participación y respeto:</strong> escucha activa, valoración de las diferencias.</li>
+      <li><strong>Cooperación:</strong> trabajo en equipo, apoyo entre pares.</li>
+      <li><strong>Creatividad:</strong> originalidad en productos y soluciones.</li>
+      <li><strong>Reflexión:</strong> capacidad de analizar y transformar prácticas.</li>
+    </ul>
+    <p><strong>Instrumentos:</strong> autoevaluación, coevaluación entre estudiantes, valoración docente formativa (sin notas punitivas), portafolio de evidencias y encuestas de percepción inicial y final.</p>
   </div>
 </section>
 
 <!-- ============ CONCLUSIONES ============ -->
 <section class="panel" id="conclusiones">
-  <h2>💡 Conclusiones y Proyección</h2>
-  <div class="caja">
-    <ul>
-      <li>La atención a la diversidad en la <strong>I.E. Aureliano Flórez Cardona</strong> no es una tarea adicional, sino el corazón mismo de la práctica pedagógica.</li>
-      <li>Integrar alternativas como el juego virtual, la cartografía social y las didácticas DUA transforma el clima escolar y fomenta el sentido de pertenencia en los estudiantes de 6° a 11°.</li>
-      <li>El diplomado brindó marcos conceptuales y herramientas aplicables para pasar del discurso de la inclusión a prácticas cotidianas en el aula de clases.</li>
-      <li>Esta propuesta web queda disponible como un recurso pedagógico abierto y dinámico para la comunidad educativa de Anserma y el departamento de Caldas.</li>
-    </ul>
-  </div>
+  <h2>💡 Conclusiones</h2>
+  <div class="caja"><p>1. <strong>La inclusión se construye con experiencias, no solo con discursos.</strong> Las actividades vivenciales y los juegos permiten que estudiantes de 6° a 11° comprendan la diversidad desde la empatía, articulando los aprendizajes de los seis módulos del diplomado.</p></div>
+  <div class="caja"><p>2. <strong>El docente como mediador transforma la cultura escolar.</strong> Al acompañar y facilitar escenarios seguros, se permea la práctica pedagógica, las políticas de convivencia y la cultura institucional hacia mayor equidad.</p></div>
+  <div class="caja"><p>3. <strong>La evaluación formativa es la herramienta clave de la inclusión.</strong> Valorar procesos y ofrecer múltiples formas de demostrar aprendizajes garantiza que nadie quede excluido del reconocimiento de sus logros.</p></div>
+  <div class="caja"><p>4. <strong>La tecnología, bien usada, amplía la inclusión.</strong> Los productos digitales accesibles conectan a la escuela con las familias y la comunidad, siempre con alternativas sin conectividad para no generar nuevas brechas.</p></div>
+  <div class="caja-morada"><p><strong>Reflexión final:</strong> las alternativas pedagógicas no son actividades aisladas, sino una forma de mirar la escuela: una institución donde la diversidad no es un problema que administrar, sino una riqueza que potenciar. <em>Sigamos caminando juntos hacia la inclusión.</em> 💚</p></div>
+  <h3>Evidencias fotográficas (espacio para registrar)</h3>
+  <table class="tabla">
+    <tr><th>Actividad</th><th>Fecha</th><th>Descripción de la evidencia</th></tr>
+    <tr><td>1. Caminando mi identidad</td><td>____/____/2026</td><td>________________________________</td></tr>
+    <tr><td>2. La Oca de la Inclusión</td><td>____/____/2026</td><td>________________________________</td></tr>
+    <tr><td>3. Historias que incluyen</td><td>____/____/2026</td><td>________________________________</td></tr>
+    <tr><td>4. Aula sin barreras</td><td>____/____/2026</td><td>________________________________</td></tr>
+  </table>
 </section>
 
 <!-- ============ CRÉDITOS ============ -->
 <section class="panel" id="creditos">
-  <h2>⭐ Créditos e Información Institucional</h2>
-  <div class="caja-azul">
-    <p><strong>Propuesta Pedagógica Alternativa: «Nuestra Escuela Diversa»</strong></p>
-    <p><strong>Docentes Autores:</strong> Juan Pablo Correa · Jorge Loaiza · Juan Carlos Fajardo</p>
-    <p><strong>Institución Educativa:</strong> Aureliano Flórez Cardona (Anserma, Caldas)</p>
-    <p><strong>Cohorte:</strong> COHORTE II — 2026</p>
-    <p><strong>Programa:</strong> Diplomado Alternativas Pedagógicas en y para la Atención a la Diversidad</p>
-    <p><strong>Organiza:</strong> Secretaría de Educación Departamental de Caldas — Gobernación de Caldas & Universidad de Manizales</p>
-    <p><strong>Proyecto:</strong> Caldas Camina Hacia la Inclusión</p>
-    <p><strong>Módulos y Docentes del Diplomado:</strong></p>
-    <ul>
-      <li>Módulo 1: Pedagogía queer la interseccionalidad en la escuela — Docente: Jaime Alberto Restrepo Soto</li>
-      <li>Módulo 2: Qué implica ser maestro hoy — Docente: Claudia Patricia Jiménez Guzmán</li>
-      <li>Módulo 3: La Evaluación en el Contexto de La Diversidad — Docente: Yenny Andrea Gutiérrez Toro</li>
-      <li>Módulo 4: Alternativas pedagógicas — Docente: Claudia Patricia Jiménez Guzmán</li>
-      <li>Módulo 5: Didácticas y alternativas didácticas — Docente: Valentina Cadavid Alzate</li>
-      <li>Módulo 6: Enseñar y aprender en la era digital — Docente: Alejandro Cardona Valencia</li>
-    </ul>
+  <h2>⭐ Créditos</h2>
+  <div class="caja" style="text-align:center;">
+    <h3>👨‍🏫 Docentes creadores de la propuesta</h3>
+    <p style="font-size:1.15em;"><strong>Juan Pablo Correa</strong> · <strong>Jorge Loaiza</strong> · <strong>Juan Carlos Fajardo</strong></p>
+    <p>Docentes de la Institución Educativa Aureliano Flórez Cardona — Anserma, Caldas</p>
   </div>
+  <div class="caja-azul">
+    <h3>🎓 Con el apoyo de:</h3>
+    <p><strong>Secretaría de Educación del Departamento de Caldas</strong> y <strong>Universidad de Manizales</strong><br>
+    Diplomado: <em>Alternativas Pedagógicas en y para la Atención a la Diversidad — Cohorte II</em><br>
+    Programa: <em>Caldas Camina hacia la Inclusión 2026</em></p>
+  </div>
+  <p style="text-align:center;font-style:italic;color:var(--verde-osc);margin-top:15px;">«Sigamos caminando juntos» 🌄💚</p>
 </section>
 
 <footer>
-  <p><strong>I.E. Aureliano Flórez Cardona · Anserma, Caldas</strong></p>
-  <p class="creditos">Diplomado Alternativas Pedagógicas en y para la Atención a la Diversidad — Universidad de Manizales / Gobernación de Caldas</p>
-  <p class="creditos">© 2026 — Propuesta Pedagógica Alternativa Grados 6° a 11°</p>
+  <p><strong>Caldas Camina hacia la Inclusión 2026</strong> · I.E. Aureliano Flórez Cardona · Anserma, Caldas</p>
+  <p class="creditos">Realizado por los docentes: <strong>Juan Pablo Correa · Jorge Loaiza · Juan Carlos Fajardo</strong></p>
+  <p class="creditos">Secretaría de Educación de Caldas · Universidad de Manizales</p>
 </footer>
 
 <script>
-/* ===== NAVEGACIÓN ENTRE PESTAÑAS Y SUBPESTAÑAS ===== */
-function mostrarTab(idTab, btn) {
-  document.querySelectorAll('section.panel').forEach(p => p.classList.remove('activo'));
-  document.querySelectorAll('.tabs .tab-btn').forEach(b => b.classList.remove('activo'));
-  document.getElementById(idTab).classList.add('activo');
+/* ================= PESTAÑAS ================= */
+function mostrarTab(id, btn){
+  document.querySelectorAll('section.panel').forEach(s=>s.classList.remove('activo'));
+  document.getElementById(id).classList.add('activo');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('activo'));
   btn.classList.add('activo');
-
-  const subtabs = document.getElementById('subtabs-juegos');
-  if (idTab === 'juegos') {
-    subtabs.classList.add('activo');
-  } else {
-    subtabs.classList.remove('activo');
-  }
+  document.getElementById('subtabs-juegos').classList.toggle('activo', id==='juegos');
+  window.scrollTo({top:0});
 }
-
-function mostrarSub(idSub, btn) {
-  document.querySelectorAll('#juegos .subpanel').forEach(sp => sp.classList.remove('activo'));
-  document.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('activo'));
-  document.getElementById(idSub).classList.add('activo');
+function mostrarSub(id, btn){
+  document.querySelectorAll('#juegos .subpanel').forEach(s=>s.style.display='none');
+  document.getElementById(id).style.display='block';
+  document.querySelectorAll('.subtab-btn').forEach(b=>b.classList.remove('activo'));
   btn.classList.add('activo');
-
-  if(idSub === 'j-trivia') {
-    iniciarTrivia();
-  }
 }
 
-/* ===== 1. SOPA DE LETRAS ===== */
-const gridSopa = [
-  ['A','U','R','E','L','I','A','N','O','X','Y','Z','W','K'],
-  ['B','C','D','E','F','G','H','I','J','K','L','M','N','O'],
-  ['F','L','O','R','E','Z','A','B','C','D','E','F','G','H'],
-  ['I','J','K','L','M','N','O','P','Q','R','S','T','U','V'],
-  ['C','A','R','D','O','N','A','W','X','Y','Z','A','B','C'],
-  ['D','E','F','G','H','I','J','K','L','M','N','O','P','Q'],
-  ['V','A','L','O','R','E','S','R','S','T','U','V','W','X']
-];
+/* ================= SOPA DE LETRAS (arrastre táctil con resaltado) ================= */
+const PALABRAS_SOPA = ["RESPETO","DIVERSIDAD","INCLUSION","EQUIDAD","EMPATIA","GENERO","CULTURA","IDENTIDAD","DIGNIDAD","ACCESIBILIDAD"];
+const TAM = 14;
+let sopaGrid = [], sopaSol = {}, encontradas = new Set();
+let arrastrando = false, ancla = null, selActual = [];
 
-const palabrasSopa = ["AURELIANO", "FLOREZ", "CARDONA", "VALORES"];
-let seleccionadas = [];
-let esArrastrando = false;
+const DIRS = [[0,1],[1,0],[1,1],[1,-1],[0,-1],[-1,0],[-1,-1],[-1,1]];
+const LETRAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-function renderSopa() {
-  const container = document.getElementById('sopa-grid');
-  container.innerHTML = '';
-  document.querySelectorAll('.palabras-chips .chip').forEach(c => c.classList.remove('ok'));
-  
-  gridSopa.forEach((row, r) => {
-    row.forEach((letra, c) => {
-      const cell = document.createElement('div');
-      cell.innerText = letra;
-      cell.dataset.r = r;
-      cell.dataset.c = c;
-      
-      cell.addEventListener('mousedown', () => iniciarSeleccion(cell));
-      cell.addEventListener('mouseenter', () => continuarSeleccion(cell));
-      
-      container.appendChild(cell);
-    });
+function nuevaSopa(){
+  sopaGrid = Array.from({length:TAM},()=>Array(TAM).fill(''));
+  sopaSol = {}; encontradas = new Set(); arrastrando=false; ancla=null; selActual=[];
+  document.getElementById('sopa-msg').innerHTML = '&nbsp;';
+
+  PALABRAS_SOPA.forEach(pal=>{
+    let colocada = false, intentos = 0;
+    while(!colocada && intentos < 500){
+      intentos++;
+      const d = DIRS[Math.floor(Math.random()*DIRS.length)];
+      const r = Math.floor(Math.random()*TAM), c = Math.floor(Math.random()*TAM);
+      const er = r + d[0]*(pal.length-1), ec = c + d[1]*(pal.length-1);
+      if(er<0||er>=TAM||ec<0||ec>=TAM) continue;
+      let ok = true;
+      for(let i=0;i<pal.length;i++){
+        const lr = sopaGrid[r+d[0]*i][c+d[1]*i];
+        if(lr !== '' && lr !== pal[i]){ ok=false; break; }
+      }
+      if(!ok) continue;
+      colocada = true;
+      const celdas = [];
+      for(let i=0;i<pal.length;i++){
+        const rr=r+d[0]*i, cc=c+d[1]*i;
+        sopaGrid[rr][cc]=pal[i];
+        celdas.push([rr,cc]);
+      }
+      sopaSol[pal]=celdas;
+    }
   });
+  for(let r=0;r<TAM;r++) for(let c=0;c<TAM;c++) if(sopaGrid[r][c]==='') sopaGrid[r][c]=LETRAS[Math.floor(Math.random()*26)];
 
-  document.addEventListener('mouseup', finalizarSeleccion);
-}
-
-function iniciarSeleccion(cell) {
-  esArrastrando = true;
-  limpiarSeleccion();
-  marcarCelda(cell);
-}
-
-function continuarSeleccion(cell) {
-  if (esArrastrando) {
-    marcarCelda(cell);
-  }
-}
-
-function marcarCelda(cell) {
-  if (!cell.classList.contains('sel')) {
-    cell.classList.add('sel');
-    seleccionadas.push(cell);
-  }
-}
-
-function limpiarSeleccion() {
-  seleccionadas.forEach(c => {
-    if (!c.classList.contains('found')) c.classList.remove('sel');
-  });
-  seleccionadas = [];
-}
-
-function finalizarSeleccion() {
-  if (!esArrastrando) return;
-  esArrastrando = false;
-  
-  let texto = seleccionadas.map(c => c.innerText).join('');
-  if (palabrasSopa.includes(texto)) {
-    seleccionadas.forEach(c => {
-      c.classList.remove('sel');
-      c.classList.add('found');
-    });
-    const chip = document.getElementById('chip-' + texto);
-    if (chip) chip.classList.add('ok');
-  } else {
-    limpiarSeleccion();
-  }
-}
-
-/* ===== 2. CRUCIGRAMA ===== */
-const mapaCruci = [
-  ['A','U','R','E','L','I','A','N','O'],
-  ['','','','D','','','','',''],
-  ['','','','I','','','','',''],
-  ['','','','V','','','','',''],
-  ['','','','E','','','','',''],
-  ['I','N','C','L','U','S','I','O','N'],
-  ['','','','S','','','','',''],
-  ['','','','I','','','','',''],
-  ['','','','D','','','','',''],
-  ['','','','A','','','','',''],
-  ['','','','D','','','','','']
-];
-
-function renderCrucigrama() {
-  const container = document.getElementById('cruci-grid');
-  container.innerHTML = '';
-  container.style.gridTemplateColumns = `repeat(${mapaCruci[0].length}, clamp(22px, 5vw, 34px))`;
-  document.getElementById('cruci-msg').innerText = '';
-
-  mapaCruci.forEach((row, r) => {
-    row.forEach((char, c) => {
-      if (char !== '') {
-        const input = document.createElement('input');
-        input.maxLength = 1;
-        input.dataset.ans = char;
-        input.dataset.r = r;
-        input.dataset.c = c;
-        container.appendChild(input);
-      } else {
-        const span = document.createElement('span');
-        container.appendChild(span);
+  const g = document.getElementById('sopa-grid');
+  g.innerHTML='';
+  for(let r=0;r<TAM;r++) for(let c=0;c<TAM;c++){
+    const d = document.createElement('div');
+    d.textContent = sopaGrid[r][c];
+    d.dataset.r = r; d.dataset.c = c;
+    d.addEventListener('pointerdown', e=>{ e.preventDefault(); iniciarArrastre(r,c); });
+    d.addEventListener('pointerenter', ()=>{ if(arrastrando) extenderArrastre(r,c); });
+    d.addEventListener('pointermove', e=>{
+      if(!arrastrando) return;
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      if(el && el.dataset && el.dataset.r!==undefined && el.closest('#sopa-grid')){
+        extenderArrastre(+el.dataset.r, +el.dataset.c);
       }
     });
+    g.appendChild(d);
+  }
+  const chips = document.getElementById('sopa-chips');
+  chips.innerHTML='';
+  PALABRAS_SOPA.forEach(p=>{
+    const s = document.createElement('span');
+    s.className='chip'; s.id='chip-'+p; s.textContent=p;
+    chips.appendChild(s);
   });
 }
 
-function verificarCrucigrama() {
-  const inputs = document.querySelectorAll('#cruci-grid input');
-  let bien = true;
-  inputs.forEach(inp => {
-    if (inp.value.toUpperCase() === inp.dataset.ans) {
-      inp.classList.remove('mal');
-      inp.classList.add('bien');
+function iniciarArrastre(r,c){
+  arrastrando = true; ancla = [r,c];
+  pintarSeleccion([[r,c]]);
+}
+function extenderArrastre(r,c){
+  const celdas = lineaEntre(ancla, [r,c]);
+  if(celdas) pintarSeleccion(celdas);
+}
+function lineaEntre(a,b){
+  const esLinea = (a[0]===b[0] && a[1]===b[1]) ||
+                  (a[0]===b[0] || a[1]===b[1] || Math.abs(b[0]-a[0])===Math.abs(b[1]-a[1]));
+  if(!esLinea) return [a,b];
+  const dr=Math.sign(b[0]-a[0]), dc=Math.sign(b[1]-a[1]);
+  const len=Math.max(Math.abs(b[0]-a[0]),Math.abs(b[1]-a[1]))+1;
+  const celdas=[];
+  for(let i=0;i<len;i++) celdas.push([a[0]+dr*i, a[1]+dc*i]);
+  return celdas;
+}
+function pintarSeleccion(celdas){
+  document.querySelectorAll('#sopa-grid div.sel').forEach(d=>d.classList.remove('sel'));
+  selActual = celdas;
+  celdas.forEach(([r,c])=>{
+    const el = document.querySelector('#sopa-grid div[data-r="'+r+'"][data-c="'+c+'"]');
+    if(el) el.classList.add('sel');
+  });
+}
+function terminarArrastre(){
+  if(!arrastrando) return;
+  arrastrando = false;
+  if(selActual.length < 2){ pintarSeleccion([]); selActual=[]; return; }
+  const palabra = selActual.map(([r,c])=>sopaGrid[r][c]).join('');
+  const rev = palabra.split('').reverse().join('');
+  const claves = Object.keys(sopaSol).filter(p=>!encontradas.has(p));
+  const hallada = claves.find(p=>p===palabra||p===rev);
+  if(hallada){
+    encontradas.add(hallada);
+    selActual.forEach(([r,c])=>{
+      const el = document.querySelector('#sopa-grid div[data-r="'+r+'"][data-c="'+c+'"]');
+      if(el){ el.classList.remove('sel'); el.classList.add('found'); }
+    });
+    document.getElementById('chip-'+hallada).classList.add('ok');
+    document.getElementById('sopa-msg').textContent = '🎉 ¡Encontraste: '+hallada+'!';
+    if(encontradas.size===PALABRAS_SOPA.length)
+      document.getElementById('sopa-msg').textContent = '🏆 ¡Sopa completada! Eres un campeón de la inclusión.';
+  }
+  pintarSeleccion([]);
+  selActual=[];
+}
+window.addEventListener('pointerup', terminarArrastre);
+window.addEventListener('pointercancel', terminarArrastre);
+
+/* ================= CRUCIGRAMA ================= */
+const CRUCI = [
+  {pal:"DIVERSIDAD", r:0, c:0, dir:"H"},
+  {pal:"EMPATIA",    r:0, c:3, dir:"V"},
+  {pal:"RESPETO",    r:2, c:0, dir:"H"},
+  {pal:"GENERO",     r:1, c:4, dir:"V"},
+  {pal:"DIGNIDAD",   r:0, c:9, dir:"V"},
+  {pal:"EQUIDAD",    r:5, c:5, dir:"H"}
+];
+const FILAS_C=8, COLS_C=12;
+function construirCruci(){
+  const sol = {};
+  CRUCI.forEach(w=>{
+    for(let i=0;i<w.pal.length;i++){
+      const r = w.dir==="H"?w.r:w.r+i, c = w.dir==="H"?w.c+i:w.c;
+      sol[r+"-"+c]=w.pal[i];
+    }
+  });
+  const g = document.getElementById('cruci-grid');
+  g.style.gridTemplateColumns = 'repeat('+COLS_C+',auto)';
+  g.innerHTML='';
+  for(let r=0;r<FILAS_C;r++) for(let c=0;c<COLS_C;c++){
+    if(sol[r+"-"+c]){
+      const inp = document.createElement('input');
+      inp.maxLength=1; inp.dataset.r=r; inp.dataset.c=c; inp.dataset.sol=sol[r+"-"+c];
+      inp.setAttribute('autocomplete','off');
+      inp.addEventListener('input',()=>{ if(inp.value){ const n=siguienteInput(r,c); if(n) n.focus(); }});
+      g.appendChild(inp);
     } else {
-      inp.classList.remove('bien');
-      inp.classList.add('mal');
-      bien = false;
+      const sp = document.createElement('span'); g.appendChild(sp);
     }
-  });
-
-  const msg = document.getElementById('cruci-msg');
-  if (bien) {
-    msg.style.color = 'var(--verde-osc)';
-    msg.innerText = '🎉 ¡Excelente! Has completado el crucigrama correctamente.';
-  } else {
-    msg.style.color = '#c0392b';
-    msg.innerText = '❌ Algunas letras son incorrectas. ¡Sigue intentándolo!';
   }
 }
+function siguienteInput(r,c){
+  const inputs=[...document.querySelectorAll('#cruci-grid input')];
+  const idx=inputs.findIndex(i=>+i.dataset.r===r&&+i.dataset.c===c);
+  return inputs[idx+1]||null;
+}
+function comprobarCruci(){
+  let bien=0, total=0;
+  document.querySelectorAll('#cruci-grid input').forEach(i=>{
+    total++;
+    i.classList.remove('bien','mal');
+    if(i.value.toUpperCase()===i.dataset.sol){ i.classList.add('bien'); bien++; }
+    else if(i.value) i.classList.add('mal');
+  });
+  const msg=document.getElementById('cruci-msg');
+  if(bien===total) msg.textContent='🏆 ¡Crucigrama perfecto! Conoces muy bien la cultura de la inclusión.';
+  else msg.textContent='Tienes '+bien+' de '+total+' letras correctas. ¡Sigue intentando! 💪';
+}
+function limpiarCruci(){
+  document.querySelectorAll('#cruci-grid input').forEach(i=>{i.value='';i.classList.remove('bien','mal');});
+  document.getElementById('cruci-msg').innerHTML='&nbsp;';
+}
 
-/* ===== 3. SENDERO INTERACTIVO (VERSION INICIAL RESTAURADA) ===== */
-const mapaSendero = [
-  [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 1, 1, 1, 2, 1, 1, 0, 0, 0, 0],
-  [0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 3, 0]
+/* ================= SENDERO ================= */
+const CAMINO = [
+  [6,0],[6,1],[6,2],[6,3],[5,3],[4,3],[3,3],[3,4],[3,5],[3,6],
+  [2,6],[1,6],[0,6],[0,7],[0,8],[1,8],[2,8],[3,8],[4,8],[4,9],
+  [4,10],[3,10],[2,10],[1,10],[0,10],[0,11]
 ];
-
-let posJugador = { x: 0, y: 0 };
-
-function renderSendero() {
-  const board = document.getElementById('sendero-board');
-  board.innerHTML = '';
-  mapaSendero.forEach((row, y) => {
-    row.forEach((val, x) => {
-      const cell = document.createElement('div');
-      if (val > 0) cell.classList.add('celda-camino');
-      else cell.classList.add('celda-vacia');
-
-      if (x === posJugador.x && y === posJugador.y) {
-        cell.innerText = '🧑‍🎓';
-      } else if (val === 2) {
-        cell.innerText = '🚧';
-      } else if (val === 3) {
-        cell.innerText = '🏁';
-      }
-
-      board.appendChild(cell);
-    });
-  });
-}
-
-function moverJugador(dx, dy) {
-  let nx = posJugador.x + dx;
-  let ny = posJugador.y + dy;
-
-  if (ny >= 0 && ny < mapaSendero.length && nx >= 0 && nx < mapaSendero[0].length) {
-    if (mapaSendero[ny][nx] !== 0) {
-      posJugador = { x: nx, y: ny };
-      renderSendero();
-      
-      if (mapaSendero[ny][nx] === 2) {
-        document.getElementById('sendero-info').innerText = '⚠️ ¡Encontraste una barrera! Vuelve a intentar desde el inicio.';
-        posJugador = { x: 0, y: 0 };
-        setTimeout(renderSendero, 800);
-      } else if (mapaSendero[ny][nx] === 3) {
-        document.getElementById('sendero-info').innerText = '🎉 ¡Felicidades! Has superado todas las barreras del sendero inclusivo.';
-      } else {
-        document.getElementById('sendero-info').innerText = 'Sigue avanzando hacia la meta inclusiva.';
-      }
-    }
-  }
-}
-
-function reiniciarSendero() {
-  posJugador = { x: 0, y: 0 };
-  document.getElementById('sendero-info').innerText = '¡Usa las flechas para moverte hacia la meta!';
-  renderSendero();
-}
-
-/* ===== 4. JUEGO DE TRIVIA CON TIEMPO ===== */
-const preguntasTrivia = [
-  {
-    pregunta: "¿Qué reconoce la interseccionalidad en la escuela?",
-    opciones: [
-      "A) Que todos los estudiantes son idénticos.",
-      "B) Que cada persona cruza distintas identidades (origen, género, capacidades).",
-      "C) Que solo se evalúa con exámenes escritos.",
-      "D) Que la tecnología sustituye al maestro."
-    ],
-    correcta: 1
-  },
-  {
-    pregunta: "¿Cuál es el rol del maestro hoy en una escuela diversa?",
-    opciones: [
-      "A) Dictar clase y poner calificaciones sin dialogar.",
-      "B) Un mediador, escucha y creador de ambientes seguros e inclusivos.",
-      "C) Aplicar la misma tarea a todos sin adaptaciones.",
-      "D) Sancionar inmediatamente sin escuchar al estudiante."
-    ],
-    correcta: 1
-  },
-  {
-    pregunta: "¿Cómo se concibe la evaluación en el contexto de la diversidad?",
-    opciones: [
-      "A) Como una forma de castigo o clasificación.",
-      "B) Como un proceso formativo, flexible y que valora los avances individuales.",
-      "C) Como una prueba única de selección múltiple.",
-      "D) Como una nota que determina quién es 'bueno' y quién 'malo'."
-    ],
-    correcta: 1
-  },
-  {
-    pregunta: "En el DUA (Diseño Universal para el Aprendizaje), se busca:",
-    opciones: [
-      "A) Ofrecer una sola forma de aprender.",
-      "B) Eliminar los juegos y la tecnología del aula.",
-      "C) Múltiples formas de presentación, expresión y motivación.",
-      "D) Que los estudiantes aprendan solos en casa."
-    ],
-    correcta: 2
-  }
-];
-
-let indexTrivia = 0;
-let timerTrivia = null;
-let tiempoRestante = 15;
-
-function iniciarTrivia() {
-  indexTrivia = 0;
-  cargarPreguntaTrivia();
-}
-
-function cargarPreguntaTrivia() {
-  clearInterval(timerTrivia);
-  tiempoRestante = 15;
-  
-  const q = preguntasTrivia[indexTrivia];
-  document.getElementById('t-num').innerText = indexTrivia + 1;
-  document.getElementById('t-pregunta').innerText = q.pregunta;
-  document.getElementById('t-time').innerText = tiempoRestante;
-  document.getElementById('trivia-msg').innerText = '';
-  document.getElementById('btn-next-trivia').style.display = 'none';
-
-  const grid = document.getElementById('t-opciones');
-  grid.innerHTML = '';
-
-  q.opciones.forEach((op, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'btn-opcion';
-    btn.innerText = op;
-    btn.onclick = () => responderTrivia(i);
-    grid.appendChild(btn);
-  });
-
-  timerTrivia = setInterval(() => {
-    tiempoRestante--;
-    document.getElementById('t-time').innerText = tiempoRestante;
-    if (tiempoRestante <= 0) {
-      clearInterval(timerTrivia);
-      responderTrivia(-1);
-    }
-  }, 1000);
-}
-
-function responderTrivia(opcionSel) {
-  clearInterval(timerTrivia);
-  const q = preguntasTrivia[indexTrivia];
-  const btns = document.querySelectorAll('.btn-opcion');
-  
-  btns.forEach(b => b.disabled = true);
-
-  const msg = document.getElementById('trivia-msg');
-
-  if (opcionSel === q.correcta) {
-    if (btns[opcionSel]) btns[opcionSel].classList.add('correcta');
-    msg.style.color = 'var(--verde-osc)';
-    msg.innerText = '✨ ¡Correcto! Excelente respuesta.';
-  } else {
-    if (opcionSel >= 0 && btns[opcionSel]) btns[opcionSel].classList.add('incorrecta');
-    if (btns[q.correcta]) btns[q.correcta].classList.add('correcta');
-    msg.style.color = '#c0392b';
-    msg.innerText = opcionSel === -1 ? '⏱️ ¡Tiempo agotado!' : '❌ Respuesta incorrecta.';
-  }
-
-  document.getElementById('btn-next-trivia').style.display = 'inline-block';
-}
-
-function siguientePreguntaTrivia() {
-  indexTrivia++;
-  if (indexTrivia < preguntasTrivia.length) {
-    cargarPreguntaTrivia();
-  } else {
-    document.getElementById('t-pregunta').innerText = '🎉 ¡Has completado la Trivia de la Diversidad!';
-    document.getElementById('t-opciones').innerHTML = '';
-    document.getElementById('trivia-msg').style.color = 'var(--verde-osc)';
-    document.getElementById('trivia-msg').innerText = '¡Felicidades por poner a prueba tus conocimientos sobre inclusión!';
-    document.getElementById('btn-next-trivia').style.display = 'none';
-  }
-}
-
-/* INICIALIZACIÓN GLOBAL */
-window.onload = () => {
-  renderSopa();
-  renderCrucigrama();
-  renderSendero();
+const SET_CAMINO = new Set(CAMINO.map(function(p){return p[0]+"-"+p[1];}));
+const ESTACIONES = {
+  "6-0":{icono:"🚩", titulo:"¡Bienvenido al Sendero de la Inclusión!", texto:"Recorre el camino y visita las 4 estaciones para conocer las actividades de nuestra propuesta. Usa las flechas del teclado o el joystick táctil."},
+  "3-3":{icono:"🎭", titulo:"Estación 1 · «Caminando mi identidad»", texto:"Circuito de estaciones: mapa de identidad, rompe estereotipos y teatro de sombras. (Módulos 1, 2 y 5)"},
+  "3-6":{icono:"🎲", titulo:"Estación 2 · «La Oca de la Inclusión»", texto:"Juego de mesa cooperativo donde todos ganan juntos en la casilla 'Escuela Inclusiva'. (Módulos 3, 4 y 5)"},
+  "0-8":{icono:"📱", titulo:"Estación 3 · «Historias que incluyen»", texto:"Crea un podcast, cómic o video sobre historias de diversidad de tu comunidad de Anserma, con accesibilidad. (Módulos 6, 4, 3 y 1)"},
+  "4-10":{icono:"🌱", titulo:"Estación 4 · «Aula sin barreras»", texto:"Auditoría de accesibilidad de la institución con listas de chequeo y plan de mejoras. (Módulos 2, 5 y 4)"},
+  "0-11":{icono:"🏁", titulo:"¡META: Escuela Inclusiva!", texto:"Llegaste al final del sendero. ¡Si visitaste las 4 estaciones, completaste el recorrido!"}
 };
+let posJugador = [6,0], visitadas = new Set(), divsSendero = {};
+
+function construirSendero(){
+  const b = document.getElementById('sendero-board');
+  b.innerHTML=''; divsSendero={};
+  for(let r=0;r<7;r++) for(let c=0;c<12;c++){
+    const d=document.createElement('div');
+    d.dataset.r=r; d.dataset.c=c;
+    if(SET_CAMINO.has(r+"-"+c)){
+      d.className='celda-camino';
+      if(ESTACIONES[r+"-"+c]) d.innerHTML='<span class="marcador">'+ESTACIONES[r+"-"+c].icono+'</span>';
+    } else {
+      d.className='celda-vacia';
+      const azar = (r*12+c)%17;
+      if(azar===3) d.textContent='🌳';
+      else if(azar===9) d.textContent='🌼';
+    }
+    b.appendChild(d);
+    divsSendero[r+"-"+c]=d;
+  }
+  visitadas=new Set(); posJugador=[6,0];
+  pintarJugador();
+  document.getElementById('sendero-victoria').style.display='none';
+  document.getElementById('sendero-info').innerHTML='🚩 Camina por el sendero y visita las estaciones para descubrir cada actividad.';
+}
+function pintarJugador(){
+  document.querySelectorAll('#jugador').forEach(function(e){e.remove();});
+  divsSendero[posJugador[0]+"-"+posJugador[1]].innerHTML='<span id="jugador">🧑‍🎓</span>';
+}
+function moverJugador(dr,dc){
+  const nr=posJugador[0]+dr, nc=posJugador[1]+dc;
+  if(!SET_CAMINO.has(nr+"-"+nc)) return;
+  const estAnt = ESTACIONES[posJugador[0]+"-"+posJugador[1]];
+  divsSendero[posJugador[0]+"-"+posJugador[1]].innerHTML = estAnt?'<span class="marcador">'+estAnt.icono+'</span>':'';
+  posJugador=[nr,nc];
+  pintarJugador();
+  const e = ESTACIONES[nr+"-"+nc];
+  if(e){
+    document.getElementById('sendero-info').innerHTML='<strong>'+e.icono+' '+e.titulo+'</strong><br>'+e.texto;
+    if(e.icono!=="🚩") visitadas.add(nr+"-"+nc);
+    if(nr===0&&nc===11 && visitadas.size>=4){
+      document.getElementById('sendero-victoria').style.display='block';
+    }
+  }
+}
+document.addEventListener('keydown',function(e){
+  if(!document.getElementById('juegos').classList.contains('activo')) return;
+  if(document.getElementById('j-sendero').style.display==='none') return;
+  const map={ArrowUp:[-1,0],ArrowDown:[1,0],ArrowLeft:[0,-1],ArrowRight:[0,1]};
+  if(map[e.key]){ e.preventDefault(); moverJugador(map[e.key][0],map[e.key][1]); }
+});
+
+/* ================= TRIVIA CON TIEMPO ================= */
+const TRIVIA_PREGUNTAS = [
+  {p:"¿Qué es la interseccionalidad?", op:["Que todos pensamos igual","Que cada persona es una combinación única de muchas características a la vez","Un tipo de examen"], c:1},
+  {p:"¿Qué papel juega el maestro hoy según el diplomado?", op:["Solo dar información","Ser un mediador que acompaña y crea espacios seguros","Ser el único dueño de la verdad"], c:1},
+  {p:"¿Qué valora principalmente la evaluación inclusiva?", op:["Solo la nota final","El proceso, el esfuerzo y las múltiples formas de demostrar lo aprendido","Quien responde más rápido"], c:1},
+  {p:"¿Qué significa equidad en la escuela?", op:["Tratar a todos exactamente igual","Dar a cada uno lo que necesita para aprender y participar","Dar premios a los mejores"], c:1},
+  {p:"¿Qué invita a hacer la pedagogía queer?", op:["A cuestionar estereotipos de género y respetar las identidades","A dividir el salón por género","A copiar más en clase"], c:0},
+  {p:"¿Qué son las alternativas pedagógicas?", op:["Solo clases por internet","Formas distintas de aprender: juegos, proyectos, arte, naturaleza y tecnología","Clases más largas"], c:1},
+  {p:"¿Qué implica la ciudadanía digital?", op:["Usar la tecnología con responsabilidad y respeto","Publicar todo sin pensar","Usar solo redes sociales"], c:0},
+  {p:"¿Qué son la autoevaluación y la coevaluación?", op:["Castigos por malas notas","Instrumentos de evaluación formativa donde los estudiantes valoran su trabajo y el de sus compañeros","Exámenes sorpresa"], c:1},
+  {p:"¿Qué significa accesibilidad en la escuela?", op:["Que solo entren quienes puedan subir escaleras","Que todas las personas puedan entrar, participar y aprender","Que haya más tareas"], c:1},
+  {p:"¿Cuál es el lema del programa Caldas Camina hacia la Inclusión?", op:["Solo el mejor gana","Sigamos caminando juntos","Estudiar sin descanso"], c:1}
+];
+const TRIVIA_TIEMPO = 20;
+let triviaIdx = 0, triviaPuntos = 0, triviaIntervalo = null, triviaTiempoRest = 0;
+
+function iniciarTrivia(){
+  triviaIdx = 0; triviaPuntos = 0;
+  document.getElementById('trivia-inicio').style.display='none';
+  document.getElementById('trivia-resultado').style.display='none';
+  document.getElementById('trivia-juego').style.display='block';
+  mostrarPregunta();
+}
+function mostrarPregunta(){
+  const q = TRIVIA_PREGUNTAS[triviaIdx];
+  document.getElementById('trivia-progreso').textContent = 'Pregunta '+(triviaIdx+1)+' de '+TRIVIA_PREGUNTAS.length+' · ⭐ Puntos: '+triviaPuntos;
+  document.getElementById('trivia-pregunta').textContent = q.p;
+  const cont = document.getElementById('trivia-opciones');
+  cont.innerHTML='';
+  q.op.forEach(function(texto,i){
+    const b = document.createElement('button');
+    b.className='trivia-opcion';
+    b.textContent = texto;
+    b.onclick = function(){ responderTrivia(i, b); };
+    cont.appendChild(b);
+  });
+  iniciarTemporizador();
+}
+function iniciarTemporizador(){
+  clearInterval(triviaIntervalo);
+  triviaTiempoRest = TRIVIA_TIEMPO;
+  const fill = document.getElementById('trivia-timerfill');
+  fill.className='';
+  actualizarBarra();
+  triviaIntervalo = setInterval(function(){
+    triviaTiempoRest -= 0.2;
+    actualizarBarra();
+    if(triviaTiempoRest <= 0){
+      clearInterval(triviaIntervalo);
+      responderTrivia(-1, null);
+    }
+  }, 200);
+}
+function actualizarBarra(){
+  const fill = document.getElementById('trivia-timerfill');
+  const pct = Math.max(0, (triviaTiempoRest/TRIVIA_TIEMPO)*100);
+  fill.style.width = pct+'%';
+  fill.className = pct<=20 ? 'urgente' : (pct<=50 ? 'prisa' : '');
+}
+function responderTrivia(opcion, boton){
+  clearInterval(triviaIntervalo);
+  const q = TRIVIA_PREGUNTAS[triviaIdx];
+  const botones = document.querySelectorAll('.trivia-opcion');
+  botones.forEach(function(b){b.disabled=true;});
+  botones[q.c].classList.add('correcta');
+  if(opcion === q.c){
+    triviaPuntos += 10 + Math.round(triviaTiempoRest);
+  } else if(boton){
+    boton.classList.add('incorrecta');
+  }
+  setTimeout(function(){
+    triviaIdx++;
+    if(triviaIdx < TRIVIA_PREGUNTAS.length) mostrarPregunta();
+    else finalizarTrivia();
+  }, 1400);
+}
+function finalizarTrivia(){
+  document.getElementById('trivia-juego').style.display='none';
+  const res = document.getElementById('trivia-resultado');
+  res.style.display='block';
+  const max = TRIVIA_PREGUNTAS.length*30;
+  let titulo, comentario;
+  if(triviaPuntos >= max*0.75){ titulo='🏆 ¡Campeón de la Inclusión!'; comentario='Conoces a fondo las temáticas del diplomado. ¡Eres un embajador de la diversidad!'; }
+  else if(triviaPuntos >= max*0.5){ titulo='🌟 ¡Muy bien!'; comentario='Tienes un buen conocimiento de la inclusión. Repasa las temáticas y vuelve a intentarlo.'; }
+  else if(triviaPuntos >= max*0.25){ titulo='💪 ¡Vas por buen camino!'; comentario='Repasa las temáticas del diplomado en la pestaña 📚 y vuelve a intentarlo.'; }
+  else { titulo='🌱 ¡Sigue aprendiendo!'; comentario='Lee las temáticas con calma y vuelve a jugar. ¡La inclusión se aprende paso a paso!'; }
+  document.getElementById('trivia-titulo').textContent = titulo;
+  document.getElementById('trivia-puntaje').textContent = 'Puntaje: '+triviaPuntos+' puntos';
+  document.getElementById('trivia-comentario').textContent = comentario;
+}
+
+/* ================= INICIAR ================= */
+nuevaSopa();
+construirCruci();
+construirSendero();
 </script>
 </body>
 </html>
