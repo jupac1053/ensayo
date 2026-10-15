@@ -32,21 +32,23 @@
   header p{font-size:1em;margin:2px 0;color:#5b4a72;}
   .pill{display:inline-block;background:#fff;border-radius:30px;padding:4px 16px;font-weight:bold;font-size:.85em;color:var(--lila-osc);box-shadow:0 3px 8px rgba(0,0,0,.08);margin:2px;}
 
-  /* ===== MENÚ ===== */
+  /* ===== MENÚ Y SUBMENÚ CORREGIDO ===== */
   nav.tabs{position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;justify-content:center;
     background:rgba(255,255,255,.92);backdrop-filter:blur(8px);box-shadow:0 4px 14px rgba(74,63,85,.12);}
   .tab-btn{background:transparent;border:none;color:#7a6d8a;font-weight:bold;padding:14px 16px;cursor:pointer;font-size:.93em;border-bottom:4px solid transparent;transition:all .2s;}
   .tab-btn:hover{color:var(--lila-osc);transform:translateY(-2px);}
   .tab-btn.activo{color:var(--lila-osc);border-bottom:4px solid var(--rosa-osc);background:linear-gradient(180deg,transparent,var(--rosa));}
-  .subtabs{display:none;width:100%;justify-content:center;flex-wrap:wrap;gap:6px;padding:8px;background:linear-gradient(90deg,var(--celeste),var(--menta));}
-  .subtabs.activo{display:flex;}
+  
+  .subtabs{display:none;width:100%;justify-content:center;flex-wrap:wrap;gap:6px;padding:10px;background:linear-gradient(90deg,var(--celeste),var(--menta));}
+  .subtabs.activo{display:flex !important;}
   .subtab-btn{background:#fff;border:2px solid transparent;border-radius:30px;color:#6a5d7a;padding:8px 18px;cursor:pointer;font-size:.88em;font-weight:bold;box-shadow:0 3px 8px rgba(0,0,0,.08);transition:all .2s;}
   .subtab-btn:hover{transform:translateY(-2px);border-color:var(--celeste-osc);}
-  .subtab-btn.activo{background:var(--lila-osc);color:#fff;}
+  .subtab-btn.activo{background:var(--lila-osc) !important;color:#fff !important;}
 
   section.panel{display:none;position:relative;z-index:1;max-width:980px;margin:32px auto;background:var(--blanco);border-radius:24px;padding:34px 38px;box-shadow:0 10px 30px rgba(74,63,85,.10);}
-  section.panel.activo{display:block;animation:aparecer .35s ease;}
+  section.panel.activo{display:block !important;animation:aparecer .35s ease;}
   @keyframes aparecer{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+  
   h2{color:#6b5394;border-bottom:4px solid var(--lila);padding-bottom:8px;margin-bottom:18px;}
   h3{color:#6b5394;margin:18px 0 8px;}
   .tabla{width:100%;border-collapse:collapse;margin:15px 0;border-radius:14px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.06);}
@@ -160,7 +162,8 @@
   <button class="tab-btn" onclick="mostrarTab('desarrollo',this)">🚀 Desarrollo</button>
   <button class="tab-btn" onclick="mostrarTab('evaluacion',this)">✅ Evaluación</button>
   <button class="tab-btn" onclick="mostrarTab('creditos',this)">⭐ Créditos</button>
-  <!-- submenú de juegos -->
+  
+  <!-- submenú de juegos con clase .activo corregida -->
   <div class="subtabs" id="subtabs-juegos">
     <button class="subtab-btn activo" onclick="mostrarSub('j-sopa',this)">🔤 Sopa de Letras</button>
     <button class="subtab-btn" onclick="mostrarSub('j-cruci',this)">🧩 Crucigrama</button>
@@ -356,7 +359,7 @@
 <section class="panel" id="juegos">
 
   <!-- SOPA DE LETRAS -->
-  <div class="subpanel activo" id="j-sopa">
+  <div class="subpanel activo" id="j-sopa" style="display:block;">
     <h2>🔤 Juego 1: Sopa de Letras «Palabras de la Diversidad»</h2>
     <p>Encuentra las palabras escondidas sobre la temática. Haz clic o arrastra sobre las letras de la palabra (horizontal, vertical o diagonal). ¡Toca «Nueva sopa» para reordenarlas!</p>
     <div id="sopa-wrap">
@@ -486,20 +489,29 @@
 </footer>
 
 <script>
-/* ================= PESTAÑAS ================= */
+/* ================= PESTAÑAS Y SUBMENÚS ================= */
 function mostrarTab(id, btn){
   document.querySelectorAll('section.panel').forEach(s=>s.classList.remove('activo'));
   document.getElementById(id).classList.add('activo');
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('activo'));
   btn.classList.add('activo');
-  document.getElementById('subtabs-juegos').classList.toggle('activo', id==='juegos');
+  
+  const sub = document.getElementById('subtabs-juegos');
+  if(id === 'juegos'){
+    sub.classList.add('activo');
+  } else {
+    sub.classList.remove('activo');
+  }
   window.scrollTo({top:0, behavior:'smooth'});
 }
+
 function mostrarSub(id, btn){
   document.querySelectorAll('#juegos .subpanel').forEach(s=>s.style.display='none');
-  document.getElementById(id).style.display='block';
+  const panelDestino = document.getElementById(id);
+  if(panelDestino) panelDestino.style.display='block';
+  
   document.querySelectorAll('.subtab-btn').forEach(b=>b.classList.remove('activo'));
-  btn.classList.add('activo');
+  if(btn) btn.classList.add('activo');
 }
 
 /* ================= SOPA DE LETRAS INTERACTIVA (ARRASTRE / CLIC) ================= */
@@ -548,7 +560,6 @@ function nuevaSopa(){
     d.textContent = sopaGrid[r][c];
     d.dataset.r = r; d.dataset.c = c;
     
-    // Eventos de ratón y táctiles para arrastrar selección con fluidez
     d.addEventListener('mousedown', (e)=>{ iniciarArrastre(r,c,d); });
     d.addEventListener('mouseenter', (e)=>{ if(arrastrando) actualizarArrastre(r,c); });
     d.addEventListener('touchstart', (e)=>{ e.preventDefault(); iniciarArrastre(r,c,d); }, {passive:false});
@@ -587,3 +598,270 @@ function iniciarArrastre(r,c,celda){
 function actualizarArrastre(r,c){
   if(!arrastrando || seleccion.length===0) return;
   const [r0,c0] = seleccion[0];
+  const dr = Math.sign(r - r0), dc = Math.sign(c - c0);
+  const len = Math.max(Math.abs(r - r0), Math.abs(c - c0)) + 1;
+
+  if((r === r0 || c === c0 || Math.abs(r - r0) === Math.abs(c - c0)) && len > 1){
+    limpiarSelTemp();
+    seleccion = [];
+    for(let i=0; i<len; i++){
+      const rr = r0 + dr*i, cc = c0 + dc*i;
+      seleccion.push([rr,cc]);
+      const el = document.querySelector('#sopa-grid div[data-r="'+rr+'"][data-c="'+cc+'"]');
+      if(el) el.classList.add('sel');
+    }
+  }
+}
+
+function finalizarArrastre(){
+  if(!arrastrando) return;
+  arrastrando = false;
+  if(seleccion.length < 2){
+    limpiarSelTemp();
+    seleccion = [];
+    return;
+  }
+  const palabra = seleccion.map(([rr,cc])=>sopaGrid[rr][cc]).join('');
+  const rev = palabra.split('').reverse().join('');
+  const claves = Object.keys(sopaSol).filter(p=>!encontradas.has(p));
+  const hallada = claves.find(p=>p===palabra || p===rev);
+
+  if(hallada){
+    encontradas.add(hallada);
+    seleccion.forEach(([rr,cc])=>{
+      const el = document.querySelector('#sopa-grid div[data-r="'+rr+'"][data-c="'+cc+'"]');
+      if(el){
+        el.classList.remove('sel');
+        el.classList.add('found');
+      }
+    });
+    document.getElementById('chip-'+hallada).classList.add('ok');
+    document.getElementById('sopa-msg').textContent = '🎉 ¡Encontraste: '+hallada+'!';
+    if(encontradas.size===PALABRAS_SOPA.length)
+      document.getElementById('sopa-msg').textContent = '🏆 ¡Sopa completada! Eres un campeón de la inclusión.';
+  } else {
+    limpiarSelTemp();
+  }
+  seleccion = [];
+}
+
+function limpiarSelTemp(){
+  document.querySelectorAll('#sopa-grid div.sel').forEach(d=>d.classList.remove('sel'));
+}
+
+/* ================= CRUCIGRAMA ================= */
+const CRUCI = [
+  {pal:"DIVERSIDAD", r:0, c:0, dir:"H"},
+  {pal:"EMPATIA",    r:0, c:3, dir:"V"},
+  {pal:"RESPETO",    r:2, c:0, dir:"H"},
+  {pal:"CULTURA",    r:1, c:4, dir:"V"},
+  {pal:"DIGNIDAD",   r:0, c:9, dir:"V"},
+  {pal:"SOLIDARIDAD",r:5, c:4, dir:"H"}
+];
+const FILAS_C=8, COLS_C=13;
+
+function construirCruci(){
+  const sol = {};
+  CRUCI.forEach(w=>{
+    for(let i=0;i<w.pal.length;i++){
+      const r = w.dir==="H"?w.r:w.r+i, c = w.dir==="H"?w.c+i:w.c;
+      sol[r+"-"+c]=w.pal[i];
+    }
+  });
+  const g = document.getElementById('cruci-grid');
+  g.style.gridTemplateColumns = 'repeat('+COLS_C+',34px)';
+  g.innerHTML='';
+  for(let r=0;r<FILAS_C;r++) for(let c=0;c<COLS_C;c++){
+    if(sol[r+"-"+c]){
+      const inp = document.createElement('input');
+      inp.maxLength=1; inp.dataset.r=r; inp.dataset.c=c; inp.dataset.sol=sol[r+"-"+c];
+      inp.addEventListener('input',()=>{ if(inp.value){ const n=siguienteInput(r,c); if(n) n.focus(); }});
+      g.appendChild(inp);
+    } else {
+      const sp = document.createElement('span'); g.appendChild(sp);
+    }
+  }
+}
+function siguienteInput(r,c){
+  const inputs=[...document.querySelectorAll('#cruci-grid input')];
+  const idx=inputs.findIndex(i=>+i.dataset.r===r&&+i.dataset.c===c);
+  return inputs[idx+1]||null;
+}
+function comprobarCruci(){
+  let bien=0, total=0;
+  document.querySelectorAll('#cruci-grid input').forEach(i=>{
+    total++;
+    i.classList.remove('bien','mal');
+    if(i.value.toUpperCase()===i.dataset.sol){ i.classList.add('bien'); bien++; }
+    else if(i.value) i.classList.add('mal');
+  });
+  const msg=document.getElementById('cruci-msg');
+  if(bien===total) msg.textContent='🏆 ¡Crucigrama perfecto! Conoces muy bien la cultura de la inclusión.';
+  else msg.textContent='Tienes '+bien+' de '+total+' letras correctas. ¡Sigue intentando! 💪';
+}
+function limpiarCruci(){
+  document.querySelectorAll('#cruci-grid input').forEach(i=>{i.value='';i.classList.remove('bien','mal');});
+  document.getElementById('cruci-msg').innerHTML='&nbsp;';
+}
+
+/* ================= TRIVIA SENDERO ================= */
+const CAMINO_T = [
+  [6,0],[6,1],[6,2],[6,3],[6,4],[6,5],
+  [5,5],[4,5],[4,6],[4,7],[4,8],[4,9],[4,10],
+  [3,10],[2,10],[2,9],[2,8],[2,7],[2,6],
+  [1,6],[0,6],[0,7],[0,8]
+];
+const ESTACIONES_T = {
+  0:{icono:"🚩", titulo:"¡Bienvenido al Sendero de la Inclusión!", texto:"Lanza el dado: cada pregunta tiene tiempo límite. ¡Responde bien para avanzar!"},
+  5:{icono:"🎭", titulo:"Estación · Identidad", texto:"«Me conozco y me valoro, y conozco con curiosidad a los demás». Todos tenemos identidades múltiples: nadie cabe en una sola caja."},
+  11:{icono:"🤝", titulo:"Estación · Respeto", texto:"Respetar no es «aguantar»: es reconocer que cada persona tiene dignidad y valor. ¡Sigue adelante!"},
+  17:{icono:"💗", titulo:"Estación · Empatía y solidaridad", texto:"Ponte en los zapatos del otro y actúa con cuidado: «yo soy porque nosotros somos» (ubuntu)."},
+  22:{icono:"🏁", titulo:"¡META!", texto:"¡Llegaste! Demostraste que conoces la diversidad, el respeto y la empatía."}
+};
+const PREGUNTAS = [
+  {p:"¿Qué es la diversidad cultural?", o:["La existencia de muchas culturas y formas de vivir en un mismo lugar","Que todas las personas deben pensar igual","Solo la variedad de comidas de un país"], c:0},
+  {p:"¿Cuál es la diferencia entre diferencia y desigualdad?", o:["No hay ninguna diferencia","La diferencia es ser distintos (natural y valiosa); la desigualdad es recibir menos derechos por esas diferencias (injusta)","La desigualdad es buena si es cultural"], c:1},
+  {p:"¿Qué es un estereotipo?", o:["Una idea simplificada y repetida sobre un grupo, como si todos fueran iguales","Un estilo de música andina","Un derecho fundamental"], c:0},
+  {p:"La empatía se resume en la frase popular de…", o:["ponerse en los zapatos del otro","ganarle al otro en un debate","aguantar al otro aunque nos caiga mal"], c:0},
+  {p:"¿Qué afirma la Declaración Universal sobre la Diversidad Cultural de la UNESCO (2001)?", o:["Que solo debe existir una cultura por país","Que la diversidad cultural es patrimonio común de la humanidad","Que las lenguas nativas deben desaparecer"], c:1},
+  {p:"¿Cuántas lenguas nativas se hablan en Colombia, además del español?", o:["5","20","68"], c:2},
+  {p:"¿Qué es el acoso escolar (bullying) según la Ley 1620 de 2013?", o:["Un simple conflicto entre iguales","Una agresión intencional, repetida y con desequilibrio de poder, presencial o digital","Un juego normal entre estudiantes"], c:1},
+  {p:"El ubuntu, palabra de origen africano, se resume en…", o:["cada quien por su cuenta","yo soy porque nosotros somos","el que no corre, vuela"], c:1},
+  {p:"¿Qué artículo de la Constitución de 1991 dice que todas las personas nacen libres e iguales ante la ley?", o:["Artículo 13","Artículo 90","Artículo 1"], c:0},
+  {p:"Incluir (a diferencia de integrar) significa…", o:["pedirle a la persona que se adapte al grupo","cambiar el grupo y el entorno para que todos puedan participar de verdad","tener a la persona en el mismo lugar pero aparte"], c:1},
+  {p:"San Basilio de Palenque, cerca de Cartagena, es importante porque…", o:["fue el primer pueblo libre de América y conserva su lengua propia","es la capital musical de Colombia","allí se fundó la primera universidad"], c:0},
+  {p:"Si ves una burla o discriminación hacia un compañero, lo correcto es…", o:["reírte para no quedar mal con el grupo","callar y mirar a otro lado","no compartir el contenido, apoyar a la persona y contarle a un adulto de confianza"], c:2}
+];
+const TIEMPO_TRIVIA = 15; // segundos
+let posT = 0, divsT = {}, preguntaActual = null, timerInt = null, dadoActual = 1, preguntasUsadas = [];
+
+function construirTrivia(){
+  const b = document.getElementById('trivia-board');
+  b.innerHTML=''; divsT={};
+  const setCamino = new Set(CAMINO_T.map(([r,c])=>r+"-"+c));
+  for(let r=0;r<7;r++) for(let c=0;c<12;c++){
+    const d=document.createElement('div');
+    d.dataset.r=r; d.dataset.c=c;
+    if(setCamino.has(r+"-"+c)){
+      d.className='celda-camino';
+      const idx = CAMINO_T.findIndex(([rr,cc])=>rr===r&&cc===c);
+      if(idx===CAMINO_T.length-1) d.classList.add('celda-meta');
+      if(ESTACIONES_T[idx]) d.innerHTML='<span>'+ESTACIONES_T[idx].icono+'</span>';
+    } else {
+      d.className='celda-vacia';
+      const azar = Math.random();
+      if(azar<0.09) d.textContent='🌷';
+      else if(azar<0.15) d.textContent='🌿';
+    }
+    b.appendChild(d);
+    divsT[r+"-"+c]=d;
+  }
+  posT = 0; preguntasUsadas = [];
+  pintarJugadorT();
+  document.getElementById('trivia-victoria').style.display='none';
+  document.getElementById('trivia-info').innerHTML='🚩 Pulsa «Lanzar dado» para responder tu primera pregunta del sendero de la inclusión.';
+  document.getElementById('dado').textContent='🎲';
+}
+function pintarJugadorT(){
+  document.querySelectorAll('#jugador').forEach(e=>e.remove());
+  const [r,c] = CAMINO_T[posT];
+  divsT[r+"-"+c].innerHTML='<span id="jugador">🧑‍🎓</span>';
+}
+function restaurarIcono(idx){
+  const [r,c] = CAMINO_T[idx];
+  const est = ESTACIONES_T[idx];
+  divsT[r+"-"+c].innerHTML = est?'<span>'+est.icono+'</span>':'';
+}
+function tirarDado(){
+  if(posT>=CAMINO_T.length-1) return;
+  dadoActual = 1 + Math.floor(Math.random()*3);
+  const dadoEl = document.getElementById('dado');
+  dadoEl.classList.remove('dado-anim'); void dadoEl.offsetWidth;
+  dadoEl.classList.add('dado-anim');
+  dadoEl.textContent = ['⚀','⚁','⚂','⚃','⚄','⚅'][dadoActual-1];
+  abrirPregunta();
+}
+function abrirPregunta(){
+  let idx;
+  if(preguntasUsadas.length>=PREGUNTAS.length) preguntasUsadas=[];
+  do { idx = Math.floor(Math.random()*PREGUNTAS.length); } while(preguntasUsadas.includes(idx));
+  preguntasUsadas.push(idx);
+  preguntaActual = PREGUNTAS[idx];
+  document.getElementById('trivia-pregunta').textContent = '❓ '+preguntaActual.p;
+  const cont = document.getElementById('trivia-opciones');
+  cont.innerHTML='';
+  preguntaActual.o.forEach((op,i)=>{
+    const b = document.createElement('button');
+    b.className='opcion'; b.textContent = String.fromCharCode(65+i)+') '+op;
+    b.onclick = ()=>responderTrivia(i,b);
+    cont.appendChild(b);
+  });
+  document.getElementById('trivia-feedback').textContent = '⏱️ Tienes '+TIEMPO_TRIVIA+' segundos…';
+  document.getElementById('modal-trivia').classList.add('abierto');
+  let restante = TIEMPO_TRIVIA;
+  actualizarBarra(restante);
+  clearInterval(timerInt);
+  timerInt = setInterval(()=>{
+    restante--;
+    actualizarBarra(restante);
+    if(restante<=0){
+      clearInterval(timerInt);
+      responderTrivia(-1, null); // tiempo agotado
+    }
+  },1000);
+}
+function actualizarBarra(seg){
+  const pct = Math.max(0,(seg/TIEMPO_TRIVIA)*100);
+  document.getElementById('trivia-timer').style.width = pct+'%';
+  document.getElementById('trivia-timer').style.background = pct<35 ? 'linear-gradient(90deg,#e58aa8,#d46a5b)' : 'linear-gradient(90deg,#5cae87,#5b9fd4)';
+}
+function responderTrivia(i, btn){
+  clearInterval(timerInt);
+  const correcta = preguntaActual.c;
+  document.querySelectorAll('#trivia-opciones .opcion').forEach((b,bi)=>{
+    b.disabled = true;
+    if(bi===correcta) b.classList.add('correcta');
+  });
+  const feedback = document.getElementById('trivia-feedback');
+  let avanza = false;
+  if(i===correcta){
+    avanza = true;
+    feedback.style.color = '#2f6b4d';
+    feedback.textContent = '✅ ¡Correcto! Avanzas '+dadoActual+' casilla(s).';
+  } else {
+    if(btn) btn.classList.add('incorrecta');
+    feedback.style.color = '#b04a3a';
+    feedback.textContent = (i===-1 ? '⏰ ¡Se acabó el tiempo! ' : '❌ Incorrecto. ') + 'Retrocedes '+dadoActual+' casilla(s). La respuesta correcta era: '+preguntaActual.o[correcta];
+  }
+  setTimeout(()=>{
+    document.getElementById('modal-trivia').classList.remove('abierto');
+    moverJugadorT(dadoActual, avanza);
+  }, 2200);
+}
+function moverJugadorT(pasos, adelante){
+  restaurarIcono(posT);
+  if(adelante) posT = Math.min(posT+pasos, CAMINO_T.length-1);
+  else posT = Math.max(posT-pasos, 0);
+  pintarJugadorT();
+  const est = ESTACIONES_T[posT];
+  const info = document.getElementById('trivia-info');
+  if(est){
+    info.innerHTML='<strong>'+est.icono+' '+est.titulo+'</strong><br>'+est.texto;
+  } else {
+    info.innerHTML='📍 Casilla '+(posT+1)+' de '+CAMINO_T.length+'. ¡Sigue lanzando el dado!';
+  }
+  if(posT===CAMINO_T.length-1){
+    document.getElementById('trivia-victoria').style.display='block';
+  }
+}
+function reiniciarTrivia(){
+  construirTrivia();
+}
+
+/* ================= INICIAR ================= */
+nuevaSopa();
+construirCruci();
+construirTrivia();
+</script>
+</body>
+</html>
