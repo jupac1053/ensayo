@@ -84,23 +84,25 @@
 
   /* ===== SOPA DE LETRAS ===== */
   #sopa-wrap{text-align:center;}
-  #sopa-grid{display:inline-grid;grid-template-columns:repeat(14,34px);gap:3px;margin:15px auto;}
-  #sopa-grid div{width:34px;height:34px;background:var(--menta);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold;cursor:pointer;user-select:none;font-size:.95em;color:#3c6b52;}
+  #sopa-grid{display:inline-grid;grid-template-columns:repeat(14,34px);gap:3px;margin:15px auto;user-select:none;}
+  #sopa-grid div{width:34px;height:34px;background:var(--menta);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold;cursor:pointer;font-size:.95em;color:#3c6b52;transition:background .15s;}
   #sopa-grid div:hover{background:#a9dfc4;}
-  #sopa-grid div.sel{background:var(--durazno-osc);color:#fff;}
-  #sopa-grid div.found{background:var(--menta-osc);color:#fff;}
+  #sopa-grid div.sel{background:var(--durazno-osc)!important;color:#fff!important;}
+  #sopa-grid div.found{background:var(--menta-osc)!important;color:#fff!important;}
   .palabras-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0;}
-  .chip{background:var(--lila);border-radius:20px;padding:5px 16px;font-weight:bold;color:#5b4a72;}
+  .chip{background:var(--lila);border-radius:20px;padding:5px 16px;font-weight:bold;color:#5b4a72;transition:all .2s;}
   .chip.ok{background:var(--menta-osc);color:#fff;text-decoration:line-through;}
 
   /* ===== CRUCIGRAMA ===== */
   #cruci-wrap{text-align:center;}
   #cruci-grid{display:inline-grid;gap:2px;margin:15px auto;}
-  #cruci-grid input{width:34px;height:34px;text-align:center;font-weight:bold;text-transform:uppercase;font-size:1em;border:2px solid #cbb8ee;border-radius:8px;background:#fff;color:#5b4a72;}
+  .cruci-cell-wrap{position:relative;width:36px;height:36px;}
+  .cruci-num{position:absolute;top:2px;left:3px;font-size:0.62em;font-weight:bold;color:#8f7fd4;pointer-events:none;z-index:2;}
+  #cruci-grid input{width:36px;height:36px;text-align:center;font-weight:bold;text-transform:uppercase;font-size:.95em;border:2px solid #cbb8ee;border-radius:8px;background:#fff;color:#5b4a72;padding-top:6px;}
   #cruci-grid input:focus{outline:none;border-color:var(--durazno-osc);background:#fff8ef;}
-  #cruci-grid span{width:34px;height:34px;display:inline-block;}
-  #cruci-grid input.bien{background:var(--menta-osc);color:#fff;border-color:var(--menta-osc);}
-  #cruci-grid input.mal{background:#ffd9d4;border-color:#d46a5b;}
+  #cruci-grid span.vacio{width:36px;height:36px;display:inline-block;}
+  #cruci-grid input.bien{background:var(--menta-osc)!important;color:#fff!important;border-color:var(--menta-osc)!important;}
+  #cruci-grid input.mal{background:#ffd9d4!important;border-color:#d46a5b!important;}
   .pista{text-align:left;background:#fbf8ff;border-radius:12px;padding:10px 18px;margin:6px auto;max-width:580px;border-left:5px solid var(--lila-osc);}
 
   /* ===== TRIVIA SENDERO ===== */
@@ -130,12 +132,18 @@
   @keyframes girar{0%{transform:rotate(0) scale(.6);opacity:.4;}100%{transform:rotate(360deg) scale(1);opacity:1;}}
   .dado-anim{animation:girar .5s ease;}
 
+  .link-drive{display:inline-block;background:linear-gradient(90deg,var(--menta-osc),var(--celeste-osc));color:#fff;padding:12px 24px;border-radius:30px;text-decoration:none;font-weight:bold;box-shadow:0 4px 12px rgba(92,174,135,.3);transition:all .2s;margin:10px 0;}
+  .link-drive:hover{transform:scale(1.03);box-shadow:0 6px 18px rgba(92,174,135,.4);}
+
   @media(max-width:640px){
-    #sopa-grid{grid-template-columns:repeat(14,24px);}#sopa-grid div{width:24px;height:24px;font-size:.75em;}
-    #trivia-board{grid-template-columns:repeat(12,28px);}#trivia-board div{width:28px;height:28px;font-size:1em;}
-    section.panel{padding:24px 18px;}
+    #sopa-grid{grid-template-columns:repeat(14,22px);}#sopa-grid div{width:22px;height:22px;font-size:.7em;}
+    #cruci-grid{gap:1px;} .cruci-cell-wrap, #cruci-grid input, #cruci-grid span.vacio{width:24px;height:24px;font-size:.7em;padding-top:4px;}
+    .cruci-num{font-size:.5em;top:0;left:1px;}
+    #trivia-board{grid-template-columns:repeat(12,25px);}#trivia-board div{width:25px;height:25px;font-size:.85em;}
+    section.panel{padding:22px 16px;}
   }
 </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -186,9 +194,9 @@
     <h3>🎯 ¿Qué encontrarán aquí?</h3>
     <ul>
       <li>📚 Las temáticas del documento «Somos diferentes, somos iguales» explicadas de manera sencilla: cultura, diversidad, identidad, respeto, empatía, solidaridad, aula inclusiva y derechos.</li>
-      <li>🎯 Actividades pedagógicas alternativas para vivir en la escuela.</li>
-      <li>🎮 <strong>Juegos virtuales:</strong> sopa de letras, crucigrama y la trivia del Sendero de la Inclusión con preguntas y tiempo límite.</li>
-      <li>🚀 El cronograma de desarrollo y la evaluación formativa del proceso.</li>
+      <li>🎯 Actividades pedagógicas alternativas centradas en el juego, la reflexión y la creación digital.</li>
+      <li>🎮 <strong>Juegos virtuales:</strong> sopa de letras interactiva con selección y tachado de conceptos, crucigrama numerado adaptable a cualquier dispositivo y la trivia interactiva Sendero de la Inclusión.</li>
+      <li>🚀 El cronograma de desarrollo, evidencias pedagógicas y evaluación formativa del proceso.</li>
     </ul>
   </div>
   <div class="caja-azul">
@@ -230,166 +238,76 @@
       <p>La Constitución de 1991 (artículo 7) reconoce y protege la diversidad étnica y cultural de la Nación. Ser diverso no es un problema que corregir: es una característica que la ley protege.</p>
       <h4>Grupos que hacen parte de nuestra nación</h4>
       <ul>
-        <li>🪶 <strong>Pueblos indígenas:</strong> los primeros habitantes de estas tierras. Más de cien pueblos (wayuu, nasa, misak, arhuacos, kogui, embera, zenú, muiscas, ticuna…) con su propia lengua, gobierno y relación con la naturaleza.</li>
-        <li>🥁 <strong>Comunidades negras, afrocolombianas, raizales y palenqueras:</strong> su aporte es inmenso: currulao, champeta y bullerengue, gastronomía, danza y medicina tradicional. San Basilio de Palenque fue el primer pueblo libre de América y conserva su lengua, el palenquero.</li>
-        <li>🎪 <strong>Pueblo Rrom (gitano):</strong> siglos de historia viajera, tradiciones familiares y música propia.</li>
-        <li>🌱 <strong>Comunidades campesinas:</strong> saberes sobre la tierra, el clima y las semillas; reconocidas como sujetos de derechos en 2023.</li>
-        <li>🏙️ <strong>Población mestiza y urbana</strong> y <strong>personas migrantes</strong> que también hacen parte de nuestras comunidades.</li>
+        <li>🪶 <strong>Pueblos indígenas:</strong> los primeros habitantes de estas tierras. Más de cien pueblos con su propia lengua, gobierno y relación con la naturaleza.</li>
+        <li>🥁 <strong>Comunidades negras, afrocolombianas, raizales y palenqueras:</strong> aportes en música, gastronomía, danza y saberes. San Basilio de Palenque conserva su lengua propia.</li>
+        <li>🎪 <strong>Pueblo Rrom (gitano):</strong> tradiciones familiares y música propia.</li>
+        <li>🌱 <strong>Comunidades campesinas:</strong> saberes sobre la tierra y el cuidado ambiental.</li>
+        <li>🏙️ <strong>Población mestiza, urbana y personas migrantes</strong> que construyen nuestro diario vivir.</li>
       </ul>
       <h4>Regiones y lenguas</h4>
-      <p>Cada región creó su cultura: el vallenato del Caribe, la marimba del Pacífico, el bambuco andino, el joropo de la Orinoquía, los saberes de la Amazonía y la cultura raizal de las islas. Además del español, en Colombia se hablan <strong>68 lenguas nativas</strong> (65 indígenas, el criollo raizal, el palenquero y el romaní), protegidas por la Ley 1381 de 2010. ¡Cuando una lengua desaparece, se pierde un pedazo del conocimiento de la humanidad!</p>
-      <div class="mini"><strong>Patrimonio cultural:</strong> el Carnaval de Barranquilla, el Carnaval de Negros y Blancos, los cantos de marimba del Pacífico, los tejidos wayuu y la cultura del café. Cuidarlo es cuidar la memoria de todos.</div>
+      <p>En Colombia se hablan <strong>68 lenguas nativas</strong> protegidas por la Ley 1381 de 2010. ¡Cuando una lengua desaparece, se pierde un tesoro de la humanidad!</p>
     </div>
   </details>
 
   <details class="modulo">
     <summary>🌈 4. Más allá de la cultura: otras formas de ser</summary>
     <div class="contenido">
-      <p>La diversidad no tiene que ver solo con el lugar de donde venimos. Todos somos diversos en muchos aspectos, y todos merecen respeto:</p>
-      <span class="idea">📍 Origen y lugar de residencia</span><span class="idea">🗣️ Lengua y acento</span><span class="idea">🕊️ Creencias y religiones</span><span class="idea">👨‍👩‍👧 Tipos de familia</span><span class="idea">💰 Condición económica</span><span class="idea">♿ Capacidades y formas de aprender</span><span class="idea">⚧ Género</span><span class="idea">🧑 Apariencia y edad</span><span class="idea">🎨 Gustos e intereses</span>
-      <div class="mini"><strong>El derecho a ser quien eres:</strong> todos tenemos derecho a ser quienes somos y a que nos respeten, siempre que nuestras acciones no hagan daño a otros. Mis derechos terminan donde empiezan los de los demás, y los de los demás terminan donde empiezan los míos.</div>
+      <p>La diversidad abarca todos los aspectos de la experiencia humana:</p>
+      <span class="idea">📍 Origen y residencia</span><span class="idea">🗣️ Acentos y lengua</span><span class="idea">🕊️ Creencias</span><span class="idea">👨‍👩‍👧 Tipos de familia</span><span class="idea">💰 Condición socioeconómica</span><span class="idea">♿ Capacidades y formas de aprender</span><span class="idea">⚧ Género</span><span class="idea">🧑 Apariencia y edad</span><span class="idea">🎨 Gustos e intereses</span>
     </div>
   </details>
 
   <details class="modulo">
     <summary>🪞 5. Identidad: ¿quién soy y de dónde vengo?</summary>
     <div class="contenido">
-      <p>La identidad es la respuesta a <strong>«¿quién soy yo?»</strong> y se construye con muchas piezas: tu nombre, tu familia, tu historia, tu cultura, tus gustos, tus sueños y tus decisiones. Todos tenemos identidades múltiples: puedes ser a la vez hija o hijo, estudiante, bailarín, hincha de un equipo y miembro de tu comunidad. Nadie cabe en una sola caja.</p>
-      <p>En los grados 6.° y 7.° es normal preguntarse más cosas sobre ti y querer pertenecer a un grupo. La presión de grupo puede llevar a burlarse de otro para «encajar»: aprender a decidir con libertad y respeto es parte de crecer.</p>
-      <div class="mini"><strong>Conócete para conocer a los demás:</strong> cuando valoro mi cultura y me siento orgulloso de lo que soy, me resulta más fácil valorar a las demás personas. Se puede amar lo propio sin despreciar lo ajeno. Pregunta en casa: ¿de dónde vienen mis abuelos? ¿Qué idioma, comida o canción trajeron consigo?</div>
+      <p>La identidad se construye con la historia personal, familiar, cultural y las propias decisiones. Nadie cabe en una sola etiqueta. Reconocer y valorar la propia historia facilita respetar la diversidad ajena.</p>
     </div>
   </details>
 
   <details class="modulo">
     <summary>🚫 6. Cuando la diferencia se convierte en problema</summary>
     <div class="contenido">
-      <h4>Tres palabras que debemos conocer</h4>
       <ul>
-        <li>🏷️ <strong>Estereotipo:</strong> idea simplificada y repetida sobre un grupo, como si todos fueran iguales («todas las niñas…», «todos los costeños…»). Es falso: nadie es igual a otro.</li>
-        <li>👀 <strong>Prejuicio:</strong> opinión negativa que formamos antes de conocer a alguien, solo por pertenecer a un grupo.</li>
-        <li>✊ <strong>Discriminación:</strong> actuar con injusticia: excluir, tratar peor o negar oportunidades. Es cuando el prejuicio se convierte en acción.</li>
+        <li>🏷️ <strong>Estereotipo:</strong> idea simplificada y repetida sobre un grupo.</li>
+        <li>👀 <strong>Prejuicio:</strong> juicio previo negativo sin conocer a la persona.</li>
+        <li>✊ <strong>Discriminación:</strong> tratar con injusticia o excluir a alguien por sus características.</li>
       </ul>
-      <div class="mini"><strong>La cadena:</strong> el estereotipo alimenta el prejuicio, y el prejuicio puede terminar en discriminación. Por eso hay que frenar el problema desde el inicio.</div>
-      <h4>¿Cómo se ve en el colegio?</h4>
-      <p>Apodos ofensivos, excluir de grupos o juegos, burlas por acentos o comidas, «chistes» que ofenden, memes o mensajes hirientes en chats (ciberacoso), ignorar a un compañero con discapacidad. Aunque se diga «es una broma», lo que define si es broma o agresión es <strong>cómo se siente quien lo recibe</strong>.</p>
-      <div class="mini"><strong>Conflicto ≠ acoso:</strong> los desacuerdos son normales y se resuelven con diálogo. El acoso escolar (Ley 1620 de 2013) es una agresión intencional, repetida y con desequilibrio de poder, presencial o digital.</div>
-      <h4>Los tres papeles</h4>
-      <p>1) Quien agrede necesita ayuda para entender el daño que causa. 2) Quien es agredido merece protección y apoyo: nunca es culpable. 3) <strong>Quien observa tiene un poder enorme:</strong> si se ríe o calla, la agresión continúa; si acompaña y pide ayuda, puede cambiar la historia.</p>
+      <div class="mini"><strong>Importante:</strong> Burlas, apodos y ciberacoso dañan la convivencia. En la escuela, quien observa tiene la responsabilidad de no ser cómplice y buscar ayuda.</div>
     </div>
   </details>
 
   <details class="modulo">
     <summary>🤝 7. El respeto: la base de la convivencia</summary>
     <div class="contenido">
-      <p>El respeto es reconocer que cada persona tiene <strong>dignidad y valor</strong> y tratarla con consideración, aunque sea diferente, aunque no piense igual o aunque no nos caiga bien. Respetar no significa estar de acuerdo con todo: significa no humillar, no agredir, no excluir y no desconocer los derechos del otro.</p>
-      <h4>¿Cómo se ve en la práctica?</h4>
-      <ul>
-        <li>Escuchar sin interrumpir ni burlarse, y llamar a las personas por su nombre pronunciándolo bien.</li>
-        <li>Preguntar con curiosidad sincera en lugar de suponer: «¿qué significa esta celebración para ti?».</li>
-        <li>Cuidar las palabras en persona y en internet: lo que escribo en un chat también tiene efectos reales.</li>
-        <li>Pedir permiso, respetar el «no», el turno, el espacio y el ritmo de cada compañero.</li>
-        <li>Reconocer mis errores y pedir disculpas.</li>
-      </ul>
-      <div class="mini"><strong>Más que tolerar:</strong> tolerar suena a «aguantar». Lo que buscamos es reconocer y valorar al otro como alguien con derecho a ser quien es: <em>«aquí cabes tú tal como eres»</em>.</div>
-      <div class="mini"><strong>Límites:</strong> respetar la diversidad no significa aprobar todo. Nada que haga daño a otras personas (violencia, humillación, acoso, negación de derechos) puede justificarse como «cultura» o «opinión».</div>
+      <p>Reconocer la dignidad inherentemente humana de cada persona. Escuchar sin burlarse, valorar la diferencia y resolver conflictos dialogando son actitudes cotidianas esenciales.</p>
     </div>
   </details>
 
   <details class="modulo">
     <summary>💗 8. La empatía: ponerme en los zapatos del otro</summary>
     <div class="contenido">
-      <p>La empatía es la capacidad de <strong>comprender lo que otra persona siente</strong>, pensar cómo se vive la situación desde su lugar y actuar con cuidado. No es lo mismo que lástima: la lástima mira desde arriba; la empatía se pone al lado y reconoce al otro como igual.</p>
-      <h4>Los tres pasos</h4>
-      <ol>
-        <li>👁️ <strong>Observar y escuchar:</strong> prestar atención a lo que dice, a su cara, su voz y su silencio.</li>
-        <li>🧠 <strong>Imaginar y comprender:</strong> ¿cómo me sentiría yo viviendo lo mismo, con su historia y sus circunstancias?</li>
-        <li>🫶 <strong>Actuar con cuidado:</strong> acompañar, preguntar, ayudar o simplemente no hacer daño.</li>
-      </ol>
-      <p>Un saludo, una invitación a jugar o una explicación paciente pueden cambiarle el día a quien llega nuevo al colegio, habla otra lengua o tiene una discapacidad. Y en internet, antes de publicar o reenviar, pregúntate: <em>¿cómo se sentiría si lo viera? ¿me gustaría que me lo hicieran a mí?</em></p>
-      <div class="mini"><strong>La empatía se entrena:</strong> es como un músculo que se fortalece con la práctica: leer historias, escuchar con atención, conocer experiencias de otros y reconocer mis propias emociones.</div>
+      <p>Paso 1: Observar y escuchar. Paso 2: Imaginar y comprender la vivencia ajena. Paso 3: Actuar con consideración y solidaridad.</p>
     </div>
   </details>
 
   <details class="modulo">
     <summary>🫂 9. La solidaridad: cuando el respeto se vuelve acción</summary>
     <div class="contenido">
-      <p>Si el respeto es no hacer daño y la empatía es comprender, la <strong>solidaridad es actuar juntos</strong>: apoyar, compartir y trabajar por el bien común, porque lo que le sucede a un compañero también nos importa a nosotros.</p>
-      <h4>Tradiciones solidarias de nuestras culturas</h4>
-      <ul>
-        <li>🛖 <strong>La minga:</strong> tradición de pueblos indígenas y campesinas donde la comunidad trabaja junta para beneficio de todos.</li>
-        <li>🌾 El <strong>convite</strong> y la <strong>mano prestada</strong> en el campo, sin esperar pago.</li>
-        <li>🍲 Las <strong>ollas comunitarias</strong> y redes de apoyo de los barrios.</li>
-        <li>🌍 <strong>El ubuntu:</strong> palabra de origen africano que dice: <em>«yo soy porque nosotros somos»</em>.</li>
-      </ul>
-      <p><strong>En el colegio:</strong> compartir lo que sé, invitar a jugar a quien está solo, acompañar a quien es molestado, dar la bienvenida al que llega, formar equipos donde todos aporten. Ser solidario también es defender lo justo: alzar la voz o pedir ayuda cuando ven que niegan los derechos de alguien.</p>
+      <p>Tradiciones como la <em>minga</em>, el <em>convite</em> o la filosofía africana <em>Ubuntu</em> («yo soy porque nosotros somos») nos enseñan que el bienestar de uno depende del bienestar de todos.</p>
     </div>
   </details>
 
   <details class="modulo">
     <summary>🏫 10. El aula inclusiva: un lugar donde todos cabemos</summary>
     <div class="contenido">
-      <p>Un aula inclusiva es un espacio donde <strong>todas las personas, sin excepción, son bienvenidas, valoradas, participan y aprenden juntas</strong>. No basta con estar en el mismo salón: todos deben sentirse parte, tener voz y contar con las condiciones para aprender.</p>
-      <div class="mini"><strong>De la exclusión a la inclusión:</strong> <em>Excluir</em> (dejar por fuera) → <em>Separar</em> (estar pero aparte) → <em>Integrar</em> (pedirle a la persona que se adapte) → <em>Incluir</em> (cambiar el grupo y el entorno para que todos participen de verdad).</div>
-      <h4>Características de un aula inclusiva</h4>
-      <ul>
-        <li>🛡️ Todos son bienvenidos y se sienten seguros; nadie teme ser humillado.</li>
-        <li>💎 Se valora lo que cada uno aporta: conocimientos, lenguas, talentos y culturas.</li>
-        <li>🤝 Hay ayuda mutua: todos aprendemos a ritmos y de maneras distintas.</li>
-        <li>🗣️ Todos participan de verdad y se escucha a quienes hablan poco.</li>
-        <li>📜 Hay acuerdos claros, construidos entre todos, y los conflictos se resuelven con diálogo.</li>
-        <li>🛠️ Se hacen ajustes cuando son necesarios: materiales, tiempos, formas de explicar o de evaluar.</li>
-      </ul>
-      <div class="mini"><strong>Acuerdos de convivencia ejemplo:</strong> «Aquí nos escuchamos sin interrumpir ni burlarnos» · «Aquí no usamos apodos que hieran» · «Aquí pedimos ayuda y ofrecemos ayuda» · «Aquí cuidamos lo que escribimos en los chats» · «Aquí todos podemos equivocarnos y aprender del error».</div>
+      <p>Evolución: Exclusión ➔ Separación ➔ Integración ➔ <strong>Inclusión</strong>. En el aula inclusiva todos aprenden juntos, participan con voz activa y disponen de los ajustes razonables requeridos.</p>
     </div>
   </details>
 
   <details class="modulo">
     <summary>⚖️ 11. Nuestros derechos y las normas que nos protegen</summary>
     <div class="contenido">
-      <p>Respetar la diversidad no es solo un buen valor: <strong>en Colombia es un derecho y un deber escrito en la ley</strong>.</p>
-      <h4>Constitución Política de 1991</h4>
-      <ul>
-        <li><strong>Art. 7:</strong> el Estado reconoce y protege la diversidad étnica y cultural del país.</li>
-        <li><strong>Art. 13:</strong> todas las personas nacen libres e iguales ante la ley, sin discriminación por sexo, raza, origen, lengua, religión u opinión.</li>
-        <li><strong>Art. 10:</strong> las lenguas de los grupos étnicos son oficiales en sus territorios.</li>
-        <li><strong>Art. 18 y 19:</strong> libertad de conciencia y de cultos.</li>
-        <li><strong>Art. 44:</strong> los derechos de niños, niñas y adolescentes prevalecen sobre los de los demás.</li>
-      </ul>
-      <h4>Otras normas importantes</h4>
-      <ul>
-        <li>📘 <strong>Ley 115 de 1994:</strong> la educación forma en el respeto a los derechos humanos, la paz y la diversidad cultural del país.</li>
-        <li>🕊️ <strong>Ley 1620 de 2013 y Decreto 1965:</strong> Sistema Nacional de Convivencia Escolar: definen el acoso y el ciberacoso y exigen manual de convivencia.</li>
-        <li>👶 <strong>Ley 1098 de 2006:</strong> Código de la Infancia y la Adolescencia: derecho a la igualdad, a no ser discriminado, a la educación y a la participación.</li>
-        <li>🪶 <strong>Ley 21 de 1991, Ley 70 de 1993, Decreto 804 de 1995:</strong> derechos de pueblos indígenas y comunidades negras; etnoeducación.</li>
-        <li>🗣️ <strong>Ley 1381 de 2010:</strong> protege las lenguas nativas de Colombia.</li>
-        <li>♿ <strong>Ley 1618 de 2013 y Decreto 1421 de 2017:</strong> derechos de las personas con discapacidad y educación inclusiva con ajustes razonables.</li>
-        <li>✊ <strong>Ley 1482 de 2011:</strong> sanciona los actos de racismo y discriminación.</li>
-        <li>🕊️ <strong>Ley 1732 de 2014:</strong> crea la Cátedra de la Paz para promover la convivencia y el respeto por la diversidad.</li>
-      </ul>
-    </div>
-  </details>
-
-  <details class="modulo">
-    <summary>🌟 12. Competencias ciudadanas y compromisos</summary>
-    <div class="contenido">
-      <p>Además de aprender contenidos, desarrollamos <strong>competencias ciudadanas</strong> (Estándares del MEN):</p>
-      <ol>
-        <li>🕊️ <strong>Convivencia y paz:</strong> cuidarme y cuidar a los demás, manejar las emociones y resolver conflictos sin violencia.</li>
-        <li>🗳️ <strong>Participación y responsabilidad democrática:</strong> decidir en grupo, escuchar otras opiniones y cumplir normas acordadas.</li>
-        <li>🌈 <strong>Pluralidad, identidad y valoración de las diferencias:</strong> reconocer la diversidad, rechazar la discriminación y defender los mismos derechos para todos.</li>
-      </ol>
-      <h4>💚 10 compromisos para un aula inclusiva</h4>
-      <ol>
-        <li>Me conozco y me valoro, y conozco con curiosidad a los demás.</li>
-        <li>Escucho antes de juzgar. · 3. Pregunto en lugar de suponer.</li>
-        <li>Cuido mis palabras, en persona y en línea.</li>
-        <li>No me burlo, no excluyo y no comparto contenidos que humillen.</li>
-        <li>Me pongo en los zapatos del otro antes de reaccionar.</li>
-        <li>Pido ayuda y ofrezco ayuda.</li>
-        <li>No me quedo callado si veo una injusticia: busco a un adulto de confianza.</li>
-        <li>Reconozco mis errores y los reparo.</li>
-        <li>Celebro las diferencias como una riqueza de mi curso y de mi país.</li>
-      </ol>
+      <p>Constitución de 1991 (Art. 7, 13, 10, 18, 19, 44), Ley 115 de 1994, Ley 1620 de 2013 de Convivencia Escolar y Decretos de Educación Inclusiva que garantizan la igualdad, la libre expresión y el derecho a una educación sin discriminación.</p>
     </div>
   </details>
 </section>
@@ -397,503 +315,8 @@
 <!-- ============ ACTIVIDADES ============ -->
 <section class="panel" id="actividades">
   <h2>🎯 Actividades Pedagógicas Alternativas</h2>
+  <p>Tres experiencias integradas para conectar las temáticas de diversidad, respeto y empatía a través del juego interactivo virtual y la creación con herramientas ofimáticas.</p>
 
-  <div class="juego-desc"><span class="badge">Actividad 1</span>
-    <h4>🎭 «Caminando mi identidad» — Circuito de estaciones vivenciales</h4>
-    <p><strong>Temáticas:</strong> identidad, diversidad y cultura. · <strong>Propósito:</strong> reconocer y valorar la diversidad de identidades del aula.</p>
-    <ol>
-      <li><strong>Apertura:</strong> círculo de diálogo — «¿Qué nos hace únicos y qué tenemos en común?».</li>
-      <li><strong>Estación 1:</strong> cada estudiante dibuja su «mapa de identidad» (familia, gustos, cultura, sueños) y lo comparte.</li>
-      <li><strong>Estación 2 — Rompe estereotipos:</strong> frases estereotipadas que los estudiantes reescriben de forma inclusiva.</li>
-      <li><strong>Estación 3 — Teatro de sombras:</strong> juego de roles representando la experiencia escolar de un compañero con diferente contexto.</li>
-      <li><strong>Cierre:</strong> compromiso colectivo de respeto.</li>
-    </ol>
-    <p><strong>Evidencias:</strong> mapas de identidad, pizarra de estereotipos reescritos, reflexiones.</p>
-  </div>
-
-  <div class="juego-desc"><span class="badge">Actividad 2</span>
-    <h4>🎲 «La Oca de la Inclusión» — Juego de mesa cooperativo</h4>
-    <p><strong>Temáticas:</strong> diversidad, respeto y solidaridad. · <strong>Propósito:</strong> aprender sobre diversidad y convivencia jugando en equipo, donde todos ganan juntos.</p>
-    <ol>
-      <li>Equipos de 4-5 avanzan por un tablero tipo «oca» que ellos mismos construyen.</li>
-      <li>Cada casilla tiene un reto: preguntas sobre diversidad, casos de convivencia o acciones inclusivas.</li>
-      <li>Nadie queda eliminado: la meta es que todos lleguen a la casilla final («Escuela Inclusiva»).</li>
-      <li>Los equipos se autoevalúan con una rúbrica acordada antes de jugar.</li>
-    </ol>
-    <p><strong>Variante digital:</strong> recrear el juego en Genially o Kahoot. · <strong>Evidencias:</strong> tableros, fotos, rúbricas.</p>
-  </div>
-
-  <div class="juego-desc"><span class="badge">Actividad 3</span>
-    <h4>📱 «Historias que incluyen» — Proyecto digital colaborativo</h4>
-    <p><strong>Temáticas:</strong> diversidad cultural de Colombia y empatía. · <strong>Propósito:</strong> crear productos digitales (podcast, cómic digital, video corto, mural virtual) que narren historias de diversidad e inclusión de la comunidad de Anserma.</p>
-    <ol>
-      <li><strong>Sesión 1:</strong> identificar historias de inclusión del barrio y la institución.</li>
-      <li><strong>Sesión 2:</strong> guion con roles rotativos (guionista, narrador, editor, diseñador).</li>
-      <li><strong>Sesión 3:</strong> producción con herramientas accesibles (subtítulos, audios, lectura fácil).</li>
-      <li><strong>Sesión 4:</strong> feria digital con las familias y coevaluación con rúbrica inclusiva.</li>
-    </ol>
-    <p><strong>Evidencias:</strong> productos digitales publicados, rúbricas de coevaluación, testimonios.</p>
-  </div>
-
-  <div class="juego-desc"><span class="badge">Actividad 4 (complementaria)</span>
-    <h4>🌱 «Aula sin barreras» — Auditoría inclusiva de la escuela</h4>
-    <p><strong>Temáticas:</strong> aula inclusiva y accesibilidad. · <strong>Propósito:</strong> evaluar la accesibilidad física, comunicativa y cultural de la institución y proponer mejoras a la directiva.</p>
-    <p><strong>Evidencias:</strong> listas de chequeo, fotos del recorrido, informe final presentado.</p>
-  </div>
-</section>
-
-<!-- ============ JUEGOS ============ -->
-<section class="panel" id="juegos">
-
-  <!-- SOPA DE LETRAS -->
-  <div class="subpanel activo" id="j-sopa">
-    <h2>🔤 Juego 1: Sopa de Letras «Palabras de la Diversidad»</h2>
-    <p>Encuentra las palabras escondidas sobre la temática. Haz clic en la <strong>primera letra</strong> y luego en la <strong>última letra</strong> de la palabra (horizontal, vertical o diagonal). ¡Toca «Nueva sopa» para reordenarlas!</p>
-    <div id="sopa-wrap">
-      <div class="palabras-chips" id="sopa-chips"></div>
-      <div id="sopa-grid"></div>
-      <p id="sopa-msg" style="font-weight:bold;color:#2f6b4d;margin-top:8px;">&nbsp;</p>
-      <button class="btn-juego" onclick="nuevaSopa()">🔄 Nueva sopa</button>
-    </div>
-  </div>
-
-  <!-- CRUCIGRAMA -->
-  <div class="subpanel" id="j-cruci" style="display:none;">
-    <h2>🧩 Juego 2: Crucigrama «Convivencia en la Escuela»</h2>
-    <p>Lee las pistas, escribe las palabras en el crucigrama y presiona <strong>«Comprobar»</strong>.</p>
-    <div id="cruci-wrap">
-      <div id="cruci-grid"></div>
-      <div style="text-align:left;max-width:600px;margin:10px auto;">
-        <div class="pista"><strong>Horizontal 1:</strong> Variedad de personas, culturas y formas de ser en la escuela. (10 letras)</div>
-        <div class="pista"><strong>Vertical 2:</strong> Capacidad de ponerse en el lugar del otro. (7 letras)</div>
-        <div class="pista"><strong>Horizontal 3:</strong> Tratar a los demás con dignidad y consideración. (7 letras)</div>
-        <div class="pista"><strong>Vertical 4:</strong> Conjunto de formas de vivir, pensar y celebrar de un grupo. (7 letras)</div>
-        <div class="pista"><strong>Vertical 5:</strong> Valor inherente que tiene toda persona. (8 letras)</div>
-        <div class="pista"><strong>Horizontal 6:</strong> Apoyo mutuo y acción conjunta por el bien de todos. (11 letras)</div>
-      </div>
-      <button class="btn-juego" onclick="comprobarCruci()">✔ Comprobar</button>
-      <button class="btn-juego" onclick="limpiarCruci()">🧹 Limpiar</button>
-      <p id="cruci-msg" style="font-weight:bold;color:#2f6b4d;margin-top:8px;">&nbsp;</p>
-    </div>
-  </div>
-
-  <!-- TRIVIA SENDERO -->
-  <div class="subpanel" id="j-trivia" style="display:none;">
-    <h2>🎲 Juego 3: Trivia · Sendero de la Inclusión</h2>
-    <p>El estudiante 🧑‍🎓 quiere llegar a la meta 🏁. Pulsa <strong>«Lanzar dado 🎲»</strong>: saldrá una <strong>pregunta con tiempo límite</strong>. Si respondes <strong>bien, avanzas</strong> lo que diga el dado; si respondes <strong>mal o se acaba el tiempo, retrocedes</strong>. ¡Llega a la meta!</p>
-    <div id="trivia-wrap">
-      <div id="trivia-board"></div>
-      <p><span id="dado">🎲</span></p>
-      <button class="btn-juego" onclick="tirarDado()">🎲 Lanzar dado</button>
-      <button class="btn-juego" onclick="reiniciarTrivia()">🔄 Reiniciar</button>
-      <div id="trivia-info">🚩 Pulsa «Lanzar dado» para responder tu primera pregunta del sendero de la inclusión.</div>
-      <div id="trivia-victoria">🏆 ¡Felicitaciones! Completaste el Sendero de la Inclusión. Demostraste que conoces la diversidad, el respeto, la empatía y la solidaridad. ¡Ahora vívelos en la escuela! 💚</div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ DESARROLLO ============ -->
-<section class="panel" id="desarrollo">
-  <h2>🚀 Desarrollo y Cronograma de la Propuesta</h2>
-  <table class="tabla">
-    <tr><th>Semana</th><th>Fase</th><th>Actividad</th><th>Temáticas</th><th>Producto / Evidencia</th></tr>
-    <tr><td>1</td><td>Diagnóstico y sensibilización</td><td>Círculo de diálogo inicial + encuesta de percepción sobre diversidad y convivencia</td><td>Diversidad, identidad</td><td>Línea base, registro de asistencia</td></tr>
-    <tr><td>2</td><td>Vivencia</td><td>Actividad 1: «Caminando mi identidad»</td><td>Identidad, cultura</td><td>Mapas de identidad, compromiso colectivo</td></tr>
-    <tr><td>3</td><td>Juego</td><td>Actividad 2: «La Oca de la Inclusión»</td><td>Diversidad, respeto, solidaridad</td><td>Tableros, fotos, rúbricas</td></tr>
-    <tr><td>4-5</td><td>Producción digital</td><td>Actividad 3: «Historias que incluyen»</td><td>Culturas de Colombia, empatía</td><td>Productos digitales, guiones</td></tr>
-    <tr><td>6</td><td>Participación</td><td>Actividad 4: «Aula sin barreras»</td><td>Aula inclusiva, derechos</td><td>Informe de auditoría inclusiva</td></tr>
-    <tr><td>7</td><td>Socialización</td><td>Feria digital y muestra a la comunidad educativa</td><td>Solidaridad, interculturalidad</td><td>Testimonios, evidencias fotográficas</td></tr>
-    <tr><td>8</td><td>Valoración</td><td>Encuesta final, reflexión individual y coevaluación</td><td>Compromisos ciudadanos</td><td>Informe final de la propuesta</td></tr>
-  </table>
-  <h3>Compromisos asumidos</h3>
-  <ul>
-    <li>📌 Garantizar adaptaciones para estudiantes con discapacidad y acceso a recursos digitales para quienes no tienen conectividad.</li>
-    <li>📌 Documentar semanalmente evidencias (fotos, registros, testimonios) en un portafolio digital del docente.</li>
-    <li>📌 Socializar los resultados con el consejo directivo y el consejo estudiantil.</li>
-  </ul>
-  <h3>Evidencias fotográficas (espacio para registrar)</h3>
-  <table class="tabla">
-    <tr><th>Actividad</th><th>Fecha</th><th>Descripción de la evidencia</th></tr>
-    <tr><td>1. Caminando mi identidad</td><td>____/____/2026</td><td>________________________________</td></tr>
-    <tr><td>2. La Oca de la Inclusión</td><td>____/____/2026</td><td>________________________________</td></tr>
-    <tr><td>3. Historias que incluyen</td><td>____/____/2026</td><td>________________________________</td></tr>
-    <tr><td>4. Aula sin barreras</td><td>____/____/2026</td><td>________________________________</td></tr>
-  </table>
-</section>
-
-<!-- ============ EVALUACIÓN ============ -->
-<section class="panel" id="evaluacion">
-  <h2>✅ Evaluación Inclusiva de la Propuesta</h2>
-  <div class="caja-azul">
-    <p><strong>Rúbrica co-construida (criterios sugeridos):</strong></p>
-    <ul>
-      <li><strong>Participación y respeto:</strong> escucha activa, valoración de las diferencias.</li>
-      <li><strong>Cooperación:</strong> trabajo en equipo, apoyo entre pares.</li>
-      <li><strong>Creatividad:</strong> originalidad en productos y soluciones.</li>
-      <li><strong>Reflexión:</strong> capacidad de analizar y transformar prácticas.</li>
-    </ul>
-    <p><strong>Instrumentos:</strong> autoevaluación, coevaluación entre estudiantes, valoración docente formativa (sin notas punitivas), portafolio de evidencias y encuestas de percepción inicial y final.</p>
-  </div>
-  <div class="caja-morada">
-    <p><strong>Reflexión final:</strong> las alternativas pedagógicas no son actividades aisladas, sino una forma de mirar la escuela: una institución donde la diversidad no es un problema que administrar, sino una riqueza que potenciar. <em>Somos diferentes, somos iguales: sigamos construyendo un aula donde todos cabemos.</em> 💚🌈</p>
-  </div>
-</section>
-
-<!-- ============ CRÉDITOS ============ -->
-<section class="panel" id="creditos">
-  <h2>⭐ Créditos</h2>
-  <div class="caja" style="text-align:center;">
-    <h3>👨‍🏫 Docentes creadores de la propuesta</h3>
-    <p style="font-size:1.15em;"><strong>Juan Pablo Correa</strong> · <strong>Jorge Loaiza Valencia</strong> · <strong>Juan Carlos Fajardo</strong></p>
-    <p>Docentes de la Institución Educativa Aureliano Flórez Cardona — Anserma, Caldas</p>
-  </div>
-  <div class="caja-azul">
-    <h3>🎓 Con el apoyo de:</h3>
-    <p><strong>Secretaría de Educación del Departamento de Caldas</strong> y <strong>Universidad de Manizales</strong><br>
-    Diplomado: <em>Alternativas Pedagógicas en y para la Atención a la Diversidad — Cohorte II</em><br>
-    Programa: <em>Caldas Camina hacia la Inclusión 2026</em></p>
-  </div>
-  <div class="caja-rosa" style="text-align:center;">
-    <p>Documento base de la temática: <strong>«Somos diferentes, somos iguales — Diversidad cultural, respeto y empatía para construir aulas donde todos cabemos»</strong></p>
-  </div>
-  <p style="text-align:center;font-style:italic;color:#6b5394;margin-top:15px;">«Somos diferentes, somos iguales» 🌈💚</p>
-</section>
-
-<!-- ============ MODAL TRIVIA ============ -->
-<div id="modal-trivia">
-  <div class="modal-caja">
-    <h3 id="trivia-pregunta">Pregunta</h3>
-    <div id="trivia-timer-wrap"><div id="trivia-timer"></div></div>
-    <div id="trivia-opciones"></div>
-    <p id="trivia-feedback"></p>
-  </div>
-</div>
-
-<footer>
-  <p><strong>Somos diferentes, somos iguales</strong> · I.E. Aureliano Flórez Cardona · Anserma, Caldas</p>
-  <p class="creditos">Realizado por los docentes: <strong>Juan Pablo Correa · Jorge Loaiza Valencia · Juan Carlos Fajardo</strong></p>
-  <p class="creditos">Secretaría de Educación de Caldas · Universidad de Manizales</p>
-</footer>
-
-<script>
-/* ================= PESTAÑAS ================= */
-function mostrarTab(id, btn){
-  document.querySelectorAll('section.panel').forEach(s=>s.classList.remove('activo'));
-  document.getElementById(id).classList.add('activo');
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('activo'));
-  btn.classList.add('activo');
-  document.getElementById('subtabs-juegos').classList.toggle('activo', id==='juegos');
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-function mostrarSub(id, btn){
-  document.querySelectorAll('#juegos .subpanel').forEach(s=>s.style.display='none');
-  document.getElementById(id).style.display='block';
-  document.querySelectorAll('.subtab-btn').forEach(b=>b.classList.remove('activo'));
-  btn.classList.add('activo');
-}
-
-/* ================= SOPA DE LETRAS ================= */
-const PALABRAS_SOPA = ["RESPETO","EMPATIA","DIVERSIDAD","SOLIDARIDAD","INCLUSION","IDENTIDAD","CULTURA","DIGNIDAD","EQUIDAD","TOLERANCIA"];
-const TAM = 14;
-let sopaGrid = [], sopaSol = {}, encontradas = new Set();
-let seleccion = [];
-const DIRS = [[0,1],[1,0],[1,1],[1,-1],[0,-1],[-1,0],[-1,-1],[-1,1]];
-const LETRAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-function nuevaSopa(){
-  sopaGrid = Array.from({length:TAM},()=>Array(TAM).fill(''));
-  sopaSol = {}; encontradas = new Set(); seleccion = [];
-  document.getElementById('sopa-msg').innerHTML = '&nbsp;';
-  PALABRAS_SOPA.forEach(pal=>{
-    let colocada = false, intentos = 0;
-    while(!colocada && intentos < 500){
-      intentos++;
-      const d = DIRS[Math.floor(Math.random()*DIRS.length)];
-      const r = Math.floor(Math.random()*TAM), c = Math.floor(Math.random()*TAM);
-      const er = r + d[0]*(pal.length-1), ec = c + d[1]*(pal.length-1);
-      if(er<0||er>=TAM||ec<0||ec>=TAM) continue;
-      let ok = true;
-      for(let i=0;i<pal.length;i++){
-        const lr = sopaGrid[r+d[0]*i][c+d[1]*i];
-        if(lr !== '' && lr !== pal[i]){ ok=false; break; }
-      }
-      if(!ok) continue;
-      colocada = true;
-      const celdas = [];
-      for(let i=0;i<pal.length;i++){
-        const rr=r+d[0]*i, cc=c+d[1]*i;
-        sopaGrid[rr][cc]=pal[i];
-        celdas.push([rr,cc]);
-      }
-      sopaSol[pal]=celdas;
-    }
-  });
-  for(let r=0;r<TAM;r++) for(let c=0;c<TAM;c++) if(sopaGrid[r][c]==='') sopaGrid[r][c]=LETRAS[Math.floor(Math.random()*26)];
-  const g = document.getElementById('sopa-grid');
-  g.innerHTML='';
-  for(let r=0;r<TAM;r++) for(let c=0;c<TAM;c++){
-    const d = document.createElement('div');
-    d.textContent = sopaGrid[r][c];
-    d.dataset.r = r; d.dataset.c = c;
-    d.onclick = ()=>clickSopa(r,c,d);
-    g.appendChild(d);
-  }
-  const chips = document.getElementById('sopa-chips');
-  chips.innerHTML='';
-  PALABRAS_SOPA.forEach(p=>{
-    const s = document.createElement('span');
-    s.className='chip'; s.id='chip-'+p; s.textContent=p;
-    chips.appendChild(s);
-  });
-}
-function clickSopa(r,c,celda){
-  if(encontradas.size===PALABRAS_SOPA.length) return;
-  if(seleccion.length===0){
-    seleccion=[[r,c]];
-    celda.classList.add('sel');
-    return;
-  }
-  const [r0,c0]=seleccion[0];
-  const dr=Math.sign(r-r0), dc=Math.sign(c-c0);
-  const len=Math.max(Math.abs(r-r0),Math.abs(c-c0))+1;
-  if(!((r===r0||c===c0||Math.abs(r-r0)===Math.abs(c-c0))&&len>1)){
-    limpiarSel(); seleccion=[[r,c]]; celda.classList.add('sel'); return;
-  }
-  const celdas=[];
-  for(let i=0;i<len;i++) celdas.push([r0+dr*i, c0+dc*i]);
-  const palabra = celdas.map(([rr,cc])=>sopaGrid[rr][cc]).join('');
-  const rev = palabra.split('').reverse().join('');
-  const claves = Object.keys(sopaSol).filter(p=>!encontradas.has(p));
-  const hallada = claves.find(p=>p===palabra||p===rev);
-  if(hallada){
-    encontradas.add(hallada);
-    celdas.forEach(([rr,cc])=>{
-      document.querySelector('#sopa-grid div[data-r="'+rr+'"][data-c="'+cc+'"]').classList.add('found');
-    });
-    document.getElementById('chip-'+hallada).classList.add('ok');
-    document.getElementById('sopa-msg').textContent = '🎉 ¡Encontraste: '+hallada+'!';
-    if(encontradas.size===PALABRAS_SOPA.length)
-      document.getElementById('sopa-msg').textContent = '🏆 ¡Sopa completada! Eres un campeón de la inclusión.';
-  }
-  limpiarSel(); seleccion=[];
-}
-function limpiarSel(){
-  document.querySelectorAll('#sopa-grid div.sel').forEach(d=>d.classList.remove('sel'));
-}
-
-/* ================= CRUCIGRAMA ================= */
-const CRUCI = [
-  {pal:"DIVERSIDAD", r:0, c:0, dir:"H"},
-  {pal:"EMPATIA",    r:0, c:3, dir:"V"},
-  {pal:"RESPETO",    r:2, c:0, dir:"H"},
-  {pal:"CULTURA",    r:1, c:4, dir:"V"},
-  {pal:"DIGNIDAD",   r:0, c:9, dir:"V"},
-  {pal:"SOLIDARIDAD",r:5, c:4, dir:"H"}
-];
-const FILAS_C=8, COLS_C=13;
-
-function construirCruci(){
-  const sol = {};
-  CRUCI.forEach(w=>{
-    for(let i=0;i<w.pal.length;i++){
-      const r = w.dir==="H"?w.r:w.r+i, c = w.dir==="H"?w.c+i:w.c;
-      sol[r+"-"+c]=w.pal[i];
-    }
-  });
-  const g = document.getElementById('cruci-grid');
-  g.style.gridTemplateColumns = 'repeat('+COLS_C+',34px)';
-  g.innerHTML='';
-  for(let r=0;r<FILAS_C;r++) for(let c=0;c<COLS_C;c++){
-    if(sol[r+"-"+c]){
-      const inp = document.createElement('input');
-      inp.maxLength=1; inp.dataset.r=r; inp.dataset.c=c; inp.dataset.sol=sol[r+"-"+c];
-      inp.addEventListener('input',()=>{ if(inp.value){ const n=siguienteInput(r,c); if(n) n.focus(); }});
-      g.appendChild(inp);
-    } else {
-      const sp = document.createElement('span'); g.appendChild(sp);
-    }
-  }
-}
-function siguienteInput(r,c){
-  const inputs=[...document.querySelectorAll('#cruci-grid input')];
-  const idx=inputs.findIndex(i=>+i.dataset.r===r&&+i.dataset.c===c);
-  return inputs[idx+1]||null;
-}
-function comprobarCruci(){
-  let bien=0, total=0;
-  document.querySelectorAll('#cruci-grid input').forEach(i=>{
-    total++;
-    i.classList.remove('bien','mal');
-    if(i.value.toUpperCase()===i.dataset.sol){ i.classList.add('bien'); bien++; }
-    else if(i.value) i.classList.add('mal');
-  });
-  const msg=document.getElementById('cruci-msg');
-  if(bien===total) msg.textContent='🏆 ¡Crucigrama perfecto! Conoces muy bien la cultura de la inclusión.';
-  else msg.textContent='Tienes '+bien+' de '+total+' letras correctas. ¡Sigue intentando! 💪';
-}
-function limpiarCruci(){
-  document.querySelectorAll('#cruci-grid input').forEach(i=>{i.value='';i.classList.remove('bien','mal');});
-  document.getElementById('cruci-msg').innerHTML='&nbsp;';
-}
-
-/* ================= TRIVIA SENDERO ================= */
-const CAMINO_T = [
-  [6,0],[6,1],[6,2],[6,3],[6,4],[6,5],
-  [5,5],[4,5],[4,6],[4,7],[4,8],[4,9],[4,10],
-  [3,10],[2,10],[2,9],[2,8],[2,7],[2,6],
-  [1,6],[0,6],[0,7],[0,8]
-];
-const ESTACIONES_T = {
-  0:{icono:"🚩", titulo:"¡Bienvenido al Sendero de la Inclusión!", texto:"Lanza el dado: cada pregunta tiene tiempo límite. ¡Responde bien para avanzar!"},
-  5:{icono:"🎭", titulo:"Estación · Identidad", texto:"«Me conozco y me valoro, y conozco con curiosidad a los demás». Todos tenemos identidades múltiples: nadie cabe en una sola caja."},
-  11:{icono:"🤝", titulo:"Estación · Respeto", texto:"Respetar no es «aguantar»: es reconocer que cada persona tiene dignidad y valor. ¡Sigue adelante!"},
-  17:{icono:"💗", titulo:"Estación · Empatía y solidaridad", texto:"Ponte en los zapatos del otro y actúa con cuidado: «yo soy porque nosotros somos» (ubuntu)."},
-  22:{icono:"🏁", titulo:"¡META!", texto:"¡Llegaste! Demostraste que conoces la diversidad, el respeto y la empatía."}
-};
-const PREGUNTAS = [
-  {p:"¿Qué es la diversidad cultural?", o:["La existencia de muchas culturas y formas de vivir en un mismo lugar","Que todas las personas deben pensar igual","Solo la variedad de comidas de un país"], c:0},
-  {p:"¿Cuál es la diferencia entre diferencia y desigualdad?", o:["No hay ninguna diferencia","La diferencia es ser distintos (natural y valiosa); la desigualdad es recibir menos derechos por esas diferencias (injusta)","La desigualdad es buena si es cultural"], c:1},
-  {p:"¿Qué es un estereotipo?", o:["Una idea simplificada y repetida sobre un grupo, como si todos fueran iguales","Un estilo de música andina","Un derecho fundamental"], c:0},
-  {p:"La empatía se resume en la frase popular de…", o:["ponerse en los zapatos del otro","ganarle al otro en un debate","aguantar al otro aunque nos caiga mal"], c:0},
-  {p:"¿Qué afirma la Declaración Universal sobre la Diversidad Cultural de la UNESCO (2001)?", o:["Que solo debe existir una cultura por país","Que la diversidad cultural es patrimonio común de la humanidad","Que las lenguas nativas deben desaparecer"], c:1},
-  {p:"¿Cuántas lenguas nativas se hablan en Colombia, además del español?", o:["5","20","68"], c:2},
-  {p:"¿Qué es el acoso escolar (bullying) según la Ley 1620 de 2013?", o:["Un simple conflicto entre iguales","Una agresión intencional, repetida y con desequilibrio de poder, presencial o digital","Un juego normal entre estudiantes"], c:1},
-  {p:"El ubuntu, palabra de origen africano, se resume en…", o:["cada quien por su cuenta","yo soy porque nosotros somos","el que no corre, vuela"], c:1},
-  {p:"¿Qué artículo de la Constitución de 1991 dice que todas las personas nacen libres e iguales ante la ley?", o:["Artículo 13","Artículo 90","Artículo 1"], c:0},
-  {p:"Incluir (a diferencia de integrar) significa…", o:["pedirle a la persona que se adapte al grupo","cambiar el grupo y el entorno para que todos puedan participar de verdad","tener a la persona en el mismo lugar pero aparte"], c:1},
-  {p:"San Basilio de Palenque, cerca de Cartagena, es importante porque…", o:["fue el primer pueblo libre de América y conserva su lengua propia","es la capital musical de Colombia","allí se fundó la primera universidad"], c:0},
-  {p:"Si ves una burla o discriminación hacia un compañero, lo correcto es…", o:["reírte para no quedar mal con el grupo","callar y mirar a otro lado","no compartir el contenido, apoyar a la persona y contarle a un adulto de confianza"], c:2}
-];
-const TIEMPO_TRIVIA = 15; // segundos
-let posT = 0, divsT = {}, preguntaActual = null, timerInt = null, dadoActual = 1, preguntasUsadas = [];
-
-function construirTrivia(){
-  const b = document.getElementById('trivia-board');
-  b.innerHTML=''; divsT={};
-  const setCamino = new Set(CAMINO_T.map(([r,c])=>r+"-"+c));
-  for(let r=0;r<7;r++) for(let c=0;c<12;c++){
-    const d=document.createElement('div');
-    d.dataset.r=r; d.dataset.c=c;
-    if(setCamino.has(r+"-"+c)){
-      d.className='celda-camino';
-      const idx = CAMINO_T.findIndex(([rr,cc])=>rr===r&&cc===c);
-      if(idx===CAMINO_T.length-1) d.classList.add('celda-meta');
-      if(ESTACIONES_T[idx]) d.innerHTML='<span>'+ESTACIONES_T[idx].icono+'</span>';
-    } else {
-      d.className='celda-vacia';
-      const azar = Math.random();
-      if(azar<0.09) d.textContent='🌷';
-      else if(azar<0.15) d.textContent='🌿';
-    }
-    b.appendChild(d);
-    divsT[r+"-"+c]=d;
-  }
-  posT = 0; preguntasUsadas = [];
-  pintarJugadorT();
-  document.getElementById('trivia-victoria').style.display='none';
-  document.getElementById('trivia-info').innerHTML='🚩 Pulsa «Lanzar dado» para responder tu primera pregunta del sendero de la inclusión.';
-  document.getElementById('dado').textContent='🎲';
-}
-function pintarJugadorT(){
-  document.querySelectorAll('#jugador').forEach(e=>e.remove());
-  const [r,c] = CAMINO_T[posT];
-  divsT[r+"-"+c].innerHTML='<span id="jugador">🧑‍🎓</span>';
-}
-function restaurarIcono(idx){
-  const [r,c] = CAMINO_T[idx];
-  const est = ESTACIONES_T[idx];
-  divsT[r+"-"+c].innerHTML = est?'<span>'+est.icono+'</span>':'';
-}
-function tirarDado(){
-  if(posT>=CAMINO_T.length-1) return;
-  dadoActual = 1 + Math.floor(Math.random()*3);
-  const dadoEl = document.getElementById('dado');
-  dadoEl.classList.remove('dado-anim'); void dadoEl.offsetWidth;
-  dadoEl.classList.add('dado-anim');
-  dadoEl.textContent = ['⚀','⚁','⚂','⚃','⚄','⚅'][dadoActual-1];
-  abrirPregunta();
-}
-function abrirPregunta(){
-  let idx;
-  if(preguntasUsadas.length>=PREGUNTAS.length) preguntasUsadas=[];
-  do { idx = Math.floor(Math.random()*PREGUNTAS.length); } while(preguntasUsadas.includes(idx));
-  preguntasUsadas.push(idx);
-  preguntaActual = PREGUNTAS[idx];
-  document.getElementById('trivia-pregunta').textContent = '❓ '+preguntaActual.p;
-  const cont = document.getElementById('trivia-opciones');
-  cont.innerHTML='';
-  preguntaActual.o.forEach((op,i)=>{
-    const b = document.createElement('button');
-    b.className='opcion'; b.textContent = String.fromCharCode(65+i)+') '+op;
-    b.onclick = ()=>responderTrivia(i,b);
-    cont.appendChild(b);
-  });
-  document.getElementById('trivia-feedback').textContent = '⏱️ Tienes '+TIEMPO_TRIVIA+' segundos…';
-  document.getElementById('modal-trivia').classList.add('abierto');
-  let restante = TIEMPO_TRIVIA;
-  actualizarBarra(restante);
-  clearInterval(timerInt);
-  timerInt = setInterval(()=>{
-    restante--;
-    actualizarBarra(restante);
-    if(restante<=0){
-      clearInterval(timerInt);
-      responderTrivia(-1, null); // tiempo agotado
-    }
-  },1000);
-}
-function actualizarBarra(seg){
-  const pct = Math.max(0,(seg/TIEMPO_TRIVIA)*100);
-  document.getElementById('trivia-timer').style.width = pct+'%';
-  document.getElementById('trivia-timer').style.background = pct<35 ? 'linear-gradient(90deg,#e58aa8,#d46a5b)' : 'linear-gradient(90deg,#5cae87,#5b9fd4)';
-}
-function responderTrivia(i, btn){
-  clearInterval(timerInt);
-  const correcta = preguntaActual.c;
-  document.querySelectorAll('#trivia-opciones .opcion').forEach((b,bi)=>{
-    b.disabled = true;
-    if(bi===correcta) b.classList.add('correcta');
-  });
-  const feedback = document.getElementById('trivia-feedback');
-  let avanza = false;
-  if(i===correcta){
-    avanza = true;
-    feedback.style.color = '#2f6b4d';
-    feedback.textContent = '✅ ¡Correcto! Avanzas '+dadoActual+' casilla(s).';
-  } else {
-    if(btn) btn.classList.add('incorrecta');
-    feedback.style.color = '#b04a3a';
-    feedback.textContent = (i===-1 ? '⏰ ¡Se acabó el tiempo! ' : '❌ Incorrecto. ') + 'Retrocedes '+dadoActual+' casilla(s). La respuesta correcta era: '+preguntaActual.o[correcta];
-  }
-  setTimeout(()=>{
-    document.getElementById('modal-trivia').classList.remove('abierto');
-    moverJugadorT(dadoActual, avanza);
-  }, 2200);
-}
-function moverJugadorT(pasos, adelante){
-  restaurarIcono(posT);
-  if(adelante) posT = Math.min(posT+pasos, CAMINO_T.length-1);
-  else posT = Math.max(posT-pasos, 0);
-  pintarJugadorT();
-  const est = ESTACIONES_T[posT];
-  const info = document.getElementById('trivia-info');
-  if(est){
-    info.innerHTML='<strong>'+est.icono+' '+est.titulo+'</strong><br>'+est.texto;
-  } else {
-    info.innerHTML='📍 Casilla '+(posT+1)+' de '+CAMINO_T.length+'. ¡Sigue lanzando el dado!';
-  }
-  if(posT===CAMINO_T.length-1){
-    document.getElementById('trivia-victoria').style.display='block';
-  }
-}
-function reiniciarTrivia(){
-  construirTrivia();
-}
-
-/* ================= INICIAR ================= */
-nuevaSopa();
-construirCruci();
-construirTrivia();
-</script>
-</body>
-</html>
+  <div class="juego-desc">
+    <span class="badge">ACTIVIDAD 1</span>
+    <h4>🔤 Reconociendo la Diversidad:
