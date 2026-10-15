@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -33,7 +32,7 @@
   header p{font-size:1em;margin:2px 0;color:#5b4a72;}
   .pill{display:inline-block;background:#fff;border-radius:30px;padding:4px 16px;font-weight:bold;font-size:.85em;color:var(--lila-osc);box-shadow:0 3px 8px rgba(0,0,0,.08);margin:2px;}
 
-  /* ===== MENÚ Y SUBMENÚ CORREGIDO ===== */
+  /* ===== MENÚ Y SUBMENÚ ===== */
   nav.tabs{position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;justify-content:center;
     background:rgba(255,255,255,.92);backdrop-filter:blur(8px);box-shadow:0 4px 14px rgba(74,63,85,.12);}
   .tab-btn{background:transparent;border:none;color:#7a6d8a;font-weight:bold;padding:14px 16px;cursor:pointer;font-size:.93em;border-bottom:4px solid transparent;transition:all .2s;}
@@ -67,6 +66,10 @@
   footer{position:relative;z-index:1;background:linear-gradient(120deg,var(--lila),var(--rosa));text-align:center;padding:26px;margin-top:44px;color:#5b4a72;}
   footer .creditos{font-size:.95em;margin-top:6px;}
   ul,ol{margin-left:25px;}
+
+  /* ===== ENLACE DRIVE ===== */
+  .link-drive{display:inline-block;background:linear-gradient(90deg,var(--menta-osc),var(--celeste-osc));color:#fff;padding:12px 24px;border-radius:30px;text-decoration:none;font-weight:bold;box-shadow:0 4px 12px rgba(92,174,135,.3);transition:all .2s;margin:10px 0;}
+  .link-drive:hover{transform:scale(1.03);box-shadow:0 6px 18px rgba(92,174,135,.4);}
 
   /* ===== ACORDEÓN TEMÁTICAS ===== */
   details.modulo{background:#fbf8ff;border-radius:16px;margin:12px 0;border:2px solid var(--lila);overflow:hidden;transition:box-shadow .2s;}
@@ -139,6 +142,7 @@
     section.panel{padding:24px 18px;}
   }
 </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -164,7 +168,7 @@
   <button class="tab-btn" onclick="mostrarTab('evaluacion',this)">✅ Evaluación</button>
   <button class="tab-btn" onclick="mostrarTab('creditos',this)">⭐ Créditos</button>
   
-  <!-- submenú de juegos con clase .activo corregida -->
+  <!-- submenú de juegos -->
   <div class="subtabs" id="subtabs-juegos">
     <button class="subtab-btn activo" onclick="mostrarSub('j-sopa',this)">🔤 Sopa de Letras</button>
     <button class="subtab-btn" onclick="mostrarSub('j-cruci',this)">🧩 Crucigrama</button>
@@ -192,7 +196,7 @@
       <li>📚 Las temáticas del documento «Somos diferentes, somos iguales» explicadas de manera sencilla: cultura, diversidad, identidad, respeto, empatía, solidaridad, aula inclusiva y derechos.</li>
       <li>🎯 Actividades pedagógicas alternativas para vivir en la escuela.</li>
       <li>🎮 <strong>Juegos virtuales:</strong> sopa de letras interactiva por arrastre/clic, crucigrama y la trivia del Sendero de la Inclusión con preguntas y tiempo límite.</li>
-      <li>🚀 El cronograma de desarrollo y la evaluación formativa del proceso.</li>
+      <li>🚀 El cronograma de desarrollo, repositorio de evidencias en Google Drive y la evaluación formativa del proceso.</li>
     </ul>
   </div>
   <div class="caja-azul">
@@ -419,20 +423,21 @@
     <tr><td>7</td><td>Socialización</td><td>Feria digital y muestra a la comunidad educativa</td><td>Solidaridad, interculturalidad</td><td>Testimonios, evidencias fotográficas</td></tr>
     <tr><td>8</td><td>Valoración</td><td>Encuesta final, reflexión individual y coevaluación</td><td>Compromisos ciudadanos</td><td>Informe final de la propuesta</td></tr>
   </table>
+  
+  <div class="caja-azul" style="margin-top:24px;">
+    <h3>📂 Repositorio General de Evidencias Fotográficas y Pedagógicas</h3>
+    <p>Todas las evidencias del proceso, fotos del trabajo de los estudiantes, talleres diligenciados y productos digitales se encuentran organizadas en el enlace oficial de Google Drive[cite: 1]:</p>
+    <p style="text-align:center;">
+      <a href="https://drive.google.com/drive/folders/1YEGMWaon-YuJFNy8vebVjhIke-uhq7ZT?usp=sharing" target="_blank" class="link-drive">📁 Ver Carpeta de Evidencias en Google Drive</a>
+    </p>
+  </div>
+
   <h3>Compromisos asumidos</h3>
   <ul>
     <li>📌 Garantizar adaptaciones para estudiantes con discapacidad y acceso a recursos digitales para quienes no tienen conectividad.</li>
     <li>📌 Documentar semanalmente evidencias (fotos, registros, testimonios) en un portafolio digital del docente.</li>
     <li>📌 Socializar los resultados con el consejo directivo y el consejo estudiantil.</li>
   </ul>
-  <h3>Evidencias fotográficas (espacio para registrar)</h3>
-  <table class="tabla">
-    <tr><th>Actividad</th><th>Fecha</th><th>Descripción de la evidencia</th></tr>
-    <tr><td>1. Caminando mi identidad</td><td>____/____/2026</td><td>________________________________</td></tr>
-    <tr><td>2. La Oca de la Inclusión</td><td>____/____/2026</td><td>________________________________</td></tr>
-    <tr><td>3. Historias que incluyen</td><td>____/____/2026</td><td>________________________________</td></tr>
-    <tr><td>4. Aula sin barreras</td><td>____/____/2026</td><td>________________________________</td></tr>
-  </table>
 </section>
 
 <!-- ============ EVALUACIÓN ============ -->
@@ -455,7 +460,7 @@
 
 <!-- ============ CRÉDITOS ============ -->
 <section class="panel" id="creditos">
-  <h2>⭐ Créditos</h2>
+  <h2>⭐ Créditos e Institución</h2>
   <div class="caja" style="text-align:center;">
     <h3>👨‍🏫 Docentes creadores de la propuesta</h3>
     <p style="font-size:1.15em;"><strong>Juan Pablo Correa</strong> · <strong>Jorge Loaiza Valencia</strong> · <strong>Juan Carlos Fajardo</strong></p>
