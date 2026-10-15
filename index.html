@@ -39,7 +39,7 @@
   .tab-btn:hover{color:var(--lila-osc);transform:translateY(-2px);}
   .tab-btn.activo{color:var(--lila-osc);border-bottom:4px solid var(--rosa-osc);background:linear-gradient(180deg,transparent,var(--rosa));}
   .subtabs{display:none;width:100%;justify-content:center;flex-wrap:wrap;gap:6px;padding:8px;background:linear-gradient(90deg,var(--celeste),var(--menta));}
-  .subtabs.activo{display:flex;}
+  .subtabs.activo{display:flex !important;}
   .subtab-btn{background:#fff;border:2px solid transparent;border-radius:30px;color:#6a5d7a;padding:8px 18px;cursor:pointer;font-size:.88em;font-weight:bold;box-shadow:0 3px 8px rgba(0,0,0,.08);transition:all .2s;}
   .subtab-btn:hover{transform:translateY(-2px);border-color:var(--celeste-osc);}
   .subtab-btn.activo{background:var(--lila-osc);color:#fff;}
@@ -168,7 +168,8 @@
   <button class="tab-btn" onclick="mostrarTab('desarrollo',this)">🚀 Desarrollo</button>
   <button class="tab-btn" onclick="mostrarTab('evaluacion',this)">✅ Evaluación</button>
   <button class="tab-btn" onclick="mostrarTab('creditos',this)">⭐ Créditos</button>
-  <!-- submenú de juegos -->
+  
+  <!-- Submenú de Juegos Virtuales -->
   <div class="subtabs" id="subtabs-juegos">
     <button class="subtab-btn activo" onclick="mostrarSub('j-sopa',this)">🔤 Sopa de Letras</button>
     <button class="subtab-btn" onclick="mostrarSub('j-cruci',this)">🧩 Crucigrama</button>
@@ -194,129 +195,4 @@
     <h3>🎯 ¿Qué encontrarán aquí?</h3>
     <ul>
       <li>📚 Las temáticas del documento «Somos diferentes, somos iguales» explicadas de manera sencilla: cultura, diversidad, identidad, respeto, empatía, solidaridad, aula inclusiva y derechos.</li>
-      <li>🎯 Actividades pedagógicas alternativas centradas en el juego, la reflexión y la creación digital.</li>
-      <li>🎮 <strong>Juegos virtuales:</strong> sopa de letras interactiva con selección y tachado de conceptos, crucigrama numerado adaptable a cualquier dispositivo y la trivia interactiva Sendero de la Inclusión.</li>
-      <li>🚀 El cronograma de desarrollo, evidencias pedagógicas y evaluación formativa del proceso.</li>
-    </ul>
-  </div>
-  <div class="caja-azul">
-    <p><strong>¿Cómo navegar?</strong> Usa el menú superior. En <strong>🎮 Juegos Virtuales</strong> encontrarás un submenú con los tres juegos. ¡Explora y aprende jugando! 🌈</p>
-  </div>
-</section>
-
-<!-- ============ TEMÁTICAS ============ -->
-<section class="panel" id="tematicas">
-  <h2>📚 Temáticas · Lo que aprenderás</h2>
-  <p>Despliega cada tema 🌸. Al final sabrás explicar qué es la cultura, reconocer la diversidad de Colombia, identificar cuándo una diferencia se convierte en excusa para excluir, practicar el respeto y la empatía, conocer tus derechos y participar en un aula donde todos cabemos.</p>
-
-  <details class="modulo" open>
-    <summary>🧩 1. ¿Qué es la cultura?</summary>
-    <div class="contenido">
-      <p>La cultura es <strong>todo lo que un grupo de personas ha construido y aprendido para vivir junto</strong>: su forma de hablar, comer, vestirse, celebrar, creer, trabajar, jugar y convivir. No se hereda en los genes: se aprende en la familia, la comunidad, el colegio y las redes sociales.</p>
-      <h4>Sus elementos</h4>
-      <span class="idea">🗣️ La lengua</span><span class="idea">🍲 La comida</span><span class="idea">🎵 Música y danza</span><span class="idea">👗 Vestimenta</span><span class="idea">🕊️ Creencias y celebraciones</span><span class="idea">⚖️ Valores y normas</span><span class="idea">🌾 Oficios y saberes</span><span class="idea">🎲 Juegos e historias</span>
-      <h4>🧊 El iceberg de la cultura</h4>
-      <p>Lo que <strong>se ve</strong> (la punta del iceberg) es la comida, la ropa, la música, las fiestas y el idioma. Lo que <strong>no se ve</strong> (debajo del agua) son las creencias, los valores y las ideas sobre la familia, el tiempo o lo que es «bueno» o «correcto». Detrás de cada costumbre hay una historia que vale la pena conocer.</p>
-      <div class="mini"><strong>Tres ideas clave:</strong> 1) Ninguna cultura es mejor o peor que otra: son diferentes. 2) La cultura cambia: nuestros abuelos vivían distinto a nosotros. 3) Todos tenemos cultura, incluso cuando creemos que «los diferentes» son los otros.</div>
-    </div>
-  </details>
-
-  <details class="modulo">
-    <summary>🌻 2. La diversidad cultural: ¿qué significa?</summary>
-    <div class="contenido">
-      <p>Diversidad significa <strong>variedad</strong>. La diversidad cultural es la existencia de muchas culturas y formas de vivir en un mismo lugar. Imagina un <strong>jardín</strong>: con una sola flor sería bonito, pero con rosas, girasoles, orquídeas y margaritas está mucho más vivo. O una <strong>orquesta</strong>: si todos tocáramos el mismo instrumento, la música sería muy pobre.</p>
-      <h4>⚠️ Diferencia NO es lo mismo que desigualdad</h4>
-      <p>La <strong>diferencia</strong> es que somos distintos: es natural y valiosa. La <strong>desigualdad</strong> es que, por esas diferencias, unas personas reciben menos oportunidades, menos respeto o menos derechos: es injusta. Podemos ser diferentes y, al mismo tiempo, tener los mismos derechos y la misma dignidad.</p>
-      <p>En 2001 la UNESCO adoptó la Declaración Universal sobre la Diversidad Cultural, y cada <strong>21 de mayo</strong> se celebra el Día Mundial de la Diversidad Cultural para el Diálogo y el Desarrollo.</p>
-      <div class="mini"><strong>Multiculturalidad:</strong> muchas culturas viven lado a lado sin conocerse. · <strong>Interculturalidad:</strong> esas culturas se encuentran, dialogan y aprenden unas de otras en igualdad. ¡Eso es lo que buscamos en nuestro colegio!</div>
-    </div>
-  </details>
-
-  <details class="modulo">
-    <summary>🇨🇴 3. Colombia: un país con muchas culturas</summary>
-    <div class="contenido">
-      <p>La Constitución de 1991 (artículo 7) reconoce y protege la diversidad étnica y cultural de la Nación. Ser diverso no es un problema que corregir: es una característica que la ley protege.</p>
-      <h4>Grupos que hacen parte de nuestra nación</h4>
-      <ul>
-        <li>🪶 <strong>Pueblos indígenas:</strong> los primeros habitantes de estas tierras. Más de cien pueblos con su propia lengua, gobierno y relación con la naturaleza.</li>
-        <li>🥁 <strong>Comunidades negras, afrocolombianas, raizales y palenqueras:</strong> aportes en música, gastronomía, danza y saberes. San Basilio de Palenque conserva su lengua propia.</li>
-        <li>🎪 <strong>Pueblo Rrom (gitano):</strong> tradiciones familiares y música propia.</li>
-        <li>🌱 <strong>Comunidades campesinas:</strong> saberes sobre la tierra y el cuidado ambiental.</li>
-        <li>🏙️ <strong>Población mestiza, urbana y personas migrantes</strong> que construyen nuestro diario vivir.</li>
-      </ul>
-      <h4>Regiones y lenguas</h4>
-      <p>En Colombia se hablan <strong>68 lenguas nativas</strong> protegidas por la Ley 1381 de 2010. ¡Cuando una lengua desaparece, se pierde un tesoro de la humanidad!</p>
-    </div>
-  </details>
-
-  <details class="modulo">
-    <summary>🌈 4. Más allá de la cultura: otras formas de ser</summary>
-    <div class="contenido">
-      <p>La diversidad abarca todos los aspectos de la experiencia humana:</p>
-      <span class="idea">📍 Origen y residencia</span><span class="idea">🗣️ Acentos y lengua</span><span class="idea">🕊️ Creencias</span><span class="idea">👨‍👩‍👧 Tipos de familia</span><span class="idea">💰 Condición socioeconómica</span><span class="idea">♿ Capacidades y formas de aprender</span><span class="idea">⚧ Género</span><span class="idea">🧑 Apariencia y edad</span><span class="idea">🎨 Gustos e intereses</span>
-    </div>
-  </details>
-
-  <details class="modulo">
-    <summary>🪞 5. Identidad: ¿quién soy y de dónde vengo?</summary>
-    <div class="contenido">
-      <p>La identidad se construye con la historia personal, familiar, cultural y las propias decisiones. Nadie cabe en una sola etiqueta. Reconocer y valorar la propia historia facilita respetar la diversidad ajena.</p>
-    </div>
-  </details>
-
-  <details class="modulo">
-    <summary>🚫 6. Cuando la diferencia se convierte en problema</summary>
-    <div class="contenido">
-      <ul>
-        <li>🏷️ <strong>Estereotipo:</strong> idea simplificada y repetida sobre un grupo.</li>
-        <li>👀 <strong>Prejuicio:</strong> juicio previo negativo sin conocer a la persona.</li>
-        <li>✊ <strong>Discriminación:</strong> tratar con injusticia o excluir a alguien por sus características.</li>
-      </ul>
-      <div class="mini"><strong>Importante:</strong> Burlas, apodos y ciberacoso dañan la convivencia. En la escuela, quien observa tiene la responsabilidad de no ser cómplice y buscar ayuda.</div>
-    </div>
-  </details>
-
-  <details class="modulo">
-    <summary>🤝 7. El respeto: la base de la convivencia</summary>
-    <div class="contenido">
-      <p>Reconocer la dignidad inherentemente humana de cada persona. Escuchar sin burlarse, valorar la diferencia y resolver conflictos dialogando son actitudes cotidianas esenciales.</p>
-    </div>
-  </details>
-
-  <details class="modulo">
-    <summary>💗 8. La empatía: ponerme en los zapatos del otro</summary>
-    <div class="contenido">
-      <p>Paso 1: Observar y escuchar. Paso 2: Imaginar y comprender la vivencia ajena. Paso 3: Actuar con consideración y solidaridad.</p>
-    </div>
-  </details>
-
-  <details class="modulo">
-    <summary>🫂 9. La solidaridad: cuando el respeto se vuelve acción</summary>
-    <div class="contenido">
-      <p>Tradiciones como la <em>minga</em>, el <em>convite</em> o la filosofía africana <em>Ubuntu</em> («yo soy porque nosotros somos») nos enseñan que el bienestar de uno depende del bienestar de todos.</p>
-    </div>
-  </details>
-
-  <details class="modulo">
-    <summary>🏫 10. El aula inclusiva: un lugar donde todos cabemos</summary>
-    <div class="contenido">
-      <p>Evolución: Exclusión ➔ Separación ➔ Integración ➔ <strong>Inclusión</strong>. En el aula inclusiva todos aprenden juntos, participan con voz activa y disponen de los ajustes razonables requeridos.</p>
-    </div>
-  </details>
-
-  <details class="modulo">
-    <summary>⚖️ 11. Nuestros derechos y las normas que nos protegen</summary>
-    <div class="contenido">
-      <p>Constitución de 1991 (Art. 7, 13, 10, 18, 19, 44), Ley 115 de 1994, Ley 1620 de 2013 de Convivencia Escolar y Decretos de Educación Inclusiva que garantizan la igualdad, la libre expresión y el derecho a una educación sin discriminación.</p>
-    </div>
-  </details>
-</section>
-
-<!-- ============ ACTIVIDADES ============ -->
-<section class="panel" id="actividades">
-  <h2>🎯 Actividades Pedagógicas Alternativas</h2>
-  <p>Tres experiencias integradas para conectar las temáticas de diversidad, respeto y empatía a través del juego interactivo virtual y la creación con herramientas ofimáticas.</p>
-
-  <div class="juego-desc">
-    <span class="badge">ACTIVIDAD 1</span>
-    <h4>🔤 Reconociendo la Diversidad:
+      <li>
