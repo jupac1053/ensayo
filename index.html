@@ -32,23 +32,21 @@
   header p{font-size:1em;margin:2px 0;color:#5b4a72;}
   .pill{display:inline-block;background:#fff;border-radius:30px;padding:4px 16px;font-weight:bold;font-size:.85em;color:var(--lila-osc);box-shadow:0 3px 8px rgba(0,0,0,.08);margin:2px;}
 
-  /* ===== MENÚ Y SUBMENÚ ===== */
+  /* ===== MENÚ ===== */
   nav.tabs{position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;justify-content:center;
     background:rgba(255,255,255,.92);backdrop-filter:blur(8px);box-shadow:0 4px 14px rgba(74,63,85,.12);}
   .tab-btn{background:transparent;border:none;color:#7a6d8a;font-weight:bold;padding:14px 16px;cursor:pointer;font-size:.93em;border-bottom:4px solid transparent;transition:all .2s;}
   .tab-btn:hover{color:var(--lila-osc);transform:translateY(-2px);}
   .tab-btn.activo{color:var(--lila-osc);border-bottom:4px solid var(--rosa-osc);background:linear-gradient(180deg,transparent,var(--rosa));}
-  
-  .subtabs{display:none;width:100%;justify-content:center;flex-wrap:wrap;gap:6px;padding:10px;background:linear-gradient(90deg,var(--celeste),var(--menta));}
-  .subtabs.activo{display:flex !important;}
+  .subtabs{display:none;width:100%;justify-content:center;flex-wrap:wrap;gap:6px;padding:8px;background:linear-gradient(90deg,var(--celeste),var(--menta));}
+  .subtabs.activo{display:flex;}
   .subtab-btn{background:#fff;border:2px solid transparent;border-radius:30px;color:#6a5d7a;padding:8px 18px;cursor:pointer;font-size:.88em;font-weight:bold;box-shadow:0 3px 8px rgba(0,0,0,.08);transition:all .2s;}
   .subtab-btn:hover{transform:translateY(-2px);border-color:var(--celeste-osc);}
-  .subtab-btn.activo{background:var(--lila-osc) !important;color:#fff !important;}
+  .subtab-btn.activo{background:var(--lila-osc);color:#fff;}
 
   section.panel{display:none;position:relative;z-index:1;max-width:980px;margin:32px auto;background:var(--blanco);border-radius:24px;padding:34px 38px;box-shadow:0 10px 30px rgba(74,63,85,.10);}
-  section.panel.activo{display:block !important;animation:aparecer .35s ease;}
+  section.panel.activo{display:block;animation:aparecer .35s ease;}
   @keyframes aparecer{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
-  
   h2{color:#6b5394;border-bottom:4px solid var(--lila);padding-bottom:8px;margin-bottom:18px;}
   h3{color:#6b5394;margin:18px 0 8px;}
   .tabla{width:100%;border-collapse:collapse;margin:15px 0;border-radius:14px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.06);}
@@ -67,10 +65,6 @@
   footer .creditos{font-size:.95em;margin-top:6px;}
   ul,ol{margin-left:25px;}
 
-  /* ===== ENLACE DRIVE ===== */
-  .link-drive{display:inline-block;background:linear-gradient(90deg,var(--menta-osc),var(--celeste-osc));color:#fff;padding:12px 24px;border-radius:30px;text-decoration:none;font-weight:bold;box-shadow:0 4px 12px rgba(92,174,135,.3);transition:all .2s;margin:10px 0;}
-  .link-drive:hover{transform:scale(1.03);box-shadow:0 6px 18px rgba(92,174,135,.4);}
-
   /* ===== ACORDEÓN TEMÁTICAS ===== */
   details.modulo{background:#fbf8ff;border-radius:16px;margin:12px 0;border:2px solid var(--lila);overflow:hidden;transition:box-shadow .2s;}
   details.modulo:hover{box-shadow:0 6px 16px rgba(143,127,212,.18);}
@@ -88,9 +82,9 @@
   .btn-juego{background:linear-gradient(90deg,var(--lila-osc),var(--celeste-osc));color:#fff;border:none;border-radius:30px;padding:11px 26px;font-weight:bold;cursor:pointer;font-size:1em;margin:8px 4px;box-shadow:0 4px 10px rgba(143,127,212,.3);transition:all .2s;}
   .btn-juego:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(143,127,212,.4);}
 
-  /* ===== SOPA DE LETRAS INTERACTIVA ===== */
+  /* ===== SOPA DE LETRAS ===== */
   #sopa-wrap{text-align:center;}
-  #sopa-grid{display:inline-grid;grid-template-columns:repeat(14,34px);gap:3px;margin:15px auto;user-select:none;-webkit-user-select:none;}
+  #sopa-grid{display:inline-grid;grid-template-columns:repeat(14,34px);gap:3px;margin:15px auto;user-select:none;}
   #sopa-grid div{width:34px;height:34px;background:var(--menta);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold;cursor:pointer;font-size:.95em;color:#3c6b52;transition:background .15s;}
   #sopa-grid div:hover{background:#a9dfc4;}
   #sopa-grid div.sel{background:var(--durazno-osc)!important;color:#fff!important;}
@@ -102,11 +96,13 @@
   /* ===== CRUCIGRAMA ===== */
   #cruci-wrap{text-align:center;}
   #cruci-grid{display:inline-grid;gap:2px;margin:15px auto;}
-  #cruci-grid input{width:34px;height:34px;text-align:center;font-weight:bold;text-transform:uppercase;font-size:1em;border:2px solid #cbb8ee;border-radius:8px;background:#fff;color:#5b4a72;}
+  .cruci-cell-wrap{position:relative;width:36px;height:36px;}
+  .cruci-num{position:absolute;top:2px;left:3px;font-size:0.62em;font-weight:bold;color:#8f7fd4;pointer-events:none;z-index:2;}
+  #cruci-grid input{width:36px;height:36px;text-align:center;font-weight:bold;text-transform:uppercase;font-size:.95em;border:2px solid #cbb8ee;border-radius:8px;background:#fff;color:#5b4a72;padding-top:6px;}
   #cruci-grid input:focus{outline:none;border-color:var(--durazno-osc);background:#fff8ef;}
-  #cruci-grid span{width:34px;height:34px;display:inline-block;}
-  #cruci-grid input.bien{background:var(--menta-osc);color:#fff;border-color:var(--menta-osc);}
-  #cruci-grid input.mal{background:#ffd9d4;border-color:#d46a5b;}
+  #cruci-grid span.vacio{width:36px;height:36px;display:inline-block;}
+  #cruci-grid input.bien{background:var(--menta-osc)!important;color:#fff!important;border-color:var(--menta-osc)!important;}
+  #cruci-grid input.mal{background:#ffd9d4!important;border-color:#d46a5b!important;}
   .pista{text-align:left;background:#fbf8ff;border-radius:12px;padding:10px 18px;margin:6px auto;max-width:580px;border-left:5px solid var(--lila-osc);}
 
   /* ===== TRIVIA SENDERO ===== */
@@ -136,10 +132,15 @@
   @keyframes girar{0%{transform:rotate(0) scale(.6);opacity:.4;}100%{transform:rotate(360deg) scale(1);opacity:1;}}
   .dado-anim{animation:girar .5s ease;}
 
+  .link-drive{display:inline-block;background:linear-gradient(90deg,var(--menta-osc),var(--celeste-osc));color:#fff;padding:12px 24px;border-radius:30px;text-decoration:none;font-weight:bold;box-shadow:0 4px 12px rgba(92,174,135,.3);transition:all .2s;margin:10px 0;}
+  .link-drive:hover{transform:scale(1.03);box-shadow:0 6px 18px rgba(92,174,135,.4);}
+
   @media(max-width:640px){
     #sopa-grid{grid-template-columns:repeat(14,22px);}#sopa-grid div{width:22px;height:22px;font-size:.7em;}
-    #trivia-board{grid-template-columns:repeat(12,28px);}#trivia-board div{width:28px;height:28px;font-size:1em;}
-    section.panel{padding:24px 18px;}
+    #cruci-grid{gap:1px;} .cruci-cell-wrap, #cruci-grid input, #cruci-grid span.vacio{width:24px;height:24px;font-size:.7em;padding-top:4px;}
+    .cruci-num{font-size:.5em;top:0;left:1px;}
+    #trivia-board{grid-template-columns:repeat(12,25px);}#trivia-board div{width:25px;height:25px;font-size:.85em;}
+    section.panel{padding:22px 16px;}
   }
 </style>
 <base target="_blank">
@@ -153,7 +154,7 @@
     <p><strong>Diversidad cultural, respeto y empatía para construir aulas donde todos cabemos</strong></p>
     <p>Institución Educativa <strong>Aureliano Flórez Cardona</strong> · Anserma, Caldas</p>
     <p><span class="pill">Diplomado: Alternativas Pedagógicas en y para la Atención a la Diversidad — Cohorte II</span></p>
-    <p><span class="pill">🌄 Caldas Camina hacia la Inclusión 2026</span></p>
+    <p><span class="pill">🌄 Caldas Camina hacia la Inclusión 2026</span> <span class="pill">Grados 6° a 11°</span></p>
   </div>
   <div class="escudo"><img src="escudo.jpg" alt="Escudo I.E. Aureliano Flórez Cardona"></div>
 </header>
@@ -167,7 +168,6 @@
   <button class="tab-btn" onclick="mostrarTab('desarrollo',this)">🚀 Desarrollo</button>
   <button class="tab-btn" onclick="mostrarTab('evaluacion',this)">✅ Evaluación</button>
   <button class="tab-btn" onclick="mostrarTab('creditos',this)">⭐ Créditos</button>
-  
   <!-- submenú de juegos -->
   <div class="subtabs" id="subtabs-juegos">
     <button class="subtab-btn activo" onclick="mostrarSub('j-sopa',this)">🔤 Sopa de Letras</button>
@@ -194,9 +194,9 @@
     <h3>🎯 ¿Qué encontrarán aquí?</h3>
     <ul>
       <li>📚 Las temáticas del documento «Somos diferentes, somos iguales» explicadas de manera sencilla: cultura, diversidad, identidad, respeto, empatía, solidaridad, aula inclusiva y derechos.</li>
-      <li>🎯 Actividades pedagógicas alternativas para vivir en la escuela.</li>
-      <li>🎮 <strong>Juegos virtuales:</strong> sopa de letras interactiva por arrastre/clic, crucigrama y la trivia del Sendero de la Inclusión con preguntas y tiempo límite.</li>
-      <li>🚀 El cronograma de desarrollo, repositorio de evidencias en Google Drive y la evaluación formativa del proceso.</li>
+      <li>🎯 Actividades pedagógicas alternativas centradas en el juego, la reflexión y la creación digital.</li>
+      <li>🎮 <strong>Juegos virtuales:</strong> sopa de letras interactiva con selección y tachado de conceptos, crucigrama numerado adaptable a cualquier dispositivo y la trivia interactiva Sendero de la Inclusión.</li>
+      <li>🚀 El cronograma de desarrollo, evidencias pedagógicas y evaluación formativa del proceso.</li>
     </ul>
   </div>
   <div class="caja-azul">
@@ -315,100 +315,128 @@
 <!-- ============ ACTIVIDADES ============ -->
 <section class="panel" id="actividades">
   <h2>🎯 Actividades Pedagógicas Alternativas</h2>
+  <p>Tres experiencias integradas para conectar las temáticas de diversidad, respeto y empatía a través del juego interactivo virtual y la creación con herramientas ofimáticas.</p>
 
-  <div class="juego-desc"><span class="badge">Actividad 1</span>
-    <h4>🎭 «Caminando mi identidad» — Circuito de estaciones vivenciales</h4>
-    <p><strong>Temáticas:</strong> identidad, diversidad y cultura. · <strong>Propósito:</strong> reconocer y valorar la diversidad de identidades del aula.</p>
+  <div class="juego-desc">
+    <span class="badge">ACTIVIDAD 1</span>
+    <h4>🔤 Reconociendo la Diversidad: Sopa de Letras y Crucigrama Virtual</h4>
+    <p><strong>Objetivo:</strong> Identificar y apropiar los conceptos fundamentales de la diversidad cultural, la empatía, el respeto y la inclusión a través del desarrollo interactivo del crucigrama y la sopa de letras virtual.</p>
+    <p><strong>Paso a paso:</strong></p>
     <ol>
-      <li><strong>Apertura:</strong> círculo de diálogo — «¿Qué nos hace únicos y qué tenemos en común?».</li>
-      <li><strong>Estación 1:</strong> cada estudiante dibuja su «mapa de identidad» (familia, gustos, cultura, sueños) y lo comparte.</li>
-      <li><strong>Estación 2 — Rompe estereotipos:</strong> frases estereotipadas que los estudiantes reescriben de forma inclusiva.</li>
-      <li><strong>Estación 3 — Teatro de sombras:</strong> juego de roles representando la experiencia escolar de un compañero con diferente contexto.</li>
-      <li><strong>Cierre:</strong> compromiso colectivo de respeto.</li>
+      <li>Acceder a la pestaña <strong>🎮 Juegos Virtuales</strong> y seleccionar los juegos <em>🔤 Sopa de Letras</em> y <em>🧩 Crucigrama</em>.</li>
+      <li>En la Sopa de Letras, seleccionar interactiva y directamente las letras de palabras como <code>DIVERSIDAD</code>, <code>RESPETO</code>, <code>EMPATÍA</code>, <code>CULTURA</code>, <code>INCLUSIÓN</code> y <code>SOLIDARIDAD</code> hasta completar la lista y ver el tachado automático.</li>
+      <li>En el Crucigrama Numerado, responder las pistas horizontales y verticales sobre conceptos como racismo, acoso, estereotipos, ubuntu y derechos.</li>
+      <li>Realizar un conversatorio en parejas sobre los conceptos encontrados y redactar en el cuaderno tres compromisos personales para vivenciarlos en el aula.</li>
     </ol>
-    <p><strong>Evidencias:</strong> mapas de identidad, pizarra de estereotipos reescritos, reflexiones.</p>
   </div>
 
-  <div class="juego-desc"><span class="badge">Actividad 2</span>
-    <h4>🎲 «La Oca de la Inclusión» — Juego de mesa cooperativo</h4>
-    <p><strong>Temáticas:</strong> diversidad, respeto y solidaridad. · <strong>Propósito:</strong> aprender sobre diversidad y convivencia jugando en equipo, donde todos ganan juntos.</p>
+  <div class="juego-desc">
+    <span class="badge">ACTIVIDAD 2</span>
+    <h4>🎲 El Sendero de la Inclusión: Trivia Virtual Interactiva</h4>
+    <p><strong>Objetivo:</strong> Evaluar y profundizar los conocimientos sobre diversidad, convivencia escolar, prevención del acoso y derechos humanos recorriendo el tablero digital interactivo.</p>
+    <p><strong>Paso a paso:</strong></p>
     <ol>
-      <li>Equipos de 4-5 avanzan por un tablero tipo «oca» que ellos mismos construyen.</li>
-      <li>Cada casilla tiene un reto: preguntas sobre diversidad, casos de convivencia o acciones inclusivas.</li>
-      <li>Nadie queda eliminado: la meta es que todos lleguen a la casilla final («Escuela Inclusiva»).</li>
-      <li>Los equipos se autoevalúan con una rúbrica acordada antes de jugar.</li>
+      <li>Organizar los equipos de trabajo en el aula de informática o desde dispositivos móviles.</li>
+      <li>Ingresar a la subpestana <em>🎲 Trivia · Sendero de la Inclusión</em> dentro de la sección de Juegos Virtuales.</li>
+      <li>Lanzar el dado virtual y responder en el tiempo límite de 20 segundos las preguntas aleatorias sobre legislación (Constitución, Ley 1620), expresiones culturales, situaciones de acoso/bullying y valores comunitarios.</li>
+      <li>Al finalizar el recorrido y llegar a la Meta de la Inclusión, el grupo analiza las preguntas en las que tuvo dudas y propone soluciones pacíficas a los dilemas planteados en el juego.</li>
     </ol>
-    <p><strong>Variante digital:</strong> recrear el juego en Genially o Kahoot. · <strong>Evidencias:</strong> tableros, fotos, rúbricas.</p>
   </div>
 
-  <div class="juego-desc"><span class="badge">Actividad 3</span>
-    <h4>📱 «Historias que incluyen» — Proyecto digital colaborativo</h4>
-    <p><strong>Temáticas:</strong> diversidad cultural de Colombia y empatía. · <strong>Propósito:</strong> crear productos digitales (podcast, cómic digital, video corto, mural virtual) que narren historias de diversidad e inclusión de la comunidad de Anserma.</p>
+  <div class="juego-desc">
+    <span class="badge">ACTIVIDAD 3</span>
+    <h4>📰 Revista Digital Escolar: «60 Años Floreciendo en Diversidad e Inclusión»</h4>
+    <p><strong>Objetivo:</strong> Expresar la identidad institucional, la estructura democrática y el valor de la diversidad diseñando una revista digital interactiva en herramientas ofimáticas (Canva, Genially, Google Slides o PowerPoint).</p>
+    <p><strong>Paso a paso y secciones requeridas:</strong></p>
     <ol>
-      <li><strong>Sesión 1:</strong> identificar historias de inclusión del barrio y la institución.</li>
-      <li><strong>Sesión 2:</strong> guion con roles rotativos (guionista, narrador, editor, diseñador).</li>
-      <li><strong>Sesión 3:</strong> producción con herramientas accesibles (subtítulos, audios, lectura fácil).</li>
-      <li><strong>Sesión 4:</strong> feria digital con las familias y coevaluación con rúbrica inclusiva.</li>
+      <li><strong>Sección 1: 60 Años de la Institución:</strong> Reseña histórica de la I.E. Aureliano Flórez Cardona, su legado en Anserma y cómo ha evolucionado en el respeto a todos los estudiantes.</li>
+      <li><strong>Sección 2: Gobierno Escolar Democrático e Inclusivo:</strong> Presentación de los voceros estudiantiles (personero, contralor, representantes de aula) y sus propuestas de inclusión.</li>
+      <li><strong>Sección 3: Producto Innovador Pedagogía Inclusiva:</strong> Muestra de un proyecto o prototipo creativo ideado por los estudiantes para hacer el colegio más accesible y acogedor.</li>
+      <li><strong>Sección 4: Cuento Libre sobre Diversidad:</strong> Redacción e ilustración de un cuento inédito donde se evidencie la vivencia de la empatía, el respeto y la superación de estereotipos.</li>
     </ol>
-    <p><strong>Evidencias:</strong> productos digitales publicados, rúbricas de coevaluación, testimonios.</p>
-  </div>
-
-  <div class="juego-desc"><span class="badge">Actividad 4 (complementaria)</span>
-    <h4>🌱 «Aula sin barreras» — Auditoría inclusiva de la escuela</h4>
-    <p><strong>Temáticas:</strong> aula inclusiva y accesibilidad. · <strong>Propósito:</strong> evaluar la accesibilidad física, comunicativa y cultural de la institución y proponer mejoras a la directiva.</p>
-    <p><strong>Evidencias:</strong> listas de chequeo, fotos del recorrido, informe final presentado.</p>
   </div>
 </section>
 
-<!-- ============ JUEGOS ============ -->
+<!-- ============ JUEGOS VIRTUALES ============ -->
 <section class="panel" id="juegos">
+  <h2>🎮 Juegos Virtuales Interactivos</h2>
+  <p>Selecciona una opción del submenú para jugar directamente en la pantalla.</p>
 
   <!-- SOPA DE LETRAS -->
-  <div class="subpanel activo" id="j-sopa" style="display:block;">
-    <h2>🔤 Juego 1: Sopa de Letras «Palabras de la Diversidad»</h2>
-    <p>Encuentra las palabras escondidas sobre la temática. Haz clic o arrastra sobre las letras de la palabra (horizontal, vertical o diagonal). ¡Toca «Nueva sopa» para reordenarlas!</p>
+  <div id="j-sopa" class="juego-bloque">
+    <h3>🔤 Sopa de Letras: «Valores y Diversidad»</h3>
+    <p>Haz clic o arrastra para seleccionar las letras de las palabras ocultas. Cuando encuentres la palabra correcta, se marcará en verde y se tachará en la lista.</p>
+    
     <div id="sopa-wrap">
-      <div class="palabras-chips" id="sopa-chips"></div>
+      <div class="palabras-chips" id="sopa-chips">
+        <!-- Generado dinámicamente -->
+      </div>
       <div id="sopa-grid"></div>
-      <p id="sopa-msg" style="font-weight:bold;color:#2f6b4d;margin-top:8px;">&nbsp;</p>
-      <button class="btn-juego" onclick="nuevaSopa()">🔄 Nueva sopa</button>
+      <div>
+        <button class="btn-juego" onclick="reiniciarSopa()">🔄 Reiniciar Sopa</button>
+      </div>
     </div>
   </div>
 
   <!-- CRUCIGRAMA -->
-  <div class="subpanel" id="j-cruci" style="display:none;">
-    <h2>🧩 Juego 2: Crucigrama «Convivencia en la Escuela»</h2>
-    <p>Lee las pistas, escribe las palabras en el crucigrama y presiona <strong>«Comprobar»</strong>.</p>
+  <div id="j-cruci" class="juego-bloque" style="display:none;">
+    <h3>🧩 Crucigrama: «Aprender a Convivir»</h3>
+    <p>Completa las casillas haciendo clic en cada celda numerada según las pistas horizontales y verticales. Puedes verificar tus respuestas al finalizar.</p>
+    
     <div id="cruci-wrap">
       <div id="cruci-grid"></div>
-      <div style="text-align:left;max-width:600px;margin:10px auto;">
-        <div class="pista"><strong>Horizontal 1:</strong> Variedad de personas, culturas y formas de ser en la escuela. (10 letras)</div>
-        <div class="pista"><strong>Vertical 2:</strong> Capacidad de ponerse en el lugar del otro. (7 letras)</div>
-        <div class="pista"><strong>Horizontal 3:</strong> Tratar a los demás con dignidad y consideración. (7 letras)</div>
-        <div class="pista"><strong>Vertical 4:</strong> Conjunto de formas de vivir, pensar y celebrar de un grupo. (7 letras)</div>
-        <div class="pista"><strong>Vertical 5:</strong> Valor inherente que tiene toda persona. (8 letras)</div>
-        <div class="pista"><strong>Horizontal 6:</strong> Apoyo mutuo y acción conjunta por el bien de todos. (11 letras)</div>
+      <br>
+      <button class="btn-juego" onclick="verificarCrucigrama()">✅ Verificar Respuestas</button>
+      <button class="btn-juego" onclick="reiniciarCrucigrama()">🔄 Reiniciar</button>
+      <div id="cruci-feedback" style="margin-top:10px;font-weight:bold;"></div>
+
+      <div style="margin-top:20px; text-align:left;">
+        <h4>Horizontales:</h4>
+        <div class="pista"><strong>1.</strong> Conjunto de formas de vida, costumbres y saberes de un pueblo. (7 letras) ➔ <em>CULTURA</em></div>
+        <div class="pista"><strong>3.</strong> Capacidad de ponerse en el lugar del otro y comprender sus sentimientos. (7 letras) ➔ <em>EMPATIA</em></div>
+        <div class="pista"><strong>5.</strong> Idea simplificada o exagerada que se tiene sobre un grupo. (11 letras) ➔ <em>ESTEREOTIPO</em></div>
+
+        <h4>Verticales:</h4>
+        <div class="pista"><strong>2.</strong> Reconocer el valor y la dignidad de cada persona. (7 letras) ➔ <em>RESPETO</em></div>
+        <div class="pista"><strong>4.</strong> Principio donde todas las personas caben y participan con igualdad. (9 letras) ➔ <em>INCLUSION</em></div>
       </div>
-      <button class="btn-juego" onclick="comprobarCruci()">✔ Comprobar</button>
-      <button class="btn-juego" onclick="limpiarCruci()">🧹 Limpiar</button>
-      <p id="cruci-msg" style="font-weight:bold;color:#2f6b4d;margin-top:8px;">&nbsp;</p>
     </div>
   </div>
 
-  <!-- TRIVIA SENDERO -->
-  <div class="subpanel" id="j-trivia" style="display:none;">
-    <h2>🎲 Juego 3: Trivia · Sendero de la Inclusión</h2>
-    <p>El estudiante 🧑‍🎓 quiere llegar a la meta 🏁. Pulsa <strong>«Lanzar dado 🎲»</strong>: saldrá una <strong>pregunta con tiempo límite</strong>. Si respondes <strong>bien, avanzas</strong> lo que diga el dado; si respondes <strong>mal o se acaba el tiempo, retrocedes</strong>. ¡Llega a la meta!</p>
+  <!-- TRIVIA SENDERO DE LA INCLUSIÓN -->
+  <div id="j-trivia" class="juego-bloque" style="display:none;">
+    <h3>🎲 Sendero de la Inclusión</h3>
+    <p>Presiona el botón para tirar el dado, avanza por las casillas y responde acertadamente las preguntas para alcanzar la meta.</p>
+
     <div id="trivia-wrap">
+      <div>
+        <span id="dado">🎲</span>
+        <br>
+        <button class="btn-juego" id="btn-dado" onclick="tirarDado()">🎲 Tirar Dado</button>
+      </div>
+
       <div id="trivia-board"></div>
-      <p><span id="dado">🎲</span></p>
-      <button class="btn-juego" onclick="tirarDado()">🎲 Lanzar dado</button>
-      <button class="btn-juego" onclick="reiniciarTrivia()">🔄 Reiniciar</button>
-      <div id="trivia-info">🚩 Pulsa «Lanzar dado» para responder tu primera pregunta del sendero de la inclusión.</div>
-      <div id="trivia-victoria">🏆 ¡Felicitaciones! Completaste el Sendero de la Inclusión. Demostraste que conoces la diversidad, el respeto, la empatía y la solidaridad. ¡Ahora vívelos en la escuela! 💚</div>
+
+      <div id="trivia-info">
+        📍 <strong>Estado:</strong> ¡Haz clic en "Tirar Dado" para iniciar tu recorrido por el Sendero de la Inclusión!
+      </div>
+
+      <div id="trivia-victoria">
+        🎉 ¡FELICITACIONES! Has llegado a la Meta de la Inclusión. Has demostrado gran conocimiento sobre respeto, diversidad y empatía. 🌈
+      </div>
     </div>
   </div>
 </section>
+
+<!-- MODAL PARA TRIVIA -->
+<div id="modal-trivia">
+  <div class="modal-caja">
+    <h3 id="trivia-pregunta">Pregunta</h3>
+    <div id="trivia-timer-wrap"><div id="trivia-timer"></div></div>
+    <div id="trivia-opciones"></div>
+    <p id="trivia-feedback"></p>
+  </div>
+</div>
 
 <!-- ============ DESARROLLO ============ -->
 <section class="panel" id="desarrollo">
@@ -416,28 +444,20 @@
   <table class="tabla">
     <tr><th>Semana</th><th>Fase</th><th>Actividad</th><th>Temáticas</th><th>Producto / Evidencia</th></tr>
     <tr><td>1</td><td>Diagnóstico y sensibilización</td><td>Círculo de diálogo inicial + encuesta de percepción sobre diversidad y convivencia</td><td>Diversidad, identidad</td><td>Línea base, registro de asistencia</td></tr>
-    <tr><td>2</td><td>Vivencia</td><td>Actividad 1: «Caminando mi identidad»</td><td>Identidad, cultura</td><td>Mapas de identidad, compromiso colectivo</td></tr>
-    <tr><td>3</td><td>Juego</td><td>Actividad 2: «La Oca de la Inclusión»</td><td>Diversidad, respeto, solidaridad</td><td>Tableros, fotos, rúbricas</td></tr>
-    <tr><td>4-5</td><td>Producción digital</td><td>Actividad 3: «Historias que incluyen»</td><td>Culturas de Colombia, empatía</td><td>Productos digitales, guiones</td></tr>
-    <tr><td>6</td><td>Participación</td><td>Actividad 4: «Aula sin barreras»</td><td>Aula inclusiva, derechos</td><td>Informe de auditoría inclusiva</td></tr>
+    <tr><td>2</td><td>Vivencia</td><td>Actividad 1 y 2: Sopa de letras, crucigrama y conversatorio</td><td>Identidad, cultura, respeto</td><td>Compromisos escritos, registros fotográficos</td></tr>
+    <tr><td>3</td><td>Juego</td><td>Actividad 2: «Sendero de la Inclusión» (Trivia interactiva)</td><td>Diversidad, respeto, solidaridad</td><td>Tableros recorridos, análisis grupal</td></tr>
+    <tr><td>4-6</td><td>Producción digital</td><td>Actividad 3: Diseño de la Revista Digital Escolar</td><td>Culturas de Colombia, empatía, gobierno escolar</td><td>Revista digital publicada (Canva / Genially)</td></tr>
     <tr><td>7</td><td>Socialización</td><td>Feria digital y muestra a la comunidad educativa</td><td>Solidaridad, interculturalidad</td><td>Testimonios, evidencias fotográficas</td></tr>
     <tr><td>8</td><td>Valoración</td><td>Encuesta final, reflexión individual y coevaluación</td><td>Compromisos ciudadanos</td><td>Informe final de la propuesta</td></tr>
   </table>
   
   <div class="caja-azul" style="margin-top:24px;">
     <h3>📂 Repositorio General de Evidencias Fotográficas y Pedagógicas</h3>
-    <p>Todas las evidencias del proceso, fotos del trabajo de los estudiantes, talleres diligenciados y productos digitales se encuentran organizadas en el enlace oficial de Google Drive[cite: 1]:</p>
+    <p>Todas las evidencias del proceso, fotos del trabajo de los estudiantes, talleres diligenciados y revistas digitales se encuentran organizadas en el enlace oficial de Google Drive:</p>
     <p style="text-align:center;">
       <a href="https://drive.google.com/drive/folders/1YEGMWaon-YuJFNy8vebVjhIke-uhq7ZT?usp=sharing" target="_blank" class="link-drive">📁 Ver Carpeta de Evidencias en Google Drive</a>
     </p>
   </div>
-
-  <h3>Compromisos asumidos</h3>
-  <ul>
-    <li>📌 Garantizar adaptaciones para estudiantes con discapacidad y acceso a recursos digitales para quienes no tienen conectividad.</li>
-    <li>📌 Documentar semanalmente evidencias (fotos, registros, testimonios) en un portafolio digital del docente.</li>
-    <li>📌 Socializar los resultados con el consejo directivo y el consejo estudiantil.</li>
-  </ul>
 </section>
 
 <!-- ============ EVALUACIÓN ============ -->
@@ -448,12 +468,11 @@
     <ul>
       <li><strong>Participación y respeto:</strong> escucha activa, valoración de las diferencias.</li>
       <li><strong>Cooperación:</strong> trabajo en equipo, apoyo entre pares.</li>
-      <li><strong>Creatividad:</strong> originalidad en productos y soluciones.</li>
+      <li><strong>Creatividad:</strong> originalidad en los productos digitales y soluciones.</li>
       <li><strong>Reflexión:</strong> capacidad de analizar y transformar prácticas.</li>
     </ul>
-    <p><strong>Instrumentos:</strong> autoevaluación, coevaluación entre estudiantes, valoración docente formativa (sin notas punitivas), portafolio de evidencias y encuestas de percepción inicial y final.</p>
   </div>
-  <div class="caja-morada">
+  <div class="caja-morada" style="margin-top:15px;">
     <p><strong>Reflexión final:</strong> las alternativas pedagógicas no son actividades aisladas, sino una forma de mirar la escuela: una institución donde la diversidad no es un problema que administrar, sino una riqueza que potenciar. <em>Somos diferentes, somos iguales: sigamos construyendo un aula donde todos cabemos.</em> 💚🌈</p>
   </div>
 </section>
@@ -472,21 +491,7 @@
     Diplomado: <em>Alternativas Pedagógicas en y para la Atención a la Diversidad — Cohorte II</em><br>
     Programa: <em>Caldas Camina hacia la Inclusión 2026</em></p>
   </div>
-  <div class="caja-rosa" style="text-align:center;">
-    <p>Documento base de la temática: <strong>«Somos diferentes, somos iguales — Diversidad cultural, respeto y empatía para construir aulas donde todos cabemos»</strong></p>
-  </div>
-  <p style="text-align:center;font-style:italic;color:#6b5394;margin-top:15px;">«Somos diferentes, somos iguales» 🌈💚</p>
 </section>
-
-<!-- ============ MODAL TRIVIA ============ -->
-<div id="modal-trivia">
-  <div class="modal-caja">
-    <h3 id="trivia-pregunta">Pregunta</h3>
-    <div id="trivia-timer-wrap"><div id="trivia-timer"></div></div>
-    <div id="trivia-opciones"></div>
-    <p id="trivia-feedback"></p>
-  </div>
-</div>
 
 <footer>
   <p><strong>Somos diferentes, somos iguales</strong> · I.E. Aureliano Flórez Cardona · Anserma, Caldas</p>
@@ -512,7 +517,7 @@ function mostrarTab(id, btn){
 }
 
 function mostrarSub(id, btn){
-  document.querySelectorAll('#juegos .subpanel').forEach(s=>s.style.display='none');
+  document.querySelectorAll('#juegos .juego-bloque').forEach(s=>s.style.display='none');
   const panelDestino = document.getElementById(id);
   if(panelDestino) panelDestino.style.display='block';
   
@@ -520,19 +525,16 @@ function mostrarSub(id, btn){
   if(btn) btn.classList.add('activo');
 }
 
-/* ================= SOPA DE LETRAS INTERACTIVA (ARRASTRE / CLIC) ================= */
+/* ================= SOPA DE LETRAS ================= */
 const PALABRAS_SOPA = ["RESPETO","EMPATIA","DIVERSIDAD","SOLIDARIDAD","INCLUSION","IDENTIDAD","CULTURA","DIGNIDAD","EQUIDAD","TOLERANCIA"];
 const TAM = 14;
-let sopaGrid = [], sopaSol = {}, encontradas = new Set();
-let seleccion = [];
-let arrastrando = false;
+let sopaGrid = [], sopaSol = {}, encontradas = new Set(), seleccion = [], arrastrando = false;
 const DIRS = [[0,1],[1,0],[1,1],[1,-1],[0,-1],[-1,0],[-1,-1],[-1,1]];
 const LETRAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-function nuevaSopa(){
+function reiniciarSopa(){
   sopaGrid = Array.from({length:TAM},()=>Array(TAM).fill(''));
   sopaSol = {}; encontradas = new Set(); seleccion = []; arrastrando = false;
-  document.getElementById('sopa-msg').innerHTML = '&nbsp;';
   PALABRAS_SOPA.forEach(pal=>{
     let colocada = false, intentos = 0;
     while(!colocada && intentos < 500){
@@ -565,24 +567,11 @@ function nuevaSopa(){
     const d = document.createElement('div');
     d.textContent = sopaGrid[r][c];
     d.dataset.r = r; d.dataset.c = c;
-    
-    d.addEventListener('mousedown', (e)=>{ iniciarArrastre(r,c,d); });
-    d.addEventListener('mouseenter', (e)=>{ if(arrastrando) actualizarArrastre(r,c); });
-    d.addEventListener('touchstart', (e)=>{ e.preventDefault(); iniciarArrastre(r,c,d); }, {passive:false});
-    d.addEventListener('touchmove', (e)=>{
-      e.preventDefault();
-      const touch = e.touches[0];
-      const target = document.elementFromPoint(touch.clientX, touch.clientY);
-      if(target && target.dataset && target.dataset.r !== undefined){
-        actualizarArrastre(parseInt(target.dataset.r), parseInt(target.dataset.c));
-      }
-    }, {passive:false});
-
+    d.addEventListener('mousedown', ()=>{ arrastrando=true; limpiarSel(); seleccion=[[r,c]]; d.classList.add('sel'); });
+    d.addEventListener('mouseenter', ()=>{ if(arrastrando) extenderSel(r,c); });
     g.appendChild(d);
   }
-  
-  document.addEventListener('mouseup', finalizarArrastre);
-  document.addEventListener('touchend', finalizarArrastre);
+  document.addEventListener('mouseup', finalizarSel);
 
   const chips = document.getElementById('sopa-chips');
   chips.innerHTML='';
@@ -593,22 +582,13 @@ function nuevaSopa(){
   });
 }
 
-function iniciarArrastre(r,c,celda){
-  if(encontradas.size===PALABRAS_SOPA.length) return;
-  arrastrando = true;
-  limpiarSelTemp();
-  seleccion = [[r,c]];
-  celda.classList.add('sel');
-}
-
-function actualizarArrastre(r,c){
-  if(!arrastrando || seleccion.length===0) return;
+function extenderSel(r,c){
+  if(seleccion.length===0) return;
   const [r0,c0] = seleccion[0];
   const dr = Math.sign(r - r0), dc = Math.sign(c - c0);
   const len = Math.max(Math.abs(r - r0), Math.abs(c - c0)) + 1;
-
   if((r === r0 || c === c0 || Math.abs(r - r0) === Math.abs(c - c0)) && len > 1){
-    limpiarSelTemp();
+    limpiarSel();
     seleccion = [];
     for(let i=0; i<len; i++){
       const rr = r0 + dr*i, cc = c0 + dc*i;
@@ -619,14 +599,10 @@ function actualizarArrastre(r,c){
   }
 }
 
-function finalizarArrastre(){
+function finalizarSel(){
   if(!arrastrando) return;
   arrastrando = false;
-  if(seleccion.length < 2){
-    limpiarSelTemp();
-    seleccion = [];
-    return;
-  }
+  if(seleccion.length < 2){ limpiarSel(); seleccion=[]; return; }
   const palabra = seleccion.map(([rr,cc])=>sopaGrid[rr][cc]).join('');
   const rev = palabra.split('').reverse().join('');
   const claves = Object.keys(sopaSol).filter(p=>!encontradas.has(p));
@@ -636,110 +612,118 @@ function finalizarArrastre(){
     encontradas.add(hallada);
     seleccion.forEach(([rr,cc])=>{
       const el = document.querySelector('#sopa-grid div[data-r="'+rr+'"][data-c="'+cc+'"]');
-      if(el){
-        el.classList.remove('sel');
-        el.classList.add('found');
-      }
+      if(el){ el.classList.remove('sel'); el.classList.add('found'); }
     });
     document.getElementById('chip-'+hallada).classList.add('ok');
-    document.getElementById('sopa-msg').textContent = '🎉 ¡Encontraste: '+hallada+'!';
-    if(encontradas.size===PALABRAS_SOPA.length)
-      document.getElementById('sopa-msg').textContent = '🏆 ¡Sopa completada! Eres un campeón de la inclusión.';
+    if(encontradas.size === PALABRAS_SOPA.length) alert('🎉 ¡Felicitaciones! Has completado la Sopa de Letras.');
   } else {
-    limpiarSelTemp();
+    limpiarSel();
   }
   seleccion = [];
 }
 
-function limpiarSelTemp(){
+function limpiarSel(){
   document.querySelectorAll('#sopa-grid div.sel').forEach(d=>d.classList.remove('sel'));
 }
 
 /* ================= CRUCIGRAMA ================= */
-const CRUCI = [
-  {pal:"DIVERSIDAD", r:0, c:0, dir:"H"},
-  {pal:"EMPATIA",    r:0, c:3, dir:"V"},
-  {pal:"RESPETO",    r:2, c:0, dir:"H"},
-  {pal:"CULTURA",    r:1, c:4, dir:"V"},
-  {pal:"DIGNIDAD",   r:0, c:9, dir:"V"},
-  {pal:"SOLIDARIDAD",r:5, c:4, dir:"H"}
+const CONFIG_CRUCI = [
+  {pal:"CULTURA", r:0, c:0, dir:"H", num:1},
+  {pal:"RESPETO", r:0, c:0, dir:"V", num:2},
+  {pal:"EMPATIA", r:2, c:2, dir:"H", num:3},
+  {pal:"INCLUSION",r:0, c:4, dir:"V", num:4},
+  {pal:"ESTEREOTIPO",r:5, c:1, dir:"H", num:5}
 ];
-const FILAS_C=8, COLS_C=13;
 
-function construirCruci(){
-  const sol = {};
-  CRUCI.forEach(w=>{
-    for(let i=0;i<w.pal.length;i++){
-      const r = w.dir==="H"?w.r:w.r+i, c = w.dir==="H"?w.c+i:w.c;
-      sol[r+"-"+c]=w.pal[i];
+function reiniciarCrucigrama(){
+  const mapaSol = {};
+  const mapanums = {};
+  CONFIG_CRUCI.forEach(w=>{
+    mapanums[w.r+"-"+w.c] = w.num;
+    for(let i=0; i<w.pal.length; i++){
+      const rr = w.dir==="H" ? w.r : w.r+i;
+      const cc = w.dir==="H" ? w.c+i : w.c;
+      mapaSol[rr+"-"+cc] = w.pal[i];
     }
   });
+
+  let maxR=0, maxC=0;
+  Object.keys(mapaSol).forEach(k=>{
+    const [r,c] = k.split('-').map(Number);
+    if(r>maxR) maxR=r;
+    if(c>maxC) maxC=c;
+  });
+
   const g = document.getElementById('cruci-grid');
-  g.style.gridTemplateColumns = 'repeat('+COLS_C+',34px)';
-  g.innerHTML='';
-  for(let r=0;r<FILAS_C;r++) for(let c=0;c<COLS_C;c++){
-    if(sol[r+"-"+c]){
-      const inp = document.createElement('input');
-      inp.maxLength=1; inp.dataset.r=r; inp.dataset.c=c; inp.dataset.sol=sol[r+"-"+c];
-      inp.addEventListener('input',()=>{ if(inp.value){ const n=siguienteInput(r,c); if(n) n.focus(); }});
-      g.appendChild(inp);
-    } else {
-      const sp = document.createElement('span'); g.appendChild(sp);
+  g.style.gridTemplateColumns = 'repeat('+(maxC+1)+', 36px)';
+  g.innerHTML = '';
+
+  for(let r=0; r<=maxR; r++){
+    for(let c=0; c<=maxC; c++){
+      const key = r+"-"+c;
+      if(mapaSol[key]){
+        const wrap = document.createElement('div');
+        wrap.className = 'cruci-cell-wrap';
+        if(mapanums[key]){
+          const numSpan = document.createElement('span');
+          numSpan.className = 'cruci-num';
+          numSpan.textContent = mapanums[key];
+          wrap.appendChild(numSpan);
+        }
+        const inp = document.createElement('input');
+        inp.maxLength = 1;
+        inp.dataset.sol = mapaSol[key];
+        wrap.appendChild(inp);
+        g.appendChild(wrap);
+      } else {
+        const sp = document.createElement('span');
+        sp.className = 'vacio';
+        g.appendChild(sp);
+      }
     }
   }
+  document.getElementById('cruci-feedback').textContent = '';
 }
-function siguienteInput(r,c){
-  const inputs=[...document.querySelectorAll('#cruci-grid input')];
-  const idx=inputs.findIndex(i=>+i.dataset.r===r&&+i.dataset.c===c);
-  return inputs[idx+1]||null;
-}
-function comprobarCruci(){
-  let bien=0, total=0;
-  document.querySelectorAll('#cruci-grid input').forEach(i=>{
+
+function verificarCrucigrama(){
+  let correctas = 0, total = 0;
+  document.querySelectorAll('#cruci-grid input').forEach(inp=>{
     total++;
-    i.classList.remove('bien','mal');
-    if(i.value.toUpperCase()===i.dataset.sol){ i.classList.add('bien'); bien++; }
-    else if(i.value) i.classList.add('mal');
+    inp.classList.remove('bien','mal');
+    if(inp.value.toUpperCase() === inp.dataset.sol){
+      inp.classList.add('bien');
+      correctas++;
+    } else if(inp.value !== ''){
+      inp.classList.add('mal');
+    }
   });
-  const msg=document.getElementById('cruci-msg');
-  if(bien===total) msg.textContent='🏆 ¡Crucigrama perfecto! Conoces muy bien la cultura de la inclusión.';
-  else msg.textContent='Tienes '+bien+' de '+total+' letras correctas. ¡Sigue intentando! 💪';
-}
-function limpiarCruci(){
-  document.querySelectorAll('#cruci-grid input').forEach(i=>{i.value='';i.classList.remove('bien','mal');});
-  document.getElementById('cruci-msg').innerHTML='&nbsp;';
+  const fb = document.getElementById('cruci-feedback');
+  if(correctas === total){
+    fb.style.color = '#2f6b4d';
+    fb.textContent = '🏆 ¡Excelente! Has completado el crucigrama correctamente.';
+  } else {
+    fb.style.color = '#b04a3a';
+    fb.textContent = `Tienes ${correctas} de ${total} letras correctas. ¡Revisa los errores marcados en rojo!`;
+  }
 }
 
 /* ================= TRIVIA SENDERO ================= */
-const CAMINO_T = [
-  [6,0],[6,1],[6,2],[6,3],[6,4],[6,5],
-  [5,5],[4,5],[4,6],[4,7],[4,8],[4,9],[4,10],
-  [3,10],[2,10],[2,9],[2,8],[2,7],[2,6],
-  [1,6],[0,6],[0,7],[0,8]
-];
+const CAMINO_T = [[6,0],[6,1],[6,2],[6,3],[6,4],[6,5],[5,5],[4,5],[4,6],[4,7],[4,8],[4,9],[4,10],[3,10],[2,10],[2,9],[2,8],[2,7],[2,6],[1,6],[0,6],[0,7],[0,8]];
 const ESTACIONES_T = {
-  0:{icono:"🚩", titulo:"¡Bienvenido al Sendero de la Inclusión!", texto:"Lanza el dado: cada pregunta tiene tiempo límite. ¡Responde bien para avanzar!"},
-  5:{icono:"🎭", titulo:"Estación · Identidad", texto:"«Me conozco y me valoro, y conozco con curiosidad a los demás». Todos tenemos identidades múltiples: nadie cabe en una sola caja."},
-  11:{icono:"🤝", titulo:"Estación · Respeto", texto:"Respetar no es «aguantar»: es reconocer que cada persona tiene dignidad y valor. ¡Sigue adelante!"},
-  17:{icono:"💗", titulo:"Estación · Empatía y solidaridad", texto:"Ponte en los zapatos del otro y actúa con cuidado: «yo soy porque nosotros somos» (ubuntu)."},
-  22:{icono:"🏁", titulo:"¡META!", texto:"¡Llegaste! Demostraste que conoces la diversidad, el respeto y la empatía."}
+  0:{icono:"🚩", titulo:"¡Inicio del Sendero!", texto:"Lanza el dado y responde con atención."},
+  6:{icono:"🎭", titulo:"Identidad y Cultura", texto:"Cada persona posee saberes y costumbres valiosas."},
+  12:{icono:"🤝", titulo:"Respeto Mutuo", texto:"La base de la convivencia es valorar la dignidad de todos."},
+  18:{icono:"💗", titulo:"Empatía en Acción", texto:"Ponerse en el lugar del otro transforma el ambiente escolar."},
+  22:{icono:"🏁", titulo:"¡META!", texto:"¡Llegaste a la meta de la inclusión!"}
 };
 const PREGUNTAS = [
-  {p:"¿Qué es la diversidad cultural?", o:["La existencia de muchas culturas y formas de vivir en un mismo lugar","Que todas las personas deben pensar igual","Solo la variedad de comidas de un país"], c:0},
-  {p:"¿Cuál es la diferencia entre diferencia y desigualdad?", o:["No hay ninguna diferencia","La diferencia es ser distintos (natural y valiosa); la desigualdad es recibir menos derechos por esas diferencias (injusta)","La desigualdad es buena si es cultural"], c:1},
-  {p:"¿Qué es un estereotipo?", o:["Una idea simplificada y repetida sobre un grupo, como si todos fueran iguales","Un estilo de música andina","Un derecho fundamental"], c:0},
-  {p:"La empatía se resume en la frase popular de…", o:["ponerse en los zapatos del otro","ganarle al otro en un debate","aguantar al otro aunque nos caiga mal"], c:0},
-  {p:"¿Qué afirma la Declaración Universal sobre la Diversidad Cultural de la UNESCO (2001)?", o:["Que solo debe existir una cultura por país","Que la diversidad cultural es patrimonio común de la humanidad","Que las lenguas nativas deben desaparecer"], c:1},
-  {p:"¿Cuántas lenguas nativas se hablan en Colombia, además del español?", o:["5","20","68"], c:2},
-  {p:"¿Qué es el acoso escolar (bullying) según la Ley 1620 de 2013?", o:["Un simple conflicto entre iguales","Una agresión intencional, repetida y con desequilibrio de poder, presencial o digital","Un juego normal entre estudiantes"], c:1},
-  {p:"El ubuntu, palabra de origen africano, se resume en…", o:["cada quien por su cuenta","yo soy porque nosotros somos","el que no corre, vuela"], c:1},
-  {p:"¿Qué artículo de la Constitución de 1991 dice que todas las personas nacen libres e iguales ante la ley?", o:["Artículo 13","Artículo 90","Artículo 1"], c:0},
-  {p:"Incluir (a diferencia de integrar) significa…", o:["pedirle a la persona que se adapte al grupo","cambiar el grupo y el entorno para que todos puedan participar de verdad","tener a la persona en el mismo lugar pero aparte"], c:1},
-  {p:"San Basilio de Palenque, cerca de Cartagena, es importante porque…", o:["fue el primer pueblo libre de América y conserva su lengua propia","es la capital musical de Colombia","allí se fundó la primera universidad"], c:0},
-  {p:"Si ves una burla o discriminación hacia un compañero, lo correcto es…", o:["reírte para no quedar mal con el grupo","callar y mirar a otro lado","no compartir el contenido, apoyar a la persona y contarle a un adulto de confianza"], c:2}
+  {p:"¿Qué es la diversidad cultural?", o:["La coexistencia de múltiples culturas y formas de vida","Que todos se vistan igual","Una sola norma de comportamiento"], c:0},
+  {p:"¿Qué diferencia hay entre diferencia y desigualdad?", o:["Son exactamente lo mismo","La diferencia es natural y valiosa; la desigualdad es injusta y limita derechos","La desigualdad es positiva para el aula"], c:1},
+  {p:"¿Qué es la empatía?", o:["Ignorar lo que sienten los demás","La capacidad de ponerse en el lugar del otro","Competir para ganar siempre"], c:1},
+  {p:"¿Qué promueve la Ley 1620 de 2013 en Colombia?", o:["El acoso escolar libre","La convivencia escolar, la prevención del bullying y los derechos humanos","La separación de estudiantes"], c:1},
+  {p:"¿Qué significa el principio africano Ubuntu?", o:["Cada quien por su cuenta","Yo soy porque nosotros somos","La ley del más fuerte"], c:1}
 ];
-const TIEMPO_TRIVIA = 15; // segundos
-let posT = 0, divsT = {}, preguntaActual = null, timerInt = null, dadoActual = 1, preguntasUsadas = [];
+let posT = 0, divsT = {}, preguntaActual = null, timerInt = null, preguntasUsadas = [];
 
 function construirTrivia(){
   const b = document.getElementById('trivia-board');
@@ -755,9 +739,6 @@ function construirTrivia(){
       if(ESTACIONES_T[idx]) d.innerHTML='<span>'+ESTACIONES_T[idx].icono+'</span>';
     } else {
       d.className='celda-vacia';
-      const azar = Math.random();
-      if(azar<0.09) d.textContent='🌷';
-      else if(azar<0.15) d.textContent='🌿';
     }
     b.appendChild(d);
     divsT[r+"-"+c]=d;
@@ -765,108 +746,114 @@ function construirTrivia(){
   posT = 0; preguntasUsadas = [];
   pintarJugadorT();
   document.getElementById('trivia-victoria').style.display='none';
-  document.getElementById('trivia-info').innerHTML='🚩 Pulsa «Lanzar dado» para responder tu primera pregunta del sendero de la inclusión.';
+  document.getElementById('trivia-info').innerHTML='📍 <strong>Estado:</strong> ¡Haz clic en "Tirar Dado" para iniciar tu recorrido por el Sendero de la Inclusión!';
   document.getElementById('dado').textContent='🎲';
 }
+
 function pintarJugadorT(){
   document.querySelectorAll('#jugador').forEach(e=>e.remove());
   const [r,c] = CAMINO_T[posT];
   divsT[r+"-"+c].innerHTML='<span id="jugador">🧑‍🎓</span>';
 }
-function restaurarIcono(idx){
-  const [r,c] = CAMINO_T[idx];
-  const est = ESTACIONES_T[idx];
-  divsT[r+"-"+c].innerHTML = est?'<span>'+est.icono+'</span>':'';
-}
+
 function tirarDado(){
-  if(posT>=CAMINO_T.length-1) return;
-  dadoActual = 1 + Math.floor(Math.random()*3);
-  const dadoEl = document.getElementById('dado');
-  dadoEl.classList.remove('dado-anim'); void dadoEl.offsetWidth;
-  dadoEl.classList.add('dado-anim');
-  dadoEl.textContent = ['⚀','⚁','⚂','⚃','⚄','⚅'][dadoActual-1];
-  abrirPregunta();
+  if(posT >= CAMINO_T.length-1) return;
+  const dadoVal = 1 + Math.floor(Math.random()*3);
+  document.getElementById('dado').textContent = ['⚀','⚁','⚂'][dadoVal-1];
+  abrirPregunta(dadoVal);
 }
-function abrirPregunta(){
+
+function abrirPregunta(dadoVal){
   let idx;
-  if(preguntasUsadas.length>=PREGUNTAS.length) preguntasUsadas=[];
+  if(preguntasUsadas.length >= PREGUNTAS.length) preguntasUsadas = [];
   do { idx = Math.floor(Math.random()*PREGUNTAS.length); } while(preguntasUsadas.includes(idx));
   preguntasUsadas.push(idx);
   preguntaActual = PREGUNTAS[idx];
-  document.getElementById('trivia-pregunta').textContent = '❓ '+preguntaActual.p;
-  const cont = document.getElementById('trivia-opciones');
-  cont.innerHTML='';
-  preguntaActual.o.forEach((op,i)=>{
-    const b = document.createElement('button');
-    b.className='opcion'; b.textContent = String.fromCharCode(65+i)+') '+op;
-    b.onclick = ()=>responderTrivia(i,b);
-    cont.appendChild(b);
+
+  document.getElementById('trivia-pregunta').textContent = '❓ ' + preguntaActual.p;
+  const opContainer = document.getElementById('trivia-opciones');
+  opContainer.innerHTML = '';
+  preguntaActual.o.forEach((op, i)=>{
+    const btn = document.createElement('button');
+    btn.className = 'opcion';
+    btn.textContent = String.fromCharCode(65+i) + ') ' + op;
+    btn.onclick = () => responderTrivia(i, dadoVal);
+    opContainer.appendChild(btn);
   });
-  document.getElementById('trivia-feedback').textContent = '⏱️ Tienes '+TIEMPO_TRIVIA+' segundos…';
+
+  document.getElementById('trivia-feedback').textContent = '';
   document.getElementById('modal-trivia').classList.add('abierto');
-  let restante = TIEMPO_TRIVIA;
-  actualizarBarra(restante);
+  
+  let restante = 20;
+  actualizarBarraTimer(restante);
   clearInterval(timerInt);
   timerInt = setInterval(()=>{
     restante--;
-    actualizarBarra(restante);
-    if(restante<=0){
+    actualizarBarraTimer(restante);
+    if(restante <= 0){
       clearInterval(timerInt);
-      responderTrivia(-1, null); // tiempo agotado
+      responderTrivia(-1, dadoVal);
     }
-  },1000);
-}
-function actualizarBarra(seg){
-  const pct = Math.max(0,(seg/TIEMPO_TRIVIA)*100);
-  document.getElementById('trivia-timer').style.width = pct+'%';
-  document.getElementById('trivia-timer').style.background = pct<35 ? 'linear-gradient(90deg,#e58aa8,#d46a5b)' : 'linear-gradient(90deg,#5cae87,#5b9fd4)';
-}
-function responderTrivia(i, btn){
-  clearInterval(timerInt);
-  const correcta = preguntaActual.c;
-  document.querySelectorAll('#trivia-opciones .opcion').forEach((b,bi)=>{
-    b.disabled = true;
-    if(bi===correcta) b.classList.add('correcta');
-  });
-  const feedback = document.getElementById('trivia-feedback');
-  let avanza = false;
-  if(i===correcta){
-    avanza = true;
-    feedback.style.color = '#2f6b4d';
-    feedback.textContent = '✅ ¡Correcto! Avanzas '+dadoActual+' casilla(s).';
-  } else {
-    if(btn) btn.classList.add('incorrecta');
-    feedback.style.color = '#b04a3a';
-    feedback.textContent = (i===-1 ? '⏰ ¡Se acabó el tiempo! ' : '❌ Incorrecto. ') + 'Retrocedes '+dadoActual+' casilla(s). La respuesta correcta era: '+preguntaActual.o[correcta];
-  }
-  setTimeout(()=>{
-    document.getElementById('modal-trivia').classList.remove('abierto');
-    moverJugadorT(dadoActual, avanza);
-  }, 2200);
-}
-function moverJugadorT(pasos, adelante){
-  restaurarIcono(posT);
-  if(adelante) posT = Math.min(posT+pasos, CAMINO_T.length-1);
-  else posT = Math.max(posT-pasos, 0);
-  pintarJugadorT();
-  const est = ESTACIONES_T[posT];
-  const info = document.getElementById('trivia-info');
-  if(est){
-    info.innerHTML='<strong>'+est.icono+' '+est.titulo+'</strong><br>'+est.texto;
-  } else {
-    info.innerHTML='📍 Casilla '+(posT+1)+' de '+CAMINO_T.length+'. ¡Sigue lanzando el dado!';
-  }
-  if(posT===CAMINO_T.length-1){
-    document.getElementById('trivia-victoria').style.display='block';
-  }
-}
-function reiniciarTrivia(){
-  construirTrivia();
+  }, 1000);
 }
 
-/* ================= INICIAR ================= */
-nuevaSopa();
-construirCruci();
+function actualizarBarraTimer(seg){
+  const pct = Math.max(0, (seg/20)*100);
+  document.getElementById('trivia-timer').style.width = pct + '%';
+}
+
+function responderTrivia(elegida, dadoVal){
+  clearInterval(timerInt);
+  const correcta = preguntaActual.c;
+  const opciones = document.querySelectorAll('#trivia-opciones .opcion');
+  opciones.forEach((b, idx)=>{
+    b.disabled = true;
+    if(idx === correcta) b.classList.add('correcta');
+    else if(idx === elegida) b.classList.add('incorrecta');
+  });
+
+  const feedback = document.getElementById('trivia-feedback');
+  let avanza = false;
+  if(elegida === correcta){
+    avanza = true;
+    feedback.style.color = '#2f6b4d';
+    feedback.textContent = `✅ ¡Correcto! Avanzas ${dadoVal} casilla(s).`;
+  } else {
+    feedback.style.color = '#b04a3a';
+    feedback.textContent = (elegida === -1 ? '⏰ ¡Se acabó el tiempo! ' : '❌ Incorrecto. ') + `Retrocedes ${dadoVal} casilla(s).`;
+  }
+
+  setTimeout(()=>{
+    document.getElementById('modal-trivia').classList.remove('abierto');
+    moverJugadorT(dadoVal, avanza);
+  }, 2000);
+}
+
+function moverJugadorT(pasos, adelante){
+  const [rAnt, cAnt] = CAMINO_T[posT];
+  const estAnt = ESTACIONES_T[posT];
+  divsT[rAnt+"-"+cAnt].innerHTML = estAnt ? '<span>'+estAnt.icono+'</span>' : '';
+
+  if(adelante) posT = Math.min(posT + pasos, CAMINO_T.length - 1);
+  else posT = Math.max(posT - pasos, 0);
+
+  pintarJugadorT();
+  const info = document.getElementById('trivia-info');
+  const estAct = ESTACIONES_T[posT];
+  if(estAct){
+    info.innerHTML = `<strong>${estAct.icono} ${estAct.titulo}</strong><br>${estAct.texto}`;
+  } else {
+    info.innerHTML = `📍 <strong>Estado:</strong> Casilla ${posT+1} de ${CAMINO_T.length}. ¡Sigue avanzando!`;
+  }
+
+  if(posT === CAMINO_T.length - 1){
+    document.getElementById('trivia-victoria').style.display = 'block';
+  }
+}
+
+/* ================= INICIALIZACIÓN ================= */
+reiniciarSopa();
+reiniciarCrucigrama();
 construirTrivia();
 </script>
 </body>
